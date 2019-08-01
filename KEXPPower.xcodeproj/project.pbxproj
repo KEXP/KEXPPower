@@ -7,13 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B46C4BA22DD9B03003E5277 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C4B922DD9B03003E5277 /* Configuration.swift */; };
+		8B46C4BC22DD9BBE003E5277 /* ConfigurationSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B46C4BB22DD9BBE003E5277 /* ConfigurationSample.json */; };
+		8B46C4BE22DD9C05003E5277 /* ConfigurationParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C4BD22DD9C05003E5277 /* ConfigurationParseTests.swift */; };
+		8B46C4C022DEC811003E5277 /* UIImageView+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C4BF22DEC811003E5277 /* UIImageView+Loading.swift */; };
+		8B46C4C422DEE016003E5277 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C4C322DEE016003E5277 /* Reachability.swift */; };
+		8B56300522E6C41F00F476D0 /* ShowResultParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B56300422E6C41F00F476D0 /* ShowResultParseTests.swift */; };
+		8B7D0C9F22F27452007875A3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8B7D0C9E22F27452007875A3 /* README.md */; };
 		8BFFECBF22C95E6100E3378C /* KEXPPower.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFFECB522C95E6100E3378C /* KEXPPower.framework */; };
-		8BFFECC422C95E6200E3378C /* KEXPPowerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFFECC322C95E6200E3378C /* KEXPPowerTests.swift */; };
 		8BFFECC622C95E6200E3378C /* KEXPPower.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFFECB822C95E6100E3378C /* KEXPPower.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8BFFECD622C95FB300E3378C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFFECD522C95FB300E3378C /* AppDelegate.swift */; };
 		8BFFECD822C95FB300E3378C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFFECD722C95FB300E3378C /* ViewController.swift */; };
 		8BFFECDD22C95FB900E3378C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BFFECDC22C95FB900E3378C /* Assets.xcassets */; };
 		8BFFECE622C9632500E3378C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BFFECE522C9632500E3378C /* LaunchScreen.storyboard */; };
+		8BFFECEA22C9658000E3378C /* PlayResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFFECE822C9658000E3378C /* PlayResult.swift */; };
+		8BFFECEB22C9658000E3378C /* ShowResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFFECE922C9658000E3378C /* ShowResult.swift */; };
+		8BFFECED22C968D000E3378C /* ShowSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BFFECEC22C968D000E3378C /* ShowSample.json */; };
+		8BFFECEF22C968DD00E3378C /* PlaySample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BFFECEE22C968DD00E3378C /* PlaySample.json */; };
+		8BFFECF722C96F6000E3378C /* XCTestCase+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFFECF622C96F6000E3378C /* XCTestCase+Helpers.swift */; };
+		8BFFECF922C9934100E3378C /* PlayResultParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFFECF822C9934100E3378C /* PlayResultParseTests.swift */; };
+		8BFFECFC22CB073100E3378C /* DateFormatter+StandardFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFFECFB22CB073100E3378C /* DateFormatter+StandardFormatters.swift */; };
+		8BFFECFE22CB11EE00E3378C /* ArchiveURLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFFECFD22CB11EE00E3378C /* ArchiveURLs.swift */; };
+		8BFFED0322D43EA100E3378C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFFED0222D43EA100E3378C /* Router.swift */; };
+		8BFFED0522D43EE700E3378C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFFED0422D43EE700E3378C /* NetworkManager.swift */; };
+		8BFFED0822D43F3800E3378C /* KEXPPower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFFED0722D43F3800E3378C /* KEXPPower.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,11 +44,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B46C4B922DD9B03003E5277 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		8B46C4BB22DD9BBE003E5277 /* ConfigurationSample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ConfigurationSample.json; sourceTree = "<group>"; };
+		8B46C4BD22DD9C05003E5277 /* ConfigurationParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationParseTests.swift; sourceTree = "<group>"; };
+		8B46C4BF22DEC811003E5277 /* UIImageView+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Loading.swift"; sourceTree = "<group>"; };
+		8B46C4C322DEE016003E5277 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		8B56300422E6C41F00F476D0 /* ShowResultParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowResultParseTests.swift; sourceTree = "<group>"; };
+		8B7D0C9E22F27452007875A3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		8BFFECB522C95E6100E3378C /* KEXPPower.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KEXPPower.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BFFECB822C95E6100E3378C /* KEXPPower.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KEXPPower.h; sourceTree = "<group>"; };
 		8BFFECB922C95E6100E3378C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BFFECBE22C95E6100E3378C /* KEXPPowerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KEXPPowerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8BFFECC322C95E6200E3378C /* KEXPPowerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEXPPowerTests.swift; sourceTree = "<group>"; };
 		8BFFECC522C95E6200E3378C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BFFECD322C95FB300E3378C /* KEXPPowerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KEXPPowerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BFFECD522C95FB300E3378C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +62,18 @@
 		8BFFECDC22C95FB900E3378C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8BFFECE122C95FB900E3378C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BFFECE522C9632500E3378C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8BFFECE822C9658000E3378C /* PlayResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayResult.swift; sourceTree = "<group>"; };
+		8BFFECE922C9658000E3378C /* ShowResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowResult.swift; sourceTree = "<group>"; };
+		8BFFECEC22C968D000E3378C /* ShowSample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ShowSample.json; sourceTree = "<group>"; };
+		8BFFECEE22C968DD00E3378C /* PlaySample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PlaySample.json; sourceTree = "<group>"; };
+		8BFFECF622C96F6000E3378C /* XCTestCase+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Helpers.swift"; sourceTree = "<group>"; };
+		8BFFECF822C9934100E3378C /* PlayResultParseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayResultParseTests.swift; sourceTree = "<group>"; };
+		8BFFECFB22CB073100E3378C /* DateFormatter+StandardFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+StandardFormatters.swift"; sourceTree = "<group>"; };
+		8BFFECFD22CB11EE00E3378C /* ArchiveURLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveURLs.swift; sourceTree = "<group>"; };
+		8BFFED0222D43EA100E3378C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		8BFFED0422D43EE700E3378C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		8BFFED0722D43F3800E3378C /* KEXPPower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEXPPower.swift; sourceTree = "<group>"; };
+		8BFFED0922DBD2DE00E3378C /* KEXPPower.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KEXPPower.podspec; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +125,12 @@
 		8BFFECB722C95E6100E3378C /* KEXPPower */ = {
 			isa = PBXGroup;
 			children = (
+				8B7D0C9E22F27452007875A3 /* README.md */,
+				8BFFED0922DBD2DE00E3378C /* KEXPPower.podspec */,
+				8BFFED0622D43F0B00E3378C /* Public API */,
+				8BFFED0122D43E6400E3378C /* Networking */,
+				8BFFECFA22CB071100E3378C /* Helpers */,
+				8BFFECE722C9656100E3378C /* Models */,
 				8BFFECB822C95E6100E3378C /* KEXPPower.h */,
 				8BFFECB922C95E6100E3378C /* Info.plist */,
 			);
@@ -99,7 +140,9 @@
 		8BFFECC222C95E6100E3378C /* KEXPPowerTests */ = {
 			isa = PBXGroup;
 			children = (
-				8BFFECC322C95E6200E3378C /* KEXPPowerTests.swift */,
+				8BFFECF122C9694200E3378C /* Tests */,
+				8BFFECF022C9692B00E3378C /* Samples */,
+				8BFFECF622C96F6000E3378C /* XCTestCase+Helpers.swift */,
 				8BFFECC522C95E6200E3378C /* Info.plist */,
 			);
 			path = KEXPPowerTests;
@@ -115,6 +158,64 @@
 				8BFFECE122C95FB900E3378C /* Info.plist */,
 			);
 			path = KEXPPowerExample;
+			sourceTree = "<group>";
+		};
+		8BFFECE722C9656100E3378C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8BFFECE822C9658000E3378C /* PlayResult.swift */,
+				8BFFECE922C9658000E3378C /* ShowResult.swift */,
+				8BFFECFD22CB11EE00E3378C /* ArchiveURLs.swift */,
+				8B46C4B922DD9B03003E5277 /* Configuration.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8BFFECF022C9692B00E3378C /* Samples */ = {
+			isa = PBXGroup;
+			children = (
+				8BFFECEE22C968DD00E3378C /* PlaySample.json */,
+				8BFFECEC22C968D000E3378C /* ShowSample.json */,
+				8B46C4BB22DD9BBE003E5277 /* ConfigurationSample.json */,
+			);
+			path = Samples;
+			sourceTree = "<group>";
+		};
+		8BFFECF122C9694200E3378C /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8BFFECF822C9934100E3378C /* PlayResultParseTests.swift */,
+				8B46C4BD22DD9C05003E5277 /* ConfigurationParseTests.swift */,
+				8B56300422E6C41F00F476D0 /* ShowResultParseTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		8BFFECFA22CB071100E3378C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8BFFECFB22CB073100E3378C /* DateFormatter+StandardFormatters.swift */,
+				8B46C4BF22DEC811003E5277 /* UIImageView+Loading.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8BFFED0122D43E6400E3378C /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				8BFFED0222D43EA100E3378C /* Router.swift */,
+				8BFFED0422D43EE700E3378C /* NetworkManager.swift */,
+				8B46C4C322DEE016003E5277 /* Reachability.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		8BFFED0622D43F0B00E3378C /* Public API */ = {
+			isa = PBXGroup;
+			children = (
+				8BFFED0722D43F3800E3378C /* KEXPPower.swift */,
+			);
+			path = "Public API";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +297,7 @@
 				TargetAttributes = {
 					8BFFECB422C95E6100E3378C = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 					};
 					8BFFECBD22C95E6100E3378C = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -230,6 +332,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B7D0C9F22F27452007875A3 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +340,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B46C4BC22DD9BBE003E5277 /* ConfigurationSample.json in Resources */,
+				8BFFECED22C968D000E3378C /* ShowSample.json in Resources */,
+				8BFFECEF22C968DD00E3378C /* PlaySample.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +362,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BFFED0522D43EE700E3378C /* NetworkManager.swift in Sources */,
+				8BFFECFE22CB11EE00E3378C /* ArchiveURLs.swift in Sources */,
+				8B46C4C022DEC811003E5277 /* UIImageView+Loading.swift in Sources */,
+				8BFFED0822D43F3800E3378C /* KEXPPower.swift in Sources */,
+				8BFFECEA22C9658000E3378C /* PlayResult.swift in Sources */,
+				8BFFED0322D43EA100E3378C /* Router.swift in Sources */,
+				8BFFECEB22C9658000E3378C /* ShowResult.swift in Sources */,
+				8B46C4BA22DD9B03003E5277 /* Configuration.swift in Sources */,
+				8B46C4C422DEE016003E5277 /* Reachability.swift in Sources */,
+				8BFFECFC22CB073100E3378C /* DateFormatter+StandardFormatters.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +379,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BFFECC422C95E6200E3378C /* KEXPPowerTests.swift in Sources */,
+				8BFFECF722C96F6000E3378C /* XCTestCase+Helpers.swift in Sources */,
+				8B46C4BE22DD9C05003E5277 /* ConfigurationParseTests.swift in Sources */,
+				8BFFECF922C9934100E3378C /* PlayResultParseTests.swift in Sources */,
+				8B56300522E6C41F00F476D0 /* ShowResultParseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,13 +458,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -397,12 +517,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -412,6 +533,7 @@
 		8BFFECCA22C95E6200E3378C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -430,6 +552,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.kexp.KEXPPower;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -438,6 +561,7 @@
 		8BFFECCB22C95E6200E3378C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -464,6 +588,7 @@
 		8BFFECCD22C95E6200E3378C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7F4LVTRHRM;
 				INFOPLIST_FILE = KEXPPowerTests/Info.plist;
@@ -482,6 +607,7 @@
 		8BFFECCE22C95E6200E3378C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7F4LVTRHRM;
 				INFOPLIST_FILE = KEXPPowerTests/Info.plist;
