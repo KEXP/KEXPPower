@@ -3,7 +3,7 @@
 A lightweight swift library that is used to communicate with the KEXP serivces to retrieve play and show information.
 
 ## Requirements
-- iOS 10.0+ / tvOS 10.0+
+- iOS 11.0+ / tvOS 11.0+
 - Xcode 10.2+
 - Swift 5+
 
