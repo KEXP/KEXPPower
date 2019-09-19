@@ -16,20 +16,24 @@ public enum Result<String>{
 typealias Completion = (_ result: Result<String>, _ data: Data?) -> Void
 
 class Router {
+    enum NetworkError: Error {
+        case serverError(String)
+    }
+    
     func get(url :URL, parameters: [URLQueryItem]?, completion: @escaping Completion) {
         var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
         urlComponents?.queryItems = parameters
         
         guard
             let requestURL = urlComponents?.url
-        else {
-            completion(Result.failure("Error building URL"), nil)
-            
-            return
+            else {
+                completion(Result.failure("Error building URL"), nil)
+                
+                return
         }
         
         let request = URLRequest(url: requestURL)
-
+        
         URLSession.shared.dataTask(with: request) { data, response, error in
             do {
                 guard
@@ -37,15 +41,15 @@ class Router {
                     let response = response as? HTTPURLResponse,
                     (200 ..< 300) ~= response.statusCode,
                     error == nil
-                else {
-                    completion(Result.failure("Error from platform: \(error.debugDescription)"), nil)
-                    throw error!
+                    else {
+                        completion(Result.failure("Error from platform: \(error.debugDescription)"), nil)
+                        throw NetworkError.serverError("Platform server error")
                 }
                 
                 completion(Result.success, data)
             } catch {
                 completion(Result.failure("Board creation failed with error: \(error.localizedDescription)"), nil)
             }
-        }.resume()
+            }.resume()
     }
 }
