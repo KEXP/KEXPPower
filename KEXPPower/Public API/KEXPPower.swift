@@ -29,7 +29,7 @@ public struct KEXPPower {
     static var playURL = URL(string: legacyBaseURL + "/play")!
     static var showURL = URL(string: legacyBaseURL + "/show")!
     
-    static var availableStreams: [AvailableStream]?
+    public static var availableStreams: [AvailableStream]?
     static var configurationURL = URL(string:"http://www.kexp.org/content/applications/AppleTV/config/KexpConfigResponse.json")
 
     static var streamURL: URL {
