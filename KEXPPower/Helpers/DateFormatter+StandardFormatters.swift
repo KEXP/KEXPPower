@@ -30,7 +30,6 @@ extension DateFormatter {
     
     public static let playlistDisplayFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        
         formatter.dateFormat = "hh:mma MM/dd/YYYY UTC"
         formatter.dateStyle = .none
         formatter.timeStyle = .short
@@ -38,4 +37,14 @@ extension DateFormatter {
         
         return formatter
     }()
+    
+    public static let showRequestFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: "UTC")
+        formatter.dateFormat = "yyyy-MM-dd'T'07:00:00'Z'"
+        
+        return formatter
+    }()
+    
+
 }

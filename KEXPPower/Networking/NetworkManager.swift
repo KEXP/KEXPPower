@@ -70,10 +70,10 @@ public struct NetworkManager {
     public func getShow(
         showId: String? = nil,
         airDateExact: String? = nil,
-        airDateAfter: String? = nil,
         airDateBefore: String? = nil,
-        limit: Int = 20,
-        offset: Int = 0,
+        airDateAfter: String? = nil,
+        limit: Int? = nil,
+        offset: Int? = nil,
         completion: @escaping ShowCompletion)
     {
         var parameters = [URLQueryItem]()
@@ -94,8 +94,13 @@ public struct NetworkManager {
             parameters.append(URLQueryItem(name: "airdate_before", value: airDateBefore))
         }
         
-        parameters.append(URLQueryItem(name: "limit", value: "\(limit)"))
-        parameters.append(URLQueryItem(name: "offset", value: "\(offset)"))
+        if let limit = limit {
+            parameters.append(URLQueryItem(name: "limit", value: "\(limit)"))
+        }
+        
+        if let offset = offset {
+            parameters.append(URLQueryItem(name: "offset", value: "\(offset)"))
+        }
         
         router.get(url: KEXPPower.showURL, parameters: parameters) { result, data in
             guard

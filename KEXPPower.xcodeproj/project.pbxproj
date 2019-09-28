@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B159DC1233C66E500BCB7AB /* ArchiveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B159DC0233C66E500BCB7AB /* ArchiveManager.swift */; };
+		8B159DC3233C689600BCB7AB /* ArchiveManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B159DC2233C689600BCB7AB /* ArchiveManagerTests.swift */; };
 		8B46C4BA22DD9B03003E5277 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C4B922DD9B03003E5277 /* Configuration.swift */; };
 		8B46C4BC22DD9BBE003E5277 /* ConfigurationSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B46C4BB22DD9BBE003E5277 /* ConfigurationSample.json */; };
 		8B46C4BE22DD9C05003E5277 /* ConfigurationParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C4BD22DD9C05003E5277 /* ConfigurationParseTests.swift */; };
@@ -44,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B159DC0233C66E500BCB7AB /* ArchiveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveManager.swift; sourceTree = "<group>"; };
+		8B159DC2233C689600BCB7AB /* ArchiveManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveManagerTests.swift; sourceTree = "<group>"; };
 		8B46C4B922DD9B03003E5277 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		8B46C4BB22DD9BBE003E5277 /* ConfigurationSample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ConfigurationSample.json; sourceTree = "<group>"; };
 		8B46C4BD22DD9C05003E5277 /* ConfigurationParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationParseTests.swift; sourceTree = "<group>"; };
@@ -102,6 +106,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B159DBF233C665200BCB7AB /* Archive */ = {
+			isa = PBXGroup;
+			children = (
+				8B159DC0233C66E500BCB7AB /* ArchiveManager.swift */,
+			);
+			path = Archive;
+			sourceTree = "<group>";
+		};
+		8B159DC4233C689F00BCB7AB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8BFFECF822C9934100E3378C /* PlayResultParseTests.swift */,
+				8B46C4BD22DD9C05003E5277 /* ConfigurationParseTests.swift */,
+				8B56300422E6C41F00F476D0 /* ShowResultParseTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8BFFECAB22C95E6100E3378C = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +149,7 @@
 			children = (
 				8B7D0C9E22F27452007875A3 /* README.md */,
 				8BFFED0922DBD2DE00E3378C /* KEXPPower.podspec */,
+				8B159DBF233C665200BCB7AB /* Archive */,
 				8BFFED0622D43F0B00E3378C /* Public API */,
 				8BFFED0122D43E6400E3378C /* Networking */,
 				8BFFECFA22CB071100E3378C /* Helpers */,
@@ -184,9 +207,8 @@
 		8BFFECF122C9694200E3378C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				8BFFECF822C9934100E3378C /* PlayResultParseTests.swift */,
-				8B46C4BD22DD9C05003E5277 /* ConfigurationParseTests.swift */,
-				8B56300422E6C41F00F476D0 /* ShowResultParseTests.swift */,
+				8B159DC4233C689F00BCB7AB /* Model */,
+				8B159DC2233C689600BCB7AB /* ArchiveManagerTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -362,6 +384,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B159DC1233C66E500BCB7AB /* ArchiveManager.swift in Sources */,
 				8BFFED0522D43EE700E3378C /* NetworkManager.swift in Sources */,
 				8BFFECFE22CB11EE00E3378C /* ArchiveURLs.swift in Sources */,
 				8B46C4C022DEC811003E5277 /* UIImageView+Loading.swift in Sources */,
@@ -379,6 +402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B159DC3233C689600BCB7AB /* ArchiveManagerTests.swift in Sources */,
 				8BFFECF722C96F6000E3378C /* XCTestCase+Helpers.swift in Sources */,
 				8B46C4BE22DD9C05003E5277 /* ConfigurationParseTests.swift in Sources */,
 				8BFFECF922C9934100E3378C /* PlayResultParseTests.swift in Sources */,
