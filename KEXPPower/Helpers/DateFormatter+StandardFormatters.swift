@@ -15,7 +15,6 @@ extension DateFormatter {
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         formatter.calendar = Calendar(identifier: .iso8601)
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        
         return formatter
     }()
     
@@ -24,7 +23,6 @@ extension DateFormatter {
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         formatter.calendar = Calendar(identifier: .iso8601)
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:'00Z'"
-
         return formatter
     }()
     
@@ -34,7 +32,6 @@ extension DateFormatter {
         formatter.dateStyle = .none
         formatter.timeStyle = .short
         formatter.timeZone = .current
-        
         return formatter
     }()
     
@@ -42,9 +39,34 @@ extension DateFormatter {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone(identifier: "UTC")
         formatter.dateFormat = "yyyy-MM-dd'T'07:00:00'Z'"
-        
         return formatter
     }()
     
-
+    public static let monthFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM"
+        formatter.timeZone = TimeZone.current
+        return formatter
+    }()
+    
+    public static let dayFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d"
+        formatter.timeZone = TimeZone.current
+        return formatter
+    }()
+    
+    public static let dayOfWeekFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "eeee"
+        formatter.timeZone = TimeZone.current
+        return formatter
+    }()
+    
+    public static let timeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a"
+        formatter.timeZone = TimeZone.current
+        return formatter
+    }()
 }
