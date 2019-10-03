@@ -62,10 +62,17 @@ extension DateFormatter {
         formatter.timeZone = TimeZone.current
         return formatter
     }()
-    
+
     public static let timeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "h:mm a"
+        formatter.timeZone = TimeZone.current
+        return formatter
+    }()
+    
+    public static let archiveShowDayDisplayFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, MMM d"
         formatter.timeZone = TimeZone.current
         return formatter
     }()
