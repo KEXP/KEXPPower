@@ -11,6 +11,7 @@ import Foundation
 public struct NetworkManager {
     public typealias PlayCompletion = (_ result: Result<String>, _ playResult: PlayResult?) -> Void
     public typealias ShowCompletion = (_ result: Result<String>, _ showResult: ShowResult?) -> Void
+    public typealias ArchiveCompletion = (_ result: Result<String>, _ showResult: ArchiveStreamResult?) -> Void
     public typealias ConfigurationCompletion = (_ result: Result<String>, _ configuration: Configuration?) -> Void
     
     private let router = Router()
@@ -139,6 +140,31 @@ public struct NetworkManager {
             completion(Result.success, configuration)
         } catch let error {
             completion(Result.failure(error.localizedDescription), nil)
+        }
+    }
+    
+    public func getArchiveStreamURL(bitrate: String, timestamp: String?, completion: @escaping ArchiveCompletion) {
+        var parameters = [URLQueryItem]()
+        parameters.append(URLQueryItem(name: "bitrate", value: bitrate))
+        parameters.append(URLQueryItem(name: "timestamp", value: timestamp))
+        
+        router.get(url: KEXPPower.streamingURL, parameters: parameters) { result, data in
+            guard
+                case .success = result,
+                let data = data
+                else {
+                    return
+            }
+
+            do {
+                let decoder = JSONDecoder()
+
+                let archiveStreamResult = try decoder.decode(ArchiveStreamResult.self, from: data)
+
+                completion(Result.success, archiveStreamResult)
+            } catch let error {
+                completion(Result.failure(error.localizedDescription), nil)
+            }
         }
     }
 }
