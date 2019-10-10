@@ -29,7 +29,7 @@ class ArchiveStreamParseTests: XCTestCase {
         XCTAssertNotNil(archiveStream)
         
         let streamURLString = "https://kexp-archive.com/someOther.mp3"
-å
+
         XCTAssertEqual(archiveStream?.streamURL?.absoluteString, streamURLString)
         XCTAssertEqual(archiveStream?.offset, 666)
     }
