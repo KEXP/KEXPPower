@@ -42,6 +42,26 @@ extension DateFormatter {
         return formatter
     }()
     
+    public static let archiveEndShowFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        return formatter
+    }()
+    
+    // DELETEME
+    func formatEpochDate(epochDate: Int64) -> String {
+        let eDate = (Double(epochDate) / 1000) - 30
+        var time = String()
+        let date = Date(timeIntervalSince1970: TimeInterval(eDate))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        time = dateFormatter.string(from: date)
+        
+        return time
+    }
+    
     public static let monthFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM"
@@ -74,6 +94,21 @@ extension DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE, MMM d"
         formatter.timeZone = TimeZone.current
+        return formatter
+    }()
+    
+    public static let archiveShowNowPlayingFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US")
+        formatter.setLocalizedDateFormatFromTemplate("MMMdeeee")
+        return formatter
+    }()
+    
+    public static let displayFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        formatter.timeZone = NSTimeZone.local
         return formatter
     }()
 }

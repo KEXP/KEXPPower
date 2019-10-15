@@ -33,7 +33,7 @@ class Router {
         }
         
         let request = URLRequest(url: requestURL)
-        
+
         URLSession.shared.dataTask(with: request) { data, response, error in
             do {
                 guard
@@ -50,6 +50,6 @@ class Router {
             } catch {
                 completion(Result.failure("Board creation failed with error: \(error.localizedDescription)"), nil)
             }
-            }.resume()
+        }.resume()
     }
 }

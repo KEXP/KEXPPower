@@ -10,6 +10,9 @@ import UIKit
 
 public class ArchiveManager {
     public typealias ArchiveCompletion = (_ archiveShows: [ArchiveShow]?) -> Void
+    public typealias ArchivePlayBackCompletion = (_ showURLS: [URL], _ offset: Double) -> Void
+    public typealias ArchiveShowTimesCompletion = (_ archiveShowTimes: [ArchiveShowStart]) -> (Void)
+    
     public typealias ArchiveShowCompletion = (
         _ archiveShowsByDate: [[Date: [ArchiveShow]]],
         _ archiveShowsByShowName: [[String: [ArchiveShow]]],
@@ -20,42 +23,9 @@ public class ArchiveManager {
     
     let networkManager = NetworkManager()
     
-    public static var archiveShowDates: [Date] = {
-        var archiveShowDates = [Date]()
-        
-        let cal = Calendar.current
-        var date = cal.startOfDay(for: Date())
-        archiveShowDates.append(date)
-        
-        for _ in 1...14 {
-            date = cal.date(byAdding: .day, value: -1, to: date)!
-            archiveShowDates.append(date)
-        }
-        
-        return Array(archiveShowDates.reversed())
-    } ()
-    
+    private var archieveShowMp3s = [URL]()
+
     public init() {}
-    
-    private func showTimestamps() -> ArchieveShowTimestamps {
-        var datesForArchieve = [String]()
-        var beforeAirDates = [String]()
-        var afterAirDates = [String]()
-        
-        let cal = Calendar.current
-        var date = cal.startOfDay(for: Date())
-        datesForArchieve.append(DateFormatter.showRequestFormatter.string(from: date))
-        
-        for _ in 1...14 {
-            date = cal.date(byAdding: .day, value: -1, to: date)!
-            datesForArchieve.append(DateFormatter.showRequestFormatter.string(from: date))
-        }
-        
-        beforeAirDates = Array(datesForArchieve.prefix(14))
-        afterAirDates = Array(datesForArchieve.dropFirst())
-        
-        return ArchieveShowTimestamps(beforeDates: beforeAirDates, afterDates: afterAirDates)
-    }
 
     public func retrieveArchieveShows(completion: @escaping ArchiveShowCompletion) {
         let dispatchGroup = DispatchGroup()
@@ -90,6 +60,105 @@ public class ArchiveManager {
 
             completion(showsByDate, showsByShowName, showsByHostName, showsByGenre)
         }
+    }
+    
+    public func getStreamURLs(for archiveShow: ArchiveShow, completion: @escaping ArchivePlayBackCompletion) {
+        guard let showEndTime = archiveShow.showEndTime else { return }
+        
+        let calculatedEndTime = showEndTime.addingTimeInterval(-30)
+        
+        gatherShowMp3s(archiveShow: archiveShow, calcEndTime: calculatedEndTime, completion: completion)
+        
+        archieveShowMp3s.removeAll()
+    }
+
+    public func archiveStreamStartTimes(with showDetails: ArchiveShow, completion: ArchiveShowTimesCompletion) {
+        guard
+            let startAirDate = showDetails.show.epochAirDate,
+            let showEndTime = showDetails.showEndTime,
+            var archiveShowStartTime = Date(timeIntervalSince1970: Double(startAirDate/1000)).nearestHour()
+        else {
+            return
+        }
+
+        var archiveShowStartTimes = [ArchiveShowStart]()
+
+        while archiveShowStartTime < showEndTime {
+            let archiveShowStart = ArchiveShowStart(startTimeDisplay: DateFormatter.displayFormatter.string(from: archiveShowStartTime),
+                                                    startTimeValue: DateFormatter.requestFormatter.string(from: archiveShowStartTime),
+                                                    startTimeEpochValue: Int(archiveShowStartTime.timeIntervalSince1970 * 1000))
+            archiveShowStartTimes.append(archiveShowStart)
+
+            archiveShowStartTime = Calendar.current.date(byAdding: .minute, value: 5, to: archiveShowStartTime) ?? Date()
+        }
+        
+        completion(archiveShowStartTimes)
+    }
+    
+    private func calculateEndEpochDate(epochDate: Int64) -> String {
+        let eDate = (Double(epochDate) / 1000) - 30
+        var time = String()
+        let date = Date(timeIntervalSince1970: TimeInterval(eDate))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        time = dateFormatter.string(from: date)
+
+        return time
+    }
+    
+    private func gatherShowMp3s(archiveShow: ArchiveShow, calcEndTime: Date, completion: @escaping ArchivePlayBackCompletion) {
+        let calucatedEnd = (calcEndTime.timeIntervalSince1970) * 1000.0
+        let calucatedEndTimeRequest = calculateEndEpochDate(epochDate: Int64(calucatedEnd))
+        
+        networkManager.getArchiveStreamURL(
+            bitrate: KEXPPower.sharedInstance.selectedArchiveBitRate.rawValue,
+            timestamp: calucatedEndTimeRequest,
+            completion: { [weak self] result, archiveStreamResult in
+                guard
+                    let offset = archiveStreamResult?.offset,
+                    let streamURL = archiveStreamResult?.streamURL,
+                    case .success = result
+                else {
+                    return
+                }
+                
+                let calculatedStart = calcEndTime.addingTimeInterval(-offset)
+                
+                if calculatedStart <= archiveShow.show.airDate.addingTimeInterval(30) {
+                    
+                    let elapsed = archiveShow.show.airDate.timeIntervalSince(calculatedStart)
+                    
+                    self?.archieveShowMp3s.insert(streamURL, at: 0)
+                    completion(self?.archieveShowMp3s ?? [], elapsed)
+                } else {
+                    self?.archieveShowMp3s.insert(streamURL, at: 0)
+                    
+                    let calculatedEndTime = calculatedStart.addingTimeInterval(-30)
+                    
+                    self?.gatherShowMp3s(archiveShow: archiveShow, calcEndTime: calculatedEndTime, completion: completion)
+                }
+        })
+    }
+
+    private func showTimestamps() -> ArchieveShowTimestamps {
+        var datesForArchieve = [String]()
+        var beforeAirDates = [String]()
+        var afterAirDates = [String]()
+        
+        let cal = Calendar.current
+        var date = cal.startOfDay(for: Date())
+        datesForArchieve.append(DateFormatter.showRequestFormatter.string(from: date))
+        
+        for _ in 1...14 {
+            date = cal.date(byAdding: .day, value: -1, to: date)!
+            datesForArchieve.append(DateFormatter.showRequestFormatter.string(from: date))
+        }
+        
+        beforeAirDates = Array(datesForArchieve.prefix(14))
+        afterAirDates = Array(datesForArchieve.dropFirst())
+        
+        return ArchieveShowTimestamps(beforeDates: beforeAirDates, afterDates: afterAirDates)
     }
     
     private func updateShowEndTimes(archiveShows: [ArchiveShow]) -> [ArchiveShow] {
@@ -281,5 +350,14 @@ public class ArchiveManager {
         }
         
         return archiveShowsByGenre
+    }
+}
+
+extension Date {
+    func nearestHour() -> Date? {
+        var components = NSCalendar.current.dateComponents([.minute], from: self)
+        let minute = components.minute ?? 0
+        components.minute = minute >= 30 ? 60 - minute : -minute
+        return Calendar.current.date(byAdding: components, to: self)
     }
 }

@@ -11,7 +11,7 @@ import Foundation
 public struct NetworkManager {
     public typealias PlayCompletion = (_ result: Result<String>, _ playResult: PlayResult?) -> Void
     public typealias ShowCompletion = (_ result: Result<String>, _ showResult: ShowResult?) -> Void
-    public typealias ArchiveCompletion = (_ result: Result<String>, _ showResult: ArchiveStreamResult?) -> Void
+    public typealias ArchiveCompletion = (_ result: Result<String>, _ archiveStreamResult: ArchiveStreamResult?) -> Void
     public typealias ConfigurationCompletion = (_ result: Result<String>, _ configuration: Configuration?) -> Void
     
     private let router = Router()

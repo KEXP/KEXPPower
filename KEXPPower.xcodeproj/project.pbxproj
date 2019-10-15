@@ -19,6 +19,7 @@
 		8B46C4C422DEE016003E5277 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C4C322DEE016003E5277 /* Reachability.swift */; };
 		8B56300522E6C41F00F476D0 /* ShowResultParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B56300422E6C41F00F476D0 /* ShowResultParseTests.swift */; };
 		8B7D0C9F22F27452007875A3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8B7D0C9E22F27452007875A3 /* README.md */; };
+		8BEA9AD123555C0900C5F010 /* ArchiveShowStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEA9AD023555C0900C5F010 /* ArchiveShowStart.swift */; };
 		8BFFECBF22C95E6100E3378C /* KEXPPower.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFFECB522C95E6100E3378C /* KEXPPower.framework */; };
 		8BFFECC622C95E6200E3378C /* KEXPPower.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFFECB822C95E6100E3378C /* KEXPPower.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8BFFECD622C95FB300E3378C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFFECD522C95FB300E3378C /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		8B46C4C322DEE016003E5277 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		8B56300422E6C41F00F476D0 /* ShowResultParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowResultParseTests.swift; sourceTree = "<group>"; };
 		8B7D0C9E22F27452007875A3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		8BEA9AD023555C0900C5F010 /* ArchiveShowStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveShowStart.swift; sourceTree = "<group>"; };
 		8BFFECB522C95E6100E3378C /* KEXPPower.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KEXPPower.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BFFECB822C95E6100E3378C /* KEXPPower.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KEXPPower.h; sourceTree = "<group>"; };
 		8BFFECB922C95E6100E3378C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				8B46C4B922DD9B03003E5277 /* Configuration.swift */,
 				8B3C37AC234021E800413329 /* ArchiveShow.swift */,
 				8B437FB0234EE45B002EDB91 /* ArchiveStreamResult.swift */,
+				8BEA9AD023555C0900C5F010 /* ArchiveShowStart.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				8B46C4C022DEC811003E5277 /* UIImageView+Loading.swift in Sources */,
 				8BFFED0822D43F3800E3378C /* KEXPPower.swift in Sources */,
 				8BFFECEA22C9658000E3378C /* PlayResult.swift in Sources */,
+				8BEA9AD123555C0900C5F010 /* ArchiveShowStart.swift in Sources */,
 				8B437FB1234EE45B002EDB91 /* ArchiveStreamResult.swift in Sources */,
 				8BFFED0322D43EA100E3378C /* Router.swift in Sources */,
 				8B3C37AD234021E800413329 /* ArchiveShow.swift in Sources */,
