@@ -148,6 +148,7 @@ public class ArchiveManager {
         
         let cal = Calendar.current
         var date = cal.startOfDay(for: Date())
+        date = cal.date(byAdding: .day, value: 1, to: date)!
         datesForArchieve.append(DateFormatter.showRequestFormatter.string(from: date))
         
         for _ in 1...14 {
