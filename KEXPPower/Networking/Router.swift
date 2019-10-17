@@ -32,7 +32,8 @@ class Router {
                 return
         }
         
-        let request = URLRequest(url: requestURL)
+        var request = URLRequest(url: requestURL)
+        request.cachePolicy = .reloadIgnoringLocalCacheData  
 
         URLSession.shared.dataTask(with: request) { data, response, error in
             do {

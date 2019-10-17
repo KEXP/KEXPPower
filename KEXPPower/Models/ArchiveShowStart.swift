@@ -10,12 +10,12 @@ import UIKit
 
 public struct ArchiveShowStart {
     public let startTimeDisplay: String
-    public let startTimeValue: String
+    public let startTimeDate: Date
     public let startTimeEpochValue: Int
     
-    public init(startTimeDisplay: String, startTimeValue: String, startTimeEpochValue: Int) {
+    public init(startTimeDisplay: String, startTimeDate: Date, startTimeEpochValue: Int) {
         self.startTimeDisplay = startTimeDisplay
-        self.startTimeValue = startTimeValue
+        self.startTimeDate = startTimeDate
         self.startTimeEpochValue = startTimeEpochValue
     }
 }

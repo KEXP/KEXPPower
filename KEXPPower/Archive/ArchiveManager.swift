@@ -61,16 +61,6 @@ public class ArchiveManager {
             completion(showsByDate, showsByShowName, showsByHostName, showsByGenre)
         }
     }
-    
-    public func getStreamURLs(for archiveShow: ArchiveShow, completion: @escaping ArchivePlayBackCompletion) {
-        guard let showEndTime = archiveShow.showEndTime else { return }
-        
-        let calculatedEndTime = showEndTime.addingTimeInterval(-30)
-        
-        gatherShowMp3s(archiveShow: archiveShow, calcEndTime: calculatedEndTime, completion: completion)
-        
-        archieveShowMp3s.removeAll()
-    }
 
     public func archiveStreamStartTimes(with showDetails: ArchiveShow, completion: ArchiveShowTimesCompletion) {
         guard
@@ -85,7 +75,7 @@ public class ArchiveManager {
 
         while archiveShowStartTime < showEndTime {
             let archiveShowStart = ArchiveShowStart(startTimeDisplay: DateFormatter.displayFormatter.string(from: archiveShowStartTime),
-                                                    startTimeValue: DateFormatter.requestFormatter.string(from: archiveShowStartTime),
+                                                    startTimeDate: archiveShowStartTime,
                                                     startTimeEpochValue: Int(archiveShowStartTime.timeIntervalSince1970 * 1000))
             archiveShowStartTimes.append(archiveShowStart)
 
@@ -107,9 +97,21 @@ public class ArchiveManager {
         return time
     }
     
-    private func gatherShowMp3s(archiveShow: ArchiveShow, calcEndTime: Date, completion: @escaping ArchivePlayBackCompletion) {
-        let calucatedEnd = (calcEndTime.timeIntervalSince1970) * 1000.0
+    public func getStreamURLs(for archiveShow: ArchiveShow, playbackStartDate: Date? = nil, completion: @escaping ArchivePlayBackCompletion) {
+        guard let showEndTime = archiveShow.showEndTime else { return }
+        
+        let calculatedEndTime = showEndTime.addingTimeInterval(-30)
+
+        gatherShowMp3s(archiveShow: archiveShow, playbackStartDate: playbackStartDate, calcEndTime: calculatedEndTime, completion: completion)
+        
+        archieveShowMp3s.removeAll()
+    }
+    
+    private func gatherShowMp3s(archiveShow: ArchiveShow, playbackStartDate: Date? = nil, calcEndTime: Date, completion: @escaping ArchivePlayBackCompletion) {
+        let calucatedEnd = calcEndTime.timeIntervalSince1970 * 1000.0
         let calucatedEndTimeRequest = calculateEndEpochDate(epochDate: Int64(calucatedEnd))
+        
+        let startingPoint = playbackStartDate ?? archiveShow.show.airDate
         
         networkManager.getArchiveStreamURL(
             bitrate: KEXPPower.sharedInstance.selectedArchiveBitRate.rawValue,
@@ -125,9 +127,9 @@ public class ArchiveManager {
                 
                 let calculatedStart = calcEndTime.addingTimeInterval(-offset)
                 
-                if calculatedStart <= archiveShow.show.airDate.addingTimeInterval(30) {
+                if calculatedStart <= startingPoint.addingTimeInterval(30) {
                     
-                    let elapsed = archiveShow.show.airDate.timeIntervalSince(calculatedStart)
+                    let elapsed = startingPoint.timeIntervalSince(calculatedStart)
                     
                     self?.archieveShowMp3s.insert(streamURL, at: 0)
                     completion(self?.archieveShowMp3s ?? [], elapsed)
@@ -136,7 +138,7 @@ public class ArchiveManager {
                     
                     let calculatedEndTime = calculatedStart.addingTimeInterval(-30)
                     
-                    self?.gatherShowMp3s(archiveShow: archiveShow, calcEndTime: calculatedEndTime, completion: completion)
+                    self?.gatherShowMp3s(archiveShow: archiveShow, playbackStartDate: startingPoint, calcEndTime: calculatedEndTime, completion: completion)
                 }
         })
     }
