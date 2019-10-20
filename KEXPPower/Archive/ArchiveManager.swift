@@ -12,17 +12,16 @@ public class ArchiveManager {
     public typealias ArchiveCompletion = (_ archiveShows: [ArchiveShow]?) -> Void
     public typealias ArchivePlayBackCompletion = (_ showURLS: [URL], _ offset: Double) -> Void
     public typealias ArchiveShowTimesCompletion = (_ archiveShowTimes: [ArchiveShowStart]) -> (Void)
-    
     public typealias ArchiveShowCompletion = (
         _ archiveShowsByDate: [[Date: [ArchiveShow]]],
         _ archiveShowsByShowName: [[String: [ArchiveShow]]],
         _ archiveShowsByHostName: [[String: [ArchiveShow]]],
         _ archiveShowsGenre: [[String: [ArchiveShow]]]
     ) -> Void
-    typealias ArchieveShowTimestamps = (beforeDates: [String], afterDates: [String])
     
-    let networkManager = NetworkManager()
+    private typealias ArchieveShowTimestamps = (beforeDates: [String], afterDates: [String])
     
+    private let networkManager = NetworkManager()
     private var archieveShowMp3s = [URL]()
 
     public init() {}
@@ -85,25 +84,11 @@ public class ArchiveManager {
         completion(archiveShowStartTimes)
     }
     
-    private func calculateEndEpochDate(epochDate: Int64) -> String {
-        let eDate = (Double(epochDate) / 1000) - 30
-        var time = String()
-        let date = Date(timeIntervalSince1970: TimeInterval(eDate))
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        time = dateFormatter.string(from: date)
-
-        return time
-    }
-    
     public func getStreamURLs(for archiveShow: ArchiveShow, playbackStartDate: Date? = nil, completion: @escaping ArchivePlayBackCompletion) {
         guard let showEndTime = archiveShow.showEndTime else { return }
         
         let calculatedEndTime = showEndTime.addingTimeInterval(-30)
-
         gatherShowMp3s(archiveShow: archiveShow, playbackStartDate: playbackStartDate, calcEndTime: calculatedEndTime, completion: completion)
-        
         archieveShowMp3s.removeAll()
     }
     
@@ -141,6 +126,19 @@ public class ArchiveManager {
                     self?.gatherShowMp3s(archiveShow: archiveShow, playbackStartDate: startingPoint, calcEndTime: calculatedEndTime, completion: completion)
                 }
         })
+    }
+    
+    // Move this to better place.
+    private func calculateEndEpochDate(epochDate: Int64) -> String {
+        let eDate = (Double(epochDate) / 1000) - 30
+        var time = String()
+        let date = Date(timeIntervalSince1970: TimeInterval(eDate))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        time = dateFormatter.string(from: date)
+
+        return time
     }
 
     private func showTimestamps() -> ArchieveShowTimestamps {
@@ -356,6 +354,7 @@ public class ArchiveManager {
     }
 }
 
+// Move this to better place.
 extension Date {
     func nearestHour() -> Date? {
         var components = NSCalendar.current.dateComponents([.minute], from: self)
