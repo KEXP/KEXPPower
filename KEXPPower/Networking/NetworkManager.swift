@@ -12,6 +12,7 @@ public struct NetworkManager {
     public typealias PlayCompletion = (_ result: Result<String>, _ playResult: PlayResult?) -> Void
     public typealias ShowCompletion = (_ result: Result<String>, _ showResult: ShowResult?) -> Void
     public typealias ArchiveCompletion = (_ result: Result<String>, _ archiveStreamResult: ArchiveStreamResult?) -> Void
+    public typealias AppleMusicCompletion = (_ result: Result<String>, _ archiveStreamResult: AppleMusicResult?) -> Void
     public typealias ConfigurationCompletion = (_ result: Result<String>, _ configuration: Configuration?) -> Void
     
     private let router = Router()
@@ -165,6 +166,18 @@ public struct NetworkManager {
             } catch let error {
                 completion(Result.failure(error.localizedDescription), nil)
             }
+        }
+    }
+    
+    public func getAppleMusicLink(artist: String?, track: String?, completion: AppleMusicCompletion) {
+        let itunesURL = "https://itunes.apple.com/search"
+        let searchTerm = "\(artist ?? "") \(track ?? "")"
+        var parameters = [URLQueryItem]()
+        parameters.append(URLQueryItem(name: "term", value: searchTerm))
+        parameters.append(URLQueryItem(name: "entity", value: "song"))
+
+        router.get(url: URL(string: itunesURL)!, parameters: parameters) { result, data in
+            print("")
         }
     }
 }
