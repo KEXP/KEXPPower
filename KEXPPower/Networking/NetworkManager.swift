@@ -54,6 +54,7 @@ public struct NetworkManager {
                 case .success = result,
                 let data = data
             else {
+                completion(.failure("failure"), nil)
                 return
             }
             
@@ -109,6 +110,7 @@ public struct NetworkManager {
                 case .success = result,
                 let data = data
             else {
+                completion(.failure("failure"), nil)
                 return
             }
             
@@ -131,7 +133,6 @@ public struct NetworkManager {
             let data = try? Data(contentsOf: configurationURL)
         else {
             completion(.failure("failure"), nil)
-            
             return
         }
         
@@ -153,14 +154,13 @@ public struct NetworkManager {
             guard
                 case .success = result,
                 let data = data
-                else {
-                    return
+            else {
+                completion(.failure("failure"), nil)
+                return
             }
 
             do {
-                let decoder = JSONDecoder()
-
-                let archiveStreamResult = try decoder.decode(ArchiveStreamResult.self, from: data)
+                let archiveStreamResult = try JSONDecoder().decode(ArchiveStreamResult.self, from: data)
 
                 completion(Result.success, archiveStreamResult)
             } catch let error {
@@ -169,7 +169,7 @@ public struct NetworkManager {
         }
     }
     
-    public func getAppleMusicLink(artist: String?, track: String?, completion: AppleMusicCompletion) {
+    public func getAppleMusicLink(artist: String?, track: String?, completion: @escaping AppleMusicCompletion) {
         let itunesURL = "https://itunes.apple.com/search"
         let searchTerm = "\(artist ?? "") \(track ?? "")"
         var parameters = [URLQueryItem]()
@@ -177,7 +177,23 @@ public struct NetworkManager {
         parameters.append(URLQueryItem(name: "entity", value: "song"))
 
         router.get(url: URL(string: itunesURL)!, parameters: parameters) { result, data in
-            print("")
+            guard
+                case .success = result,
+                let data = data
+            else {
+                completion(.failure("failure"), nil)
+                return
+            }
+            
+            do {
+                let appleMusicResult = try JSONDecoder().decode(AppleMusicResult.self, from: data)
+                
+                DispatchQueue.main.async {
+                    completion(Result.success, appleMusicResult)
+                }
+            } catch let error {
+                completion(Result.failure(error.localizedDescription), nil)
+            }
         }
     }
 }
