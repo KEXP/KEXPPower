@@ -32,8 +32,9 @@ class Router {
                 return
         }
         
-        let request = URLRequest(url: requestURL)
-        
+        var request = URLRequest(url: requestURL)
+        request.cachePolicy = .reloadIgnoringLocalCacheData  
+
         URLSession.shared.dataTask(with: request) { data, response, error in
             do {
                 guard
@@ -50,6 +51,6 @@ class Router {
             } catch {
                 completion(Result.failure("Board creation failed with error: \(error.localizedDescription)"), nil)
             }
-            }.resume()
+        }.resume()
     }
 }

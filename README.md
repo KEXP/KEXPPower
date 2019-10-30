@@ -4,7 +4,7 @@ A lightweight swift library that is used to communicate with the KEXP serivces t
 
 ## Requirements
 - iOS 11.0+ / tvOS 11.0+
-- Xcode 10.2+
+- Xcode 11.1+
 - Swift 5+
 
 ## Installation
@@ -33,10 +33,11 @@ Setup:
 To configure `KEXPPower`, call the KEXPPower `setup` method in your application's `AppDelegate`.
 
 ```swift
-KEXPPower.setup(
+KEXPPower.sharedInstance.setup(
     legacyBaseURL: legacyBaseURL,
     configurationURL: configurationURL,
-    availableStreams: [AvailableStream(streamName: "Default Stream", streamURL: thirtyTwoBitURL), ...],
+    availableStreams: [AvailableStream(streamName: "Default Stream", streamURL: thirtyTwoBitURL)],
+    selectedArchiveBitRate: ArchiveBitRate.thirtyTwo,
     defaultStreamIndex: 0,
     backupStreamIndex: 1
 )

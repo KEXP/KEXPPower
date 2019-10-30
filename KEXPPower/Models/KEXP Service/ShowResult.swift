@@ -54,8 +54,8 @@ public struct Host: Decodable {
     public let imageURL: URL?
     public let isActive: Bool
     
-    //Error parsing as a URL
-    let newImageURL: String?
+    //Error parsing as a URL, lots of extra white from platform
+    public let newImageURL: String?
     
     enum CodingKeys: String, CodingKey {
         case hostId = "hostid"

@@ -18,9 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let streamOne = AvailableStream(streamName: "streamOne", streamURL: URL(string: "http://StreamOneURL.com")!)
         let streamTwo = AvailableStream(streamName: "streamOne", streamURL: URL(string: "http://StreamTwoURL.com")!)
         
-        KEXPPower.setup(
+        KEXPPower.sharedInstance.setup(
             legacyBaseURL: "http://baseKEXPURLString.org",
             availableStreams: [streamOne, streamTwo],
+            selectedArchiveBitRate: ArchiveBitRate.thirtyTwo,
             defaultStreamIndex: 0,
             backupStreamIndex: 1)
 
