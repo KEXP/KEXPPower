@@ -15,7 +15,6 @@ extension DateFormatter {
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         formatter.calendar = Calendar(identifier: .iso8601)
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        
         return formatter
     }()
     
@@ -24,18 +23,28 @@ extension DateFormatter {
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         formatter.calendar = Calendar(identifier: .iso8601)
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:'00Z'"
+        return formatter
+    }()
 
+    public static let showRequestFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: "UTC")
+        formatter.dateFormat = "yyyy-MM-dd'T'07:00:00'Z'"
         return formatter
     }()
     
-    public static let playlistDisplayFormatter: DateFormatter = {
+    public static let archiveEndShowFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        
-        formatter.dateFormat = "hh:mma MM/dd/YYYY UTC"
+        formatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        return formatter
+    }()
+    
+    public static let displayFormatter: DateFormatter = {
+        let formatter = DateFormatter()
         formatter.dateStyle = .none
         formatter.timeStyle = .short
-        formatter.timeZone = .current
-        
+        formatter.timeZone = NSTimeZone.local
         return formatter
     }()
 }

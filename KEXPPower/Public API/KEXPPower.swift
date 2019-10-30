@@ -9,28 +9,43 @@
 import Foundation
 
 public typealias AvailableStream = (streamName: String, streamURL: URL)
+public typealias ArchiveStream = (archiveBitRate: ArchiveBitRate, streamURL: URL)
 
-public struct KEXPPower {
-    public static func setup(
+public enum ArchiveBitRate: String {
+    case thirtyTwo = "32"
+    case sixtyFour = "64"
+    case oneTwentyEight = "128"
+}
+
+public class KEXPPower {
+    public func setup(
         legacyBaseURL: String,
         configurationURL: URL? = nil,
         availableStreams: [AvailableStream],
+        archiveStreams: [ArchiveStream]? = nil,
+        selectedArchiveBitRate: ArchiveBitRate,
         defaultStreamIndex: Int = 0,
         backupStreamIndex: Int = 0)
     {
-        self.legacyBaseURL = legacyBaseURL
-        self.configurationURL = configurationURL
-        self.availableStreams = availableStreams
-        self.defaultStreamIndex = defaultStreamIndex
-        self.backupStreamIndex = backupStreamIndex
+        KEXPPower.legacyBaseURL = legacyBaseURL
+        KEXPPower.configurationURL = configurationURL
+        KEXPPower.availableStreams = availableStreams
+        KEXPPower.archiveStreams = archiveStreams
+        self.selectedArchiveBitRate = selectedArchiveBitRate
+        KEXPPower.defaultStreamIndex = defaultStreamIndex
+        KEXPPower.backupStreamIndex = backupStreamIndex
     }
 
-    static var legacyBaseURL = "https://legacy-api.kexp.org"
+    public static let sharedInstance = KEXPPower()
+    static var legacyBaseURL: String!
     static var playURL = URL(string: legacyBaseURL + "/play")!
     static var showURL = URL(string: legacyBaseURL + "/show")!
+    static var streamingURL = URL(string: legacyBaseURL + "/get_streaming_url")!
+    public var selectedArchiveBitRate: ArchiveBitRate!
     
     public static var availableStreams: [AvailableStream]?
-    static var configurationURL = URL(string:"http://www.kexp.org/content/applications/AppleTV/config/KexpConfigResponse.json")
+    public static var archiveStreams: [ArchiveStream]?
+    public static var configurationURL: URL?
 
     static var streamURL: URL {
         guard
@@ -55,6 +70,8 @@ public struct KEXPPower {
         
         return backupStreamURL
     }
+    
+    private init(){}
     
     private static var defaultStreamIndex: Int = 0
     private static var backupStreamIndex: Int = 0

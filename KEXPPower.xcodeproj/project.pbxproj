@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B159DC1233C66E500BCB7AB /* ArchiveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B159DC0233C66E500BCB7AB /* ArchiveManager.swift */; };
+		8B3C37AD234021E800413329 /* ArchiveShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3C37AC234021E800413329 /* ArchiveShow.swift */; };
+		8B437FAF234EE3CE002EDB91 /* ArchiveStreamSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B437FAE234EE3CE002EDB91 /* ArchiveStreamSample.json */; };
+		8B437FB1234EE45B002EDB91 /* ArchiveStreamResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B437FB0234EE45B002EDB91 /* ArchiveStreamResult.swift */; };
+		8B437FB3234EE8F6002EDB91 /* ArchiveStreamParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B437FB2234EE8F6002EDB91 /* ArchiveStreamParseTests.swift */; };
 		8B46C4BA22DD9B03003E5277 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C4B922DD9B03003E5277 /* Configuration.swift */; };
 		8B46C4BC22DD9BBE003E5277 /* ConfigurationSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B46C4BB22DD9BBE003E5277 /* ConfigurationSample.json */; };
 		8B46C4BE22DD9C05003E5277 /* ConfigurationParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C4BD22DD9C05003E5277 /* ConfigurationParseTests.swift */; };
@@ -14,6 +19,10 @@
 		8B46C4C422DEE016003E5277 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C4C322DEE016003E5277 /* Reachability.swift */; };
 		8B56300522E6C41F00F476D0 /* ShowResultParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B56300422E6C41F00F476D0 /* ShowResultParseTests.swift */; };
 		8B7D0C9F22F27452007875A3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8B7D0C9E22F27452007875A3 /* README.md */; };
+		8B81465823617389008EDF50 /* AppleMusicSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B81465723617389008EDF50 /* AppleMusicSample.json */; };
+		8B81465A23628A1B008EDF50 /* AppleMusicResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81465923628A1B008EDF50 /* AppleMusicResult.swift */; };
+		8B81465C23628BD0008EDF50 /* AppleMusicResultParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81465B23628BD0008EDF50 /* AppleMusicResultParseTests.swift */; };
+		8BEA9AD123555C0900C5F010 /* ArchiveShowStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEA9AD023555C0900C5F010 /* ArchiveShowStart.swift */; };
 		8BFFECBF22C95E6100E3378C /* KEXPPower.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFFECB522C95E6100E3378C /* KEXPPower.framework */; };
 		8BFFECC622C95E6200E3378C /* KEXPPower.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFFECB822C95E6100E3378C /* KEXPPower.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8BFFECD622C95FB300E3378C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFFECD522C95FB300E3378C /* AppDelegate.swift */; };
@@ -44,6 +53,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B159DC0233C66E500BCB7AB /* ArchiveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveManager.swift; sourceTree = "<group>"; };
+		8B3C37AC234021E800413329 /* ArchiveShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveShow.swift; sourceTree = "<group>"; };
+		8B437FAE234EE3CE002EDB91 /* ArchiveStreamSample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ArchiveStreamSample.json; sourceTree = "<group>"; };
+		8B437FB0234EE45B002EDB91 /* ArchiveStreamResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveStreamResult.swift; sourceTree = "<group>"; };
+		8B437FB2234EE8F6002EDB91 /* ArchiveStreamParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveStreamParseTests.swift; sourceTree = "<group>"; };
 		8B46C4B922DD9B03003E5277 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		8B46C4BB22DD9BBE003E5277 /* ConfigurationSample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ConfigurationSample.json; sourceTree = "<group>"; };
 		8B46C4BD22DD9C05003E5277 /* ConfigurationParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationParseTests.swift; sourceTree = "<group>"; };
@@ -51,6 +65,10 @@
 		8B46C4C322DEE016003E5277 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		8B56300422E6C41F00F476D0 /* ShowResultParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowResultParseTests.swift; sourceTree = "<group>"; };
 		8B7D0C9E22F27452007875A3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		8B81465723617389008EDF50 /* AppleMusicSample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AppleMusicSample.json; sourceTree = "<group>"; };
+		8B81465923628A1B008EDF50 /* AppleMusicResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicResult.swift; sourceTree = "<group>"; };
+		8B81465B23628BD0008EDF50 /* AppleMusicResultParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicResultParseTests.swift; sourceTree = "<group>"; };
+		8BEA9AD023555C0900C5F010 /* ArchiveShowStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveShowStart.swift; sourceTree = "<group>"; };
 		8BFFECB522C95E6100E3378C /* KEXPPower.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KEXPPower.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BFFECB822C95E6100E3378C /* KEXPPower.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KEXPPower.h; sourceTree = "<group>"; };
 		8BFFECB922C95E6100E3378C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,6 +120,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B159DBF233C665200BCB7AB /* Archive */ = {
+			isa = PBXGroup;
+			children = (
+				8B159DC0233C66E500BCB7AB /* ArchiveManager.swift */,
+			);
+			path = Archive;
+			sourceTree = "<group>";
+		};
+		8B159DC4233C689F00BCB7AB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8BFFECF822C9934100E3378C /* PlayResultParseTests.swift */,
+				8B46C4BD22DD9C05003E5277 /* ConfigurationParseTests.swift */,
+				8B56300422E6C41F00F476D0 /* ShowResultParseTests.swift */,
+				8B437FB2234EE8F6002EDB91 /* ArchiveStreamParseTests.swift */,
+				8B81465B23628BD0008EDF50 /* AppleMusicResultParseTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8B961EE0236162BD00085D05 /* KEXP Service */ = {
+			isa = PBXGroup;
+			children = (
+				8BFFECE822C9658000E3378C /* PlayResult.swift */,
+				8BFFECE922C9658000E3378C /* ShowResult.swift */,
+				8BFFECFD22CB11EE00E3378C /* ArchiveURLs.swift */,
+				8B46C4B922DD9B03003E5277 /* Configuration.swift */,
+			);
+			path = "KEXP Service";
+			sourceTree = "<group>";
+		};
+		8B961EE1236162E900085D05 /* AppleMusic */ = {
+			isa = PBXGroup;
+			children = (
+				8B81465923628A1B008EDF50 /* AppleMusicResult.swift */,
+			);
+			path = AppleMusic;
+			sourceTree = "<group>";
+		};
 		8BFFECAB22C95E6100E3378C = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +184,7 @@
 			children = (
 				8B7D0C9E22F27452007875A3 /* README.md */,
 				8BFFED0922DBD2DE00E3378C /* KEXPPower.podspec */,
+				8B159DBF233C665200BCB7AB /* Archive */,
 				8BFFED0622D43F0B00E3378C /* Public API */,
 				8BFFED0122D43E6400E3378C /* Networking */,
 				8BFFECFA22CB071100E3378C /* Helpers */,
@@ -163,10 +221,11 @@
 		8BFFECE722C9656100E3378C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8BFFECE822C9658000E3378C /* PlayResult.swift */,
-				8BFFECE922C9658000E3378C /* ShowResult.swift */,
-				8BFFECFD22CB11EE00E3378C /* ArchiveURLs.swift */,
-				8B46C4B922DD9B03003E5277 /* Configuration.swift */,
+				8B961EE1236162E900085D05 /* AppleMusic */,
+				8B961EE0236162BD00085D05 /* KEXP Service */,
+				8B3C37AC234021E800413329 /* ArchiveShow.swift */,
+				8B437FB0234EE45B002EDB91 /* ArchiveStreamResult.swift */,
+				8BEA9AD023555C0900C5F010 /* ArchiveShowStart.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -177,6 +236,8 @@
 				8BFFECEE22C968DD00E3378C /* PlaySample.json */,
 				8BFFECEC22C968D000E3378C /* ShowSample.json */,
 				8B46C4BB22DD9BBE003E5277 /* ConfigurationSample.json */,
+				8B437FAE234EE3CE002EDB91 /* ArchiveStreamSample.json */,
+				8B81465723617389008EDF50 /* AppleMusicSample.json */,
 			);
 			path = Samples;
 			sourceTree = "<group>";
@@ -184,9 +245,7 @@
 		8BFFECF122C9694200E3378C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				8BFFECF822C9934100E3378C /* PlayResultParseTests.swift */,
-				8B46C4BD22DD9C05003E5277 /* ConfigurationParseTests.swift */,
-				8B56300422E6C41F00F476D0 /* ShowResultParseTests.swift */,
+				8B159DC4233C689F00BCB7AB /* Model */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -340,9 +399,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B437FAF234EE3CE002EDB91 /* ArchiveStreamSample.json in Resources */,
 				8B46C4BC22DD9BBE003E5277 /* ConfigurationSample.json in Resources */,
 				8BFFECED22C968D000E3378C /* ShowSample.json in Resources */,
 				8BFFECEF22C968DD00E3378C /* PlaySample.json in Resources */,
+				8B81465823617389008EDF50 /* AppleMusicSample.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,12 +423,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B159DC1233C66E500BCB7AB /* ArchiveManager.swift in Sources */,
 				8BFFED0522D43EE700E3378C /* NetworkManager.swift in Sources */,
 				8BFFECFE22CB11EE00E3378C /* ArchiveURLs.swift in Sources */,
 				8B46C4C022DEC811003E5277 /* UIImageView+Loading.swift in Sources */,
 				8BFFED0822D43F3800E3378C /* KEXPPower.swift in Sources */,
 				8BFFECEA22C9658000E3378C /* PlayResult.swift in Sources */,
+				8BEA9AD123555C0900C5F010 /* ArchiveShowStart.swift in Sources */,
+				8B437FB1234EE45B002EDB91 /* ArchiveStreamResult.swift in Sources */,
+				8B81465A23628A1B008EDF50 /* AppleMusicResult.swift in Sources */,
 				8BFFED0322D43EA100E3378C /* Router.swift in Sources */,
+				8B3C37AD234021E800413329 /* ArchiveShow.swift in Sources */,
 				8BFFECEB22C9658000E3378C /* ShowResult.swift in Sources */,
 				8B46C4BA22DD9B03003E5277 /* Configuration.swift in Sources */,
 				8B46C4C422DEE016003E5277 /* Reachability.swift in Sources */,
@@ -379,8 +445,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B81465C23628BD0008EDF50 /* AppleMusicResultParseTests.swift in Sources */,
 				8BFFECF722C96F6000E3378C /* XCTestCase+Helpers.swift in Sources */,
 				8B46C4BE22DD9C05003E5277 /* ConfigurationParseTests.swift in Sources */,
+				8B437FB3234EE8F6002EDB91 /* ArchiveStreamParseTests.swift in Sources */,
 				8BFFECF922C9934100E3378C /* PlayResultParseTests.swift in Sources */,
 				8B56300522E6C41F00F476D0 /* ShowResultParseTests.swift in Sources */,
 			);

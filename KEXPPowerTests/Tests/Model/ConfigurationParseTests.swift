@@ -15,6 +15,17 @@ class ConfigurationParseTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
+        let streamOne = AvailableStream(streamName: "streamOne", streamURL: URL(string: "http://StreamOneURL.com")!)
+        let streamTwo = AvailableStream(streamName: "streamOne", streamURL: URL(string: "http://StreamTwoURL.com")!)
+        
+        KEXPPower.sharedInstance.setup(
+            legacyBaseURL: "legacyBaseURL",
+            configurationURL: URL(string: "http://www.kexp.org/config.json")!,
+            availableStreams: [streamOne, streamTwo],
+            selectedArchiveBitRate: ArchiveBitRate.thirtyTwo,
+            defaultStreamIndex: 0,
+            backupStreamIndex: 1)
+        
         guard
             let configurationData = retrieveJSONData(for: "ConfigurationSample"),
             let configuration = parseResult(parseType: Configuration.self, data: configurationData)

@@ -11,6 +11,8 @@ import Foundation
 public struct NetworkManager {
     public typealias PlayCompletion = (_ result: Result<String>, _ playResult: PlayResult?) -> Void
     public typealias ShowCompletion = (_ result: Result<String>, _ showResult: ShowResult?) -> Void
+    public typealias ArchiveCompletion = (_ result: Result<String>, _ archiveStreamResult: ArchiveStreamResult?) -> Void
+    public typealias AppleMusicCompletion = (_ result: Result<String>, _ archiveStreamResult: AppleMusicResult?) -> Void
     public typealias ConfigurationCompletion = (_ result: Result<String>, _ configuration: Configuration?) -> Void
     
     private let router = Router()
@@ -52,6 +54,7 @@ public struct NetworkManager {
                 case .success = result,
                 let data = data
             else {
+                completion(.failure("failure"), nil)
                 return
             }
             
@@ -70,10 +73,10 @@ public struct NetworkManager {
     public func getShow(
         showId: String? = nil,
         airDateExact: String? = nil,
-        airDateAfter: String? = nil,
         airDateBefore: String? = nil,
-        limit: Int = 20,
-        offset: Int = 0,
+        airDateAfter: String? = nil,
+        limit: Int? = nil,
+        offset: Int? = nil,
         completion: @escaping ShowCompletion)
     {
         var parameters = [URLQueryItem]()
@@ -94,14 +97,20 @@ public struct NetworkManager {
             parameters.append(URLQueryItem(name: "airdate_before", value: airDateBefore))
         }
         
-        parameters.append(URLQueryItem(name: "limit", value: "\(limit)"))
-        parameters.append(URLQueryItem(name: "offset", value: "\(offset)"))
+        if let limit = limit {
+            parameters.append(URLQueryItem(name: "limit", value: "\(limit)"))
+        }
+        
+        if let offset = offset {
+            parameters.append(URLQueryItem(name: "offset", value: "\(offset)"))
+        }
         
         router.get(url: KEXPPower.showURL, parameters: parameters) { result, data in
             guard
                 case .success = result,
                 let data = data
             else {
+                completion(.failure("failure"), nil)
                 return
             }
             
@@ -124,7 +133,6 @@ public struct NetworkManager {
             let data = try? Data(contentsOf: configurationURL)
         else {
             completion(.failure("failure"), nil)
-            
             return
         }
         
@@ -134,6 +142,58 @@ public struct NetworkManager {
             completion(Result.success, configuration)
         } catch let error {
             completion(Result.failure(error.localizedDescription), nil)
+        }
+    }
+    
+    public func getArchiveStreamURL(bitrate: String, timestamp: String?, completion: @escaping ArchiveCompletion) {
+        var parameters = [URLQueryItem]()
+        parameters.append(URLQueryItem(name: "bitrate", value: bitrate))
+        parameters.append(URLQueryItem(name: "timestamp", value: timestamp))
+        
+        router.get(url: KEXPPower.streamingURL, parameters: parameters) { result, data in
+            guard
+                case .success = result,
+                let data = data
+            else {
+                completion(.failure("failure"), nil)
+                return
+            }
+
+            do {
+                let archiveStreamResult = try JSONDecoder().decode(ArchiveStreamResult.self, from: data)
+
+                completion(Result.success, archiveStreamResult)
+            } catch let error {
+                completion(Result.failure(error.localizedDescription), nil)
+            }
+        }
+    }
+    
+    public func getAppleMusicLink(artist: String?, track: String?, completion: @escaping AppleMusicCompletion) {
+        let itunesURL = "https://itunes.apple.com/search"
+        let searchTerm = "\(artist ?? "") \(track ?? "")"
+        var parameters = [URLQueryItem]()
+        parameters.append(URLQueryItem(name: "term", value: searchTerm))
+        parameters.append(URLQueryItem(name: "entity", value: "song"))
+
+        router.get(url: URL(string: itunesURL)!, parameters: parameters) { result, data in
+            guard
+                case .success = result,
+                let data = data
+            else {
+                completion(.failure("failure"), nil)
+                return
+            }
+            
+            do {
+                let appleMusicResult = try JSONDecoder().decode(AppleMusicResult.self, from: data)
+                
+                DispatchQueue.main.async {
+                    completion(Result.success, appleMusicResult)
+                }
+            } catch let error {
+                completion(Result.failure(error.localizedDescription), nil)
+            }
         }
     }
 }
