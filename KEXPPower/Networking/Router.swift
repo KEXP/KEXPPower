@@ -43,7 +43,6 @@ class Router {
                     (200 ..< 300) ~= response.statusCode,
                     error == nil
                     else {
-                        completion(Result.failure("Error from platform: \(error.debugDescription)"), nil)
                         throw NetworkError.serverError("Platform server error")
                 }
                 
