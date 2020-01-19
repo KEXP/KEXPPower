@@ -36,12 +36,15 @@ public class ArchiveManager {
         
         for (index, _) in archieveShowDates.afterDates.enumerated() {
             dispatchGroup.enter()
-            networkManager.getShow(airDateBefore: beforeDates[index], airDateAfter: afterDates[index]) { result, showResults in
-                guard let shows = showResults?.showlist else { dispatchGroup.leave(); return }
+            networkManager.getShow(airDateBefore: beforeDates[index], airDateAfter: afterDates[index]) { result in
+                defer { dispatchGroup.leave() }
                 
-                allShows += shows.map { ArchiveShow(show: $0) }
-                
-                dispatchGroup.leave()
+                if
+                    case let .success(showResults) = result,
+                    let shows = showResults?.showlist
+                {
+                    allShows += shows.map { ArchiveShow(show: $0) }
+                }
             }
         }
         
@@ -101,30 +104,31 @@ public class ArchiveManager {
         networkManager.getArchiveStreamURL(
             bitrate: KEXPPower.sharedInstance.selectedArchiveBitRate.rawValue,
             timestamp: calucatedEndTimeRequest,
-            completion: { [weak self] result, archiveStreamResult in
-                guard
-                    let offset = archiveStreamResult?.offset,
-                    let streamURL = archiveStreamResult?.streamURL,
-                    case .success = result
-                else {
-                    return
-                }
+            completion: { [weak self] result in
                 
-                let calculatedStart = calcEndTime.addingTimeInterval(-offset)
+            guard
+                case let .success(archiveStreamResult) = result,
+                let offset = archiveStreamResult?.offset,
+                let streamURL = archiveStreamResult?.streamURL
+            else { return }
+            
+            let calculatedStart = calcEndTime.addingTimeInterval(-offset)
+
+            if calculatedStart <= startingPoint.addingTimeInterval(30) {
+                let elapsed = startingPoint.timeIntervalSince(calculatedStart)
+                self?.archieveShowMp3s.insert(streamURL, at: 0)
+                completion(self?.archieveShowMp3s ?? [], elapsed)
+            } else {
+                self?.archieveShowMp3s.insert(streamURL, at: 0)
+                let calculatedEndTime = calculatedStart.addingTimeInterval(-30)
                 
-                if calculatedStart <= startingPoint.addingTimeInterval(30) {
-                    
-                    let elapsed = startingPoint.timeIntervalSince(calculatedStart)
-                    
-                    self?.archieveShowMp3s.insert(streamURL, at: 0)
-                    completion(self?.archieveShowMp3s ?? [], elapsed)
-                } else {
-                    self?.archieveShowMp3s.insert(streamURL, at: 0)
-                    
-                    let calculatedEndTime = calculatedStart.addingTimeInterval(-30)
-                    
-                    self?.gatherShowMp3s(archiveShow: archiveShow, playbackStartDate: startingPoint, calcEndTime: calculatedEndTime, completion: completion)
-                }
+                self?.gatherShowMp3s(
+                    archiveShow: archiveShow,
+                    playbackStartDate: startingPoint,
+                    calcEndTime: calculatedEndTime,
+                    completion: completion
+                )
+            }
         })
     }
     

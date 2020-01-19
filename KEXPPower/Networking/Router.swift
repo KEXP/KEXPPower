@@ -8,12 +8,12 @@
 
 import Foundation
 
-public enum Result<String>{
-    case success
-    case failure(String)
+public enum Result<Value, Error: Swift.Error> {
+    case success(Value)
+    case failure(NSError)
 }
 
-typealias Completion = (_ result: Result<String>, _ data: Data?) -> Void
+typealias Completion = (_ result: Result<Data, Error>) -> Void
 
 class Router {
     enum NetworkError: Error {
@@ -27,7 +27,13 @@ class Router {
         guard
             let requestURL = urlComponents?.url
             else {
-                completion(Result.failure("Error building URL"), nil)
+                let error = NSError(
+                    domain: "com.kexppower.error",
+                    code: 0,
+                    userInfo: [NSLocalizedDescriptionKey: "Error building URL"]
+                )
+                
+                completion(.failure(error))
                 
                 return
         }
@@ -46,9 +52,16 @@ class Router {
                         throw NetworkError.serverError("Platform server error")
                 }
                 
-                completion(Result.success, data)
+                completion(.success(data))
             } catch {
-                completion(Result.failure("Board creation failed with error: \(error.localizedDescription)"), nil)
+                
+                let error = NSError(
+                    domain: "com.kexppower.error",
+                    code: 0,
+                    userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
+                )
+                
+                completion(.failure(error))
             }
         }.resume()
     }
