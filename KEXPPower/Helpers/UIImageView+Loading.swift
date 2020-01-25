@@ -21,7 +21,7 @@ extension UIImageView {
             return
         }
         
-        image = nil
+        image = placeHolder
         
         if let cachedImage = imageCache.object(forKey: imageURL.absoluteString as NSString) {
             image = cachedImage
