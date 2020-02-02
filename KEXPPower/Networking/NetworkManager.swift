@@ -9,11 +9,11 @@
 import Foundation
 
 public struct NetworkManager {
-    public typealias PlayCompletion = (_ result: Result<String>, _ playResult: PlayResult?) -> Void
-    public typealias ShowCompletion = (_ result: Result<String>, _ showResult: ShowResult?) -> Void
-    public typealias ArchiveCompletion = (_ result: Result<String>, _ archiveStreamResult: ArchiveStreamResult?) -> Void
-    public typealias AppleMusicCompletion = (_ result: Result<String>, _ archiveStreamResult: AppleMusicResult?) -> Void
-    public typealias ConfigurationCompletion = (_ result: Result<String>, _ configuration: Configuration?) -> Void
+    public typealias PlayCompletion = (_ result: Result<PlayResult?, Error>) -> Void
+    public typealias ShowCompletion = (_ result: Result<ShowResult?, Error>) -> Void
+    public typealias ArchiveCompletion = (_ result: Result<ArchiveStreamResult?, Error>) -> Void
+    public typealias AppleMusicCompletion = (_ result: Result<AppleMusicResult?, Error>) -> Void
+    public typealias ConfigurationCompletion = (_ result: Result<Configuration?, Error>) -> Void
     
     private let router = Router()
     private let reachability = Reachability()
@@ -49,23 +49,33 @@ public struct NetworkManager {
         parameters.append(URLQueryItem(name: "limit", value: "\(limit)"))
         parameters.append(URLQueryItem(name: "offset", value: "\(offset)"))
         
-        router.get(url: KEXPPower.playURL, parameters: parameters) { result, data in
-            guard
-                case .success = result,
-                let data = data
-            else {
-                completion(.failure("failure"), nil)
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .formatted(DateFormatter.airDateFormatter)
-                let playResult = try decoder.decode(PlayResult.self, from: data)
+        router.get(url: KEXPPower.playURL, parameters: parameters) { result in
+            switch result {
+            case .success(let data):
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .formatted(DateFormatter.airDateFormatter)
+                    let playResult = try decoder.decode(PlayResult.self, from: data)
+
+                    completion(.success(playResult))
+                } catch let error {
+                    let error = NSError(
+                        domain: "com.kexppower.error",
+                        code: 0,
+                        userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
+                    )
+                    
+                    completion(.failure(error))
+                }
                 
-                completion(Result.success, playResult)
-            } catch let error {
-                completion(Result.failure(error.localizedDescription), nil)
+            case .failure(let error):
+                let error = NSError(
+                    domain: "com.kexppower.error",
+                    code: 0,
+                    userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
+                )
+                
+                completion(.failure(error))
             }
         }
     }
@@ -105,24 +115,33 @@ public struct NetworkManager {
             parameters.append(URLQueryItem(name: "offset", value: "\(offset)"))
         }
         
-        router.get(url: KEXPPower.showURL, parameters: parameters) { result, data in
-            guard
-                case .success = result,
-                let data = data
-            else {
-                completion(.failure("failure"), nil)
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .formatted(DateFormatter.airDateFormatter)
-                
-                let showResult = try decoder.decode(ShowResult.self, from: data)
+        router.get(url: KEXPPower.showURL, parameters: parameters) { result in
+            switch result {
+            case .success(let data):
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .formatted(DateFormatter.airDateFormatter)
+                    let showResult = try decoder.decode(ShowResult.self, from: data)
 
-                completion(Result.success, showResult)
-            } catch let error {
-                completion(Result.failure(error.localizedDescription), nil)
+                    completion(.success(showResult))
+                } catch let error {
+                    let error = NSError(
+                        domain: "com.kexppower.error",
+                        code: 0,
+                        userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
+                    )
+                    
+                    completion(.failure(error))
+                }
+                
+            case .failure(let error):
+                let error = NSError(
+                    domain: "com.kexppower.error",
+                    code: 0,
+                    userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
+                )
+                
+                completion(.failure(error))
             }
         }
     }
@@ -132,16 +151,27 @@ public struct NetworkManager {
             let configurationURL = KEXPPower.configurationURL,
             let data = try? Data(contentsOf: configurationURL)
         else {
-            completion(.failure("failure"), nil)
+                let error = NSError(
+                domain: "com.kexppower.error",
+                code: 0,
+                userInfo: [NSLocalizedDescriptionKey: "Failure retrieving config"]
+            )
+            
+            completion(.failure(error))
             return
         }
         
         do {
             let configuration = try JSONDecoder().decode(Configuration.self, from: data)
-            
-            completion(Result.success, configuration)
+            completion(.success(configuration))
         } catch let error {
-            completion(Result.failure(error.localizedDescription), nil)
+            let error = NSError(
+                domain: "com.kexppower.error",
+                code: 0,
+                userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
+            )
+            
+            completion(.failure(error))
         }
     }
     
@@ -150,21 +180,30 @@ public struct NetworkManager {
         parameters.append(URLQueryItem(name: "bitrate", value: bitrate))
         parameters.append(URLQueryItem(name: "timestamp", value: timestamp))
         
-        router.get(url: KEXPPower.streamingURL, parameters: parameters) { result, data in
-            guard
-                case .success = result,
-                let data = data
-            else {
-                completion(.failure("failure"), nil)
-                return
-            }
-
-            do {
-                let archiveStreamResult = try JSONDecoder().decode(ArchiveStreamResult.self, from: data)
-
-                completion(Result.success, archiveStreamResult)
-            } catch let error {
-                completion(Result.failure(error.localizedDescription), nil)
+        router.get(url: KEXPPower.streamingURL, parameters: parameters) { result in
+            switch result {
+            case .success(let data):
+                do {
+                    let archiveStreamResult = try JSONDecoder().decode(ArchiveStreamResult.self, from: data)
+                    completion(.success(archiveStreamResult))
+                } catch let error {
+                    let error = NSError(
+                        domain: "com.kexppower.error",
+                        code: 0,
+                        userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
+                    )
+                    
+                    completion(.failure(error))
+                }
+                
+            case .failure(let error):
+                let error = NSError(
+                    domain: "com.kexppower.error",
+                    code: 0,
+                    userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
+                )
+                
+                completion(.failure(error))
             }
         }
     }
@@ -176,23 +215,34 @@ public struct NetworkManager {
         parameters.append(URLQueryItem(name: "term", value: searchTerm))
         parameters.append(URLQueryItem(name: "entity", value: "song"))
 
-        router.get(url: URL(string: itunesURL)!, parameters: parameters) { result, data in
-            guard
-                case .success = result,
-                let data = data
-            else {
-                completion(.failure("failure"), nil)
-                return
-            }
-            
-            do {
-                let appleMusicResult = try JSONDecoder().decode(AppleMusicResult.self, from: data)
-                
-                DispatchQueue.main.async {
-                    completion(Result.success, appleMusicResult)
+        router.get(url: URL(string: itunesURL)!, parameters: parameters) { result in
+            switch result {
+            case .success(let data):
+                do {
+                    let appleMusicResult = try JSONDecoder().decode(AppleMusicResult.self, from: data)
+                    
+                    DispatchQueue.main.async {
+                        completion(.success(appleMusicResult))
+                    }
+                    
+                } catch let error {
+                    let error = NSError(
+                        domain: "com.kexppower.error",
+                        code: 0,
+                        userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
+                    )
+                    
+                    completion(.failure(error))
                 }
-            } catch let error {
-                completion(Result.failure(error.localizedDescription), nil)
+                
+            case .failure(let error):
+                let error = NSError(
+                    domain: "com.kexppower.error",
+                    code: 0,
+                    userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
+                )
+                
+                completion(.failure(error))
             }
         }
     }
