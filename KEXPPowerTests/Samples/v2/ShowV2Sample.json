@@ -1,0 +1,407 @@
+{
+    "count": 46732,
+    "next": "https://api.kexp.org/v2/shows/?limit=20&offset=20",
+    "previous": null,
+    "results": [
+        {
+            "id": 46732,
+            "uri": "https://api.kexp.org/v2/shows/46732/",
+            "program": 20,
+            "program_uri": "https://api.kexp.org/v2/programs/20/",
+            "hosts": [
+                44
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/44/"
+            ],
+            "program_name": "Wo' Pop",
+            "program_tags": "Electronic,World",
+            "host_names": [
+                "Gabriel Teodros"
+            ],
+            "tagline": "666",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529968564/10621/",
+            "start_time": "2020-03-03T18:00:39-08:00"
+        },
+        {
+            "id": 46731,
+            "uri": "https://api.kexp.org/v2/shows/46731/",
+            "program": 14,
+            "program_uri": "https://api.kexp.org/v2/programs/14/",
+            "hosts": [
+                27
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/27/"
+            ],
+            "program_name": "The Afternoon Show",
+            "program_tags": "Rock,Eclectic,Variety Mix",
+            "host_names": [
+                "Kevin Cole"
+            ],
+            "tagline": "",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529968117/10616/",
+            "start_time": "2020-03-03T14:00:00-08:00"
+        },
+        {
+            "id": 46730,
+            "uri": "https://api.kexp.org/v2/shows/46730/",
+            "program": 15,
+            "program_uri": "https://api.kexp.org/v2/programs/15/",
+            "hosts": [
+                4
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/4/"
+            ],
+            "program_name": "The Midday Show",
+            "program_tags": "Rock,Eclectic,Variety Mix",
+            "host_names": [
+                "Cheryl Waters"
+            ],
+            "tagline": "",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529969358/10627/",
+            "start_time": "2020-03-03T10:00:00-08:00"
+        },
+        {
+            "id": 46729,
+            "uri": "https://api.kexp.org/v2/shows/46729/",
+            "program": 16,
+            "program_uri": "https://api.kexp.org/v2/programs/16/",
+            "hosts": [
+                26
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/26/"
+            ],
+            "program_name": "The Morning Show",
+            "program_tags": "Rock,Eclectic,Variety Mix",
+            "host_names": [
+                "John Richards"
+            ],
+            "tagline": "",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529968200/10617/",
+            "start_time": "2020-03-03T06:02:05-08:00"
+        },
+        {
+            "id": 46728,
+            "uri": "https://api.kexp.org/v2/shows/46728/",
+            "program": 18,
+            "program_uri": "https://api.kexp.org/v2/programs/18/",
+            "hosts": [
+                37
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/37/"
+            ],
+            "program_name": "Variety Mix",
+            "program_tags": "Rock,Eclectic,Variety Mix",
+            "host_names": [
+                "Reeves"
+            ],
+            "tagline": "On Twitter & Instagram: @kexpdjreeves",
+            "image_uri": "https://www.kexp.org/filer/canonical/1532029736/11081/",
+            "start_time": "2020-03-03T01:01:16-08:00"
+        },
+        {
+            "id": 46727,
+            "uri": "https://api.kexp.org/v2/shows/46727/",
+            "program": 18,
+            "program_uri": "https://api.kexp.org/v2/programs/18/",
+            "hosts": [
+                13
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/13/"
+            ],
+            "program_name": "Variety Mix",
+            "program_tags": "Rock,Eclectic,Variety Mix",
+            "host_names": [
+                "DJ Riz"
+            ],
+            "tagline": "songs of faith and inspiration",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529966660/10608/",
+            "start_time": "2020-03-02T21:01:41-08:00"
+        },
+        {
+            "id": 46726,
+            "uri": "https://api.kexp.org/v2/shows/46726/",
+            "program": 2,
+            "program_uri": "https://api.kexp.org/v2/programs/2/",
+            "hosts": [
+                5
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/5/"
+            ],
+            "program_name": "El Sonido",
+            "program_tags": "Latin,World",
+            "host_names": [
+                "Chilly"
+            ],
+            "tagline": "",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529969228/10626/",
+            "start_time": "2020-03-02T18:00:22-08:00"
+        },
+        {
+            "id": 46725,
+            "uri": "https://api.kexp.org/v2/shows/46725/",
+            "program": 14,
+            "program_uri": "https://api.kexp.org/v2/programs/14/",
+            "hosts": [
+                43
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/43/"
+            ],
+            "program_name": "The Afternoon Show",
+            "program_tags": "Rock,Eclectic,Variety Mix",
+            "host_names": [
+                "Troy Nelson"
+            ],
+            "tagline": "Welcome to The Afternoon Show!",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529970526/10637/",
+            "start_time": "2020-03-02T13:59:18-08:00"
+        },
+        {
+            "id": 46724,
+            "uri": "https://api.kexp.org/v2/shows/46724/",
+            "program": 15,
+            "program_uri": "https://api.kexp.org/v2/programs/15/",
+            "hosts": [
+                4
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/4/"
+            ],
+            "program_name": "The Midday Show",
+            "program_tags": "Rock,Eclectic,Variety Mix",
+            "host_names": [
+                "Cheryl Waters"
+            ],
+            "tagline": "",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529969358/10627/",
+            "start_time": "2020-03-02T10:00:50-08:00"
+        },
+        {
+            "id": 46723,
+            "uri": "https://api.kexp.org/v2/shows/46723/",
+            "program": 16,
+            "program_uri": "https://api.kexp.org/v2/programs/16/",
+            "hosts": [
+                19
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/19/"
+            ],
+            "program_name": "The Morning Show",
+            "program_tags": "Rock,Eclectic,Variety Mix",
+            "host_names": [
+                "Evie"
+            ],
+            "tagline": "In for John! Say hello - @evieluxx on twitter/instagram :)",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529968671/10622/",
+            "start_time": "2020-03-02T06:00:24-08:00"
+        },
+        {
+            "id": 46722,
+            "uri": "https://api.kexp.org/v2/shows/46722/",
+            "program": 18,
+            "program_uri": "https://api.kexp.org/v2/programs/18/",
+            "hosts": [
+                48
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/48/"
+            ],
+            "program_name": "Variety Mix",
+            "program_tags": "Rock,Eclectic,Variety Mix",
+            "host_names": [
+                "Greta Rose"
+            ],
+            "tagline": "hi hi",
+            "image_uri": "https://www.kexp.org/media/filer_public_thumbnails/filer_public/6c/f1/6cf1f42b-6733-4b22-be94-48a54fb841bc/greta_rose.jpg__100x100_q85_crop_subsampling-2.jpg",
+            "start_time": "2020-03-02T02:00:48-08:00"
+        },
+        {
+            "id": 46721,
+            "uri": "https://api.kexp.org/v2/shows/46721/",
+            "program": 18,
+            "program_uri": "https://api.kexp.org/v2/programs/18/",
+            "hosts": [
+                24
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/24/"
+            ],
+            "program_name": "Variety Mix",
+            "program_tags": "Rock,Eclectic,Variety Mix",
+            "host_names": [
+                "John Gilbreath"
+            ],
+            "tagline": "",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529970959/10640/",
+            "start_time": "2020-03-02T00:00:27-08:00"
+        },
+        {
+            "id": 46720,
+            "uri": "https://api.kexp.org/v2/shows/46720/",
+            "program": 3,
+            "program_uri": "https://api.kexp.org/v2/programs/3/",
+            "hosts": [
+                28
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/28/"
+            ],
+            "program_name": "Expansions",
+            "program_tags": "Electronic",
+            "host_names": [
+                "Kid Hops"
+            ],
+            "tagline": "",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529968015/10615/",
+            "start_time": "2020-03-01T21:02:43-08:00"
+        },
+        {
+            "id": 46719,
+            "uri": "https://api.kexp.org/v2/shows/46719/",
+            "program": 21,
+            "program_uri": "https://api.kexp.org/v2/programs/21/",
+            "hosts": [
+                47
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/47/"
+            ],
+            "program_name": "Sunday Soul",
+            "program_tags": "Rock,Eclectic,Variety Mix",
+            "host_names": [
+                "OCnotes"
+            ],
+            "tagline": "Doin this one for the free, the brave, & the real.",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529972040/10644/",
+            "start_time": "2020-03-01T18:05:28-08:00"
+        },
+        {
+            "id": 46718,
+            "uri": "https://api.kexp.org/v2/shows/46718/",
+            "program": 18,
+            "program_uri": "https://api.kexp.org/v2/programs/18/",
+            "hosts": [
+                19
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/19/"
+            ],
+            "program_name": "Variety Mix",
+            "program_tags": "Rock,Eclectic,Variety Mix",
+            "host_names": [
+                "Evie"
+            ],
+            "tagline": "It's Sunday! Say hello - @evieluxx on twitter/instagram :)",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529968671/10622/",
+            "start_time": "2020-03-01T14:56:35-08:00"
+        },
+        {
+            "id": 46717,
+            "uri": "https://api.kexp.org/v2/shows/46717/",
+            "program": 18,
+            "program_uri": "https://api.kexp.org/v2/programs/18/",
+            "hosts": [
+                41
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/41/"
+            ],
+            "program_name": "Variety Mix",
+            "program_tags": "Rock,Eclectic,Variety Mix",
+            "host_names": [
+                "Stevie Zoom"
+            ],
+            "tagline": "",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529970438/10636/",
+            "start_time": "2020-03-01T12:00:00-08:00"
+        },
+        {
+            "id": 46716,
+            "uri": "https://api.kexp.org/v2/shows/46716/",
+            "program": 8,
+            "program_uri": "https://api.kexp.org/v2/programs/8/",
+            "hosts": [
+                25
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/25/"
+            ],
+            "program_name": "Preachin' the Blues",
+            "program_tags": "Blues,Country,Roots",
+            "host_names": [
+                "Johnny Horn"
+            ],
+            "tagline": "Seattle's #1 Hangover Show",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529970853/10639/",
+            "start_time": "2020-03-01T09:00:00-08:00"
+        },
+        {
+            "id": 46715,
+            "uri": "https://api.kexp.org/v2/shows/46715/",
+            "program": 24,
+            "program_uri": "https://api.kexp.org/v2/programs/24/",
+            "hosts": [
+                8
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/8/"
+            ],
+            "program_name": "Pacific Notions",
+            "program_tags": "KEXP",
+            "host_names": [
+                "DJ Alex"
+            ],
+            "tagline": "",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529969764/10631/",
+            "start_time": "2020-03-01T06:00:43-08:00"
+        },
+        {
+            "id": 46714,
+            "uri": "https://api.kexp.org/v2/shows/46714/",
+            "program": 18,
+            "program_uri": "https://api.kexp.org/v2/programs/18/",
+            "hosts": [
+                33
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/33/"
+            ],
+            "program_name": "Variety Mix",
+            "program_tags": "Rock,Eclectic,Variety Mix",
+            "host_names": [
+                "Mike Ramos"
+            ],
+            "tagline": "MARCH 1ST AYEEヾ(⌐■_■)ノ♪",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529967057/10611/",
+            "start_time": "2020-03-01T02:00:32-08:00"
+        },
+        {
+            "id": 46713,
+            "uri": "https://api.kexp.org/v2/shows/46713/",
+            "program": 9,
+            "program_uri": "https://api.kexp.org/v2/programs/9/",
+            "hosts": [
+                42
+            ],
+            "host_uris": [
+                "https://api.kexp.org/v2/hosts/42/"
+            ],
+            "program_name": "Seek & Destroy",
+            "program_tags": "Metal,Rock",
+            "host_names": [
+                "Tanner Ellison"
+            ],
+            "tagline": "",
+            "image_uri": "https://www.kexp.org/filer/canonical/1529971085/10641/",
+            "start_time": "2020-03-01T00:01:01-08:00"
+        }
+    ]
+}

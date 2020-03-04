@@ -12,6 +12,9 @@
 		8B437FAF234EE3CE002EDB91 /* ArchiveStreamSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B437FAE234EE3CE002EDB91 /* ArchiveStreamSample.json */; };
 		8B437FB1234EE45B002EDB91 /* ArchiveStreamResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B437FB0234EE45B002EDB91 /* ArchiveStreamResult.swift */; };
 		8B437FB3234EE8F6002EDB91 /* ArchiveStreamParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B437FB2234EE8F6002EDB91 /* ArchiveStreamParseTests.swift */; };
+		8B451233240F5C1300EAFEFC /* ShowResultsV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B451232240F5C1300EAFEFC /* ShowResultsV2.swift */; };
+		8B451236240F603D00EAFEFC /* ShowResultV2ParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B451235240F603D00EAFEFC /* ShowResultV2ParseTests.swift */; };
+		8B451239240F606E00EAFEFC /* ShowV2Sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B451238240F606E00EAFEFC /* ShowV2Sample.json */; };
 		8B46C4BA22DD9B03003E5277 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C4B922DD9B03003E5277 /* Configuration.swift */; };
 		8B46C4BC22DD9BBE003E5277 /* ConfigurationSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B46C4BB22DD9BBE003E5277 /* ConfigurationSample.json */; };
 		8B46C4BE22DD9C05003E5277 /* ConfigurationParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C4BD22DD9C05003E5277 /* ConfigurationParseTests.swift */; };
@@ -58,6 +61,9 @@
 		8B437FAE234EE3CE002EDB91 /* ArchiveStreamSample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ArchiveStreamSample.json; sourceTree = "<group>"; };
 		8B437FB0234EE45B002EDB91 /* ArchiveStreamResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveStreamResult.swift; sourceTree = "<group>"; };
 		8B437FB2234EE8F6002EDB91 /* ArchiveStreamParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveStreamParseTests.swift; sourceTree = "<group>"; };
+		8B451232240F5C1300EAFEFC /* ShowResultsV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowResultsV2.swift; sourceTree = "<group>"; };
+		8B451235240F603D00EAFEFC /* ShowResultV2ParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowResultV2ParseTests.swift; sourceTree = "<group>"; };
+		8B451238240F606E00EAFEFC /* ShowV2Sample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ShowV2Sample.json; sourceTree = "<group>"; };
 		8B46C4B922DD9B03003E5277 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		8B46C4BB22DD9BBE003E5277 /* ConfigurationSample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ConfigurationSample.json; sourceTree = "<group>"; };
 		8B46C4BD22DD9C05003E5277 /* ConfigurationParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationParseTests.swift; sourceTree = "<group>"; };
@@ -131,6 +137,7 @@
 		8B159DC4233C689F00BCB7AB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8B451234240F600F00EAFEFC /* KEXP v2 */,
 				8BFFECF822C9934100E3378C /* PlayResultParseTests.swift */,
 				8B46C4BD22DD9C05003E5277 /* ConfigurationParseTests.swift */,
 				8B56300422E6C41F00F476D0 /* ShowResultParseTests.swift */,
@@ -140,15 +147,40 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		8B961EE0236162BD00085D05 /* KEXP Service */ = {
+		8B451231240F5BD500EAFEFC /* v2 */ = {
 			isa = PBXGroup;
 			children = (
+				8B451232240F5C1300EAFEFC /* ShowResultsV2.swift */,
+			);
+			path = v2;
+			sourceTree = "<group>";
+		};
+		8B451234240F600F00EAFEFC /* KEXP v2 */ = {
+			isa = PBXGroup;
+			children = (
+				8B451235240F603D00EAFEFC /* ShowResultV2ParseTests.swift */,
+			);
+			path = "KEXP v2";
+			sourceTree = "<group>";
+		};
+		8B451237240F604600EAFEFC /* v2 */ = {
+			isa = PBXGroup;
+			children = (
+				8B451238240F606E00EAFEFC /* ShowV2Sample.json */,
+			);
+			path = v2;
+			sourceTree = "<group>";
+		};
+		8B961EE0236162BD00085D05 /* KEXP */ = {
+			isa = PBXGroup;
+			children = (
+				8B451231240F5BD500EAFEFC /* v2 */,
 				8BFFECE822C9658000E3378C /* PlayResult.swift */,
 				8BFFECE922C9658000E3378C /* ShowResult.swift */,
 				8BFFECFD22CB11EE00E3378C /* ArchiveURLs.swift */,
 				8B46C4B922DD9B03003E5277 /* Configuration.swift */,
 			);
-			path = "KEXP Service";
+			path = KEXP;
 			sourceTree = "<group>";
 		};
 		8B961EE1236162E900085D05 /* AppleMusic */ = {
@@ -222,7 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				8B961EE1236162E900085D05 /* AppleMusic */,
-				8B961EE0236162BD00085D05 /* KEXP Service */,
+				8B961EE0236162BD00085D05 /* KEXP */,
 				8B3C37AC234021E800413329 /* ArchiveShow.swift */,
 				8B437FB0234EE45B002EDB91 /* ArchiveStreamResult.swift */,
 				8BEA9AD023555C0900C5F010 /* ArchiveShowStart.swift */,
@@ -233,6 +265,7 @@
 		8BFFECF022C9692B00E3378C /* Samples */ = {
 			isa = PBXGroup;
 			children = (
+				8B451237240F604600EAFEFC /* v2 */,
 				8BFFECEE22C968DD00E3378C /* PlaySample.json */,
 				8BFFECEC22C968D000E3378C /* ShowSample.json */,
 				8B46C4BB22DD9BBE003E5277 /* ConfigurationSample.json */,
@@ -403,6 +436,7 @@
 				8B46C4BC22DD9BBE003E5277 /* ConfigurationSample.json in Resources */,
 				8BFFECED22C968D000E3378C /* ShowSample.json in Resources */,
 				8BFFECEF22C968DD00E3378C /* PlaySample.json in Resources */,
+				8B451239240F606E00EAFEFC /* ShowV2Sample.json in Resources */,
 				8B81465823617389008EDF50 /* AppleMusicSample.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,6 +466,7 @@
 				8BEA9AD123555C0900C5F010 /* ArchiveShowStart.swift in Sources */,
 				8B437FB1234EE45B002EDB91 /* ArchiveStreamResult.swift in Sources */,
 				8B81465A23628A1B008EDF50 /* AppleMusicResult.swift in Sources */,
+				8B451233240F5C1300EAFEFC /* ShowResultsV2.swift in Sources */,
 				8BFFED0322D43EA100E3378C /* Router.swift in Sources */,
 				8B3C37AD234021E800413329 /* ArchiveShow.swift in Sources */,
 				8BFFECEB22C9658000E3378C /* ShowResult.swift in Sources */,
@@ -446,6 +481,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B81465C23628BD0008EDF50 /* AppleMusicResultParseTests.swift in Sources */,
+				8B451236240F603D00EAFEFC /* ShowResultV2ParseTests.swift in Sources */,
 				8BFFECF722C96F6000E3378C /* XCTestCase+Helpers.swift in Sources */,
 				8B46C4BE22DD9C05003E5277 /* ConfigurationParseTests.swift in Sources */,
 				8B437FB3234EE8F6002EDB91 /* ArchiveStreamParseTests.swift in Sources */,
@@ -621,6 +657,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.kexp.KEXPPower;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -650,6 +687,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.kexp.KEXPPower;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -669,6 +707,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.kexp.KEXPPowerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -688,6 +727,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.kexp.KEXPPowerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
