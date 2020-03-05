@@ -36,16 +36,16 @@ public class ArchiveManager {
         
         for (index, _) in archieveShowDates.afterDates.enumerated() {
             dispatchGroup.enter()
-            networkManager.getShow(airDateBefore: beforeDates[index], airDateAfter: afterDates[index]) { result in
-                defer { dispatchGroup.leave() }
-                
-                if
-                    case let .success(showResults) = result,
-                    let shows = showResults?.showlist
-                {
-                    allShows += shows.map { ArchiveShow(show: $0) }
-                }
-            }
+//            networkManager.getShow(airDateBefore: beforeDates[index], airDateAfter: afterDates[index]) { result in
+//                defer { dispatchGroup.leave() }
+//                
+//                if
+//                    case let .success(showResults) = result,
+//                    let shows = showResults?.showlist
+//                {
+//                    allShows += shows.map { ArchiveShow(show: $0) }
+//                }
+//            }
         }
         
         dispatchGroup.notify(queue: .main) {

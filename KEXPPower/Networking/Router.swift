@@ -39,7 +39,9 @@ class Router {
         }
         
         var request = URLRequest(url: requestURL)
-        request.cachePolicy = .reloadIgnoringLocalCacheData  
+        request.cachePolicy = .reloadIgnoringLocalCacheData
+        
+        print(requestURL.absoluteString)
 
         URLSession.shared.dataTask(with: request) { data, response, error in
             do {
