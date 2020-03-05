@@ -22,7 +22,7 @@ class ShowResultV2ParseTests: XCTestCase {
                 XCTFail("Failed"); return
         }
         
-        firstShow = showResult.results.first
+        firstShow = showResult.results?.first
     }
     
     func testShowParsing() {
@@ -32,10 +32,10 @@ class ShowResultV2ParseTests: XCTestCase {
         XCTAssertTrue(firstShow?.uri == "https://api.kexp.org/v2/shows/46732/")
         XCTAssertTrue(firstShow?.program == 20)
         XCTAssertTrue(firstShow?.programURI == "https://api.kexp.org/v2/programs/20/")
-        XCTAssertTrue(firstShow?.hosts.first == 44)
+        XCTAssertTrue(firstShow?.hosts?.first == 44)
         XCTAssertTrue(firstShow?.programName == "Wo' Pop")
         XCTAssertTrue(firstShow?.programTags == "Electronic,World")
-        XCTAssertTrue(firstShow?.hostNames.first == "Gabriel Teodros")
+        XCTAssertTrue(firstShow?.hostNames?.first == "Gabriel Teodros")
         XCTAssertTrue(firstShow?.tagline == "666")
         XCTAssertTrue(firstShow?.imageURI == "https://www.kexp.org/filer/canonical/1529968564/10621/")
         XCTAssertNotNil(firstShow?.startTime)
