@@ -1,0 +1,512 @@
+{
+    "next": "https://api.kexp.org/v2/plays/?limit=20&offset=20",
+    "previous": null,
+    "results": [
+        {
+            "id": 2707639,
+            "uri": "https://api.kexp.org/v2/plays/2707639/",
+            "airdate": "2020-03-03T20:50:19-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "",
+            "thumbnail_uri": "",
+            "comment": null,
+            "play_type": "airbreak"
+        },
+        {
+            "id": 2707638,
+            "uri": "https://api.kexp.org/v2/plays/2707638/",
+            "airdate": "2020-03-03T20:44:20-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "",
+            "thumbnail_uri": "",
+            "song": "Sanzara",
+            "track_id": null,
+            "recording_id": null,
+            "artist": "Omar Sosa & Yilian Cañizares",
+            "artist_ids": [],
+            "album": "Aguas",
+            "release_id": null,
+            "release_group_id": "b48019f0-0583-4b71-ade1-04a8449a1c0f",
+            "labels": [
+                "Otá Records"
+            ],
+            "label_ids": [
+                "841ad59d-8bbd-4955-a70c-9db586492184"
+            ],
+            "release_date": "2018-01-01",
+            "rotation_status": null,
+            "is_local": false,
+            "is_request": false,
+            "is_live": false,
+            "comment": "Omar Sosa, Yilian Cañizares & The AGUAS Trio is performing at Jazz Alley in Seattle tonight and tomorrow!",
+            "play_type": "trackplay"
+        },
+        {
+            "id": 2707637,
+            "uri": "https://api.kexp.org/v2/plays/2707637/",
+            "airdate": "2020-03-03T20:40:23-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "",
+            "thumbnail_uri": "",
+            "song": "Como La Chicha (feat. Fabian Arias & Dakota Camacho)",
+            "track_id": null,
+            "recording_id": null,
+            "artist": "ill-esha",
+            "artist_ids": [],
+            "album": "Tribal Gathering: Songs from the Sweat Shed",
+            "release_id": null,
+            "release_group_id": null,
+            "labels": [
+                "[no label]"
+            ],
+            "label_ids": [],
+            "release_date": "2020-02-21",
+            "rotation_status": "R/N",
+            "is_local": true,
+            "is_request": false,
+            "is_live": false,
+            "comment": "ill-esha (pronounced ill-EE-sha) is a Canadian electronic music artist, producer, singer, and DJ known for her work in the bass music world, as well as her unique style of singing and DJing simultaneously. her featured player, Dakota Camacho, is a Seattle local!",
+            "play_type": "trackplay"
+        },
+        {
+            "id": 2707636,
+            "uri": "https://api.kexp.org/v2/plays/2707636/",
+            "airdate": "2020-03-03T20:37:11-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "https://coverartarchive.org/release/559272e7-b766-45c8-8996-762de752d218/16980958418.jpg",
+            "thumbnail_uri": "https://coverartarchive.org/release/559272e7-b766-45c8-8996-762de752d218/16980958418-250.jpg",
+            "song": "Dha-Vi",
+            "track_id": null,
+            "recording_id": "0a00e187-94cd-4974-ade7-b1dd915d11e0",
+            "artist": "Jaubi",
+            "artist_ids": [
+                "15c4bae8-a606-43c1-8e56-ce0aad8cdcb7"
+            ],
+            "album": "The Deconstructed Ego",
+            "release_id": null,
+            "release_group_id": "1c7ea18e-61a5-487d-ac35-371034a12060",
+            "labels": [
+                "Astigmatic Records"
+            ],
+            "label_ids": [
+                "cca2348b-0426-43f6-8c75-009700501b9e"
+            ],
+            "release_date": "2016-07-14",
+            "rotation_status": null,
+            "is_local": false,
+            "is_request": false,
+            "is_live": false,
+            "comment": "Jaubi (pronounced “Jaw-Bee”) is an instrumental quartet from Lahore, Pakistan.\n\nThe band is named after an Urdu word loosely translated as \"whatever”.\n\nCreating whatever sounds good and whatever feels good is the groups guiding principle.",
+            "play_type": "trackplay"
+        },
+        {
+            "id": 2707635,
+            "uri": "https://api.kexp.org/v2/plays/2707635/",
+            "airdate": "2020-03-03T20:34:54-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "",
+            "thumbnail_uri": "",
+            "comment": null,
+            "play_type": "airbreak"
+        },
+        {
+            "id": 2707634,
+            "uri": "https://api.kexp.org/v2/plays/2707634/",
+            "airdate": "2020-03-03T20:30:32-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "",
+            "thumbnail_uri": "",
+            "song": "Pawa (feat. Blinky Bill)",
+            "track_id": null,
+            "recording_id": null,
+            "artist": "Maia & the Big Sky",
+            "artist_ids": [],
+            "album": "Maia & the Big Sky",
+            "release_id": null,
+            "release_group_id": null,
+            "labels": [
+                "Circle and Square Productions Ltd."
+            ],
+            "label_ids": [],
+            "release_date": "2017-10-07",
+            "rotation_status": null,
+            "is_local": false,
+            "is_request": false,
+            "is_live": false,
+            "comment": "Maia Lekow is a soulful trailblazer igniting Kenya’s musical landscape. Daughter to musical legend Sal Davis, her magnetic vocals in Swahili and English are woven into the hypnotising poly-rhythms of the Big Sky Band, creating a familiarity and warmth that transcends continents.",
+            "play_type": "trackplay"
+        },
+        {
+            "id": 2707633,
+            "uri": "https://api.kexp.org/v2/plays/2707633/",
+            "airdate": "2020-03-03T20:24:50.028000-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "",
+            "thumbnail_uri": "",
+            "song": "Désolé",
+            "track_id": "fdef24b0-8516-423c-b3be-ed2976657851",
+            "recording_id": null,
+            "artist": "Gorillaz feat. Fatoumata Diawara",
+            "artist_ids": [
+                "6f5064bb-7dbb-4a44-bac5-04c467394817",
+                "e21857d5-3256-4547-afb3-4b6ded592596"
+            ],
+            "album": "Song Machine EP 2",
+            "release_id": "4c66d383-8b1d-444a-a0e9-29691d54d927",
+            "release_group_id": "24c26a7f-fb01-4051-8529-84eab49293a4",
+            "labels": [
+                "Parlophone"
+            ],
+            "label_ids": [
+                "df7d1c7f-ef95-425f-8eef-445b3d7bcbd9"
+            ],
+            "release_date": "2020-02-27",
+            "rotation_status": "Heavy",
+            "is_local": false,
+            "is_request": false,
+            "is_live": false,
+            "comment": "Fatoumata Diawara is a Malian actress, singer-songwriter and multiple Grammy Award nominee currently living in France.",
+            "play_type": "trackplay"
+        },
+        {
+            "id": 2707632,
+            "uri": "https://api.kexp.org/v2/plays/2707632/",
+            "airdate": "2020-03-03T20:22:21-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "",
+            "thumbnail_uri": "",
+            "song": "Make You No Forget (feat. Seun Kuti) [Remix]",
+            "track_id": null,
+            "recording_id": null,
+            "artist": "Blitz the Ambassador",
+            "artist_ids": [
+                "290dc7b2-a2f6-4b5b-92c7-f8cf875d057b"
+            ],
+            "album": "The Burial of Kojo (Original Motion Picture Soundtrack)",
+            "release_id": null,
+            "release_group_id": null,
+            "labels": [
+                "[no label]"
+            ],
+            "label_ids": [],
+            "release_date": "2019-03-29",
+            "rotation_status": null,
+            "is_local": false,
+            "is_request": false,
+            "is_live": false,
+            "comment": "Samuel Bazawule, known by the stage name Blitz the Ambassador, is a Ghanaian hip-hop artist, filmmaker, and visual artist based in Brooklyn, NY.",
+            "play_type": "trackplay"
+        },
+        {
+            "id": 2707631,
+            "uri": "https://api.kexp.org/v2/plays/2707631/",
+            "airdate": "2020-03-03T20:17:43-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "",
+            "thumbnail_uri": "",
+            "comment": null,
+            "play_type": "airbreak"
+        },
+        {
+            "id": 2707630,
+            "uri": "https://api.kexp.org/v2/plays/2707630/",
+            "airdate": "2020-03-03T20:14:46.725000-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "",
+            "thumbnail_uri": "",
+            "song": "Odogwu",
+            "track_id": "0bd6eed9-3b54-4239-8a43-3bbca33a4f35",
+            "recording_id": null,
+            "artist": "Burna Boy",
+            "artist_ids": [
+                "78a19169-ac75-4868-b504-7e2e073118e0"
+            ],
+            "album": "Odogwu",
+            "release_id": "dcbe5c67-93aa-4a7b-9494-12d38de7d66b",
+            "release_group_id": "5400dfab-b14e-4de1-a88e-8165b5476197",
+            "labels": [
+                "Atlantic"
+            ],
+            "label_ids": [
+                "50c384a2-0b44-401b-b893-8181173339c7"
+            ],
+            "release_date": "2020-02-21",
+            "rotation_status": "Medium",
+            "is_local": false,
+            "is_request": false,
+            "is_live": false,
+            "comment": "Burna Boy will be performing in Seattle at Showbox Sodo on May 18th! Full tour schedule here: http://www.onaspaceship.com/tour",
+            "play_type": "trackplay"
+        },
+        {
+            "id": 2707629,
+            "uri": "https://api.kexp.org/v2/plays/2707629/",
+            "airdate": "2020-03-03T20:11:15-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "https://coverartarchive.org/release/e49295bb-de8e-4852-b0d2-b18b5a2b2885/23256696620.jpg",
+            "thumbnail_uri": "https://coverartarchive.org/release/e49295bb-de8e-4852-b0d2-b18b5a2b2885/23256696620-250.jpg",
+            "song": "Malhuga",
+            "track_id": null,
+            "recording_id": "f004eb71-19e7-4ec5-bd53-0c9e02b8a24d",
+            "artist": "A‐WA",
+            "artist_ids": [
+                "cc448b70-4c20-4ea4-a818-053494aee734"
+            ],
+            "album": "Bayti fi rasi",
+            "release_id": null,
+            "release_group_id": "6ebefad5-f9db-4919-8eb8-74bc7e2e3df5",
+            "labels": [
+                "S‐Curve Records"
+            ],
+            "label_ids": [
+                "508797d9-e5c3-4376-be2e-30b3bb58eca7"
+            ],
+            "release_date": "2019-05-31",
+            "rotation_status": null,
+            "is_local": false,
+            "is_request": false,
+            "is_live": false,
+            "comment": "They were discovered by Tomer Yosef, the lead singer of Balkan Beat Box, to whom they sent a demo of \"Habib Galbi\", a traditional Yemenite melody sung in the Yemenite dialect of Judeo-Arabic. He showed the demo to a few elder Yemenite women, who mistook the sisters for actual singers from Yemen",
+            "play_type": "trackplay"
+        },
+        {
+            "id": 2707628,
+            "uri": "https://api.kexp.org/v2/plays/2707628/",
+            "airdate": "2020-03-03T20:06:44-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "",
+            "thumbnail_uri": "",
+            "song": "Belly Full (feat. K'naan, Kardinal Offishall, Steele & Bajah) [J.PERIOD Remix]",
+            "track_id": null,
+            "recording_id": null,
+            "artist": "J.Period",
+            "artist_ids": [],
+            "album": "Best of J.Period [Vol. 2]",
+            "release_id": null,
+            "release_group_id": null,
+            "labels": [
+                "Truelements Music"
+            ],
+            "label_ids": [],
+            "release_date": "2020-01-31",
+            "rotation_status": "R/N",
+            "is_local": false,
+            "is_request": false,
+            "is_live": false,
+            "comment": "In November 2008, J.Period became the first DJ/producer ever commissioned by Activision to score and produce an entire video game soundtrack—Tony Hawk's Motion for Nintendo DS.",
+            "play_type": "trackplay"
+        },
+        {
+            "id": 2707627,
+            "uri": "https://api.kexp.org/v2/plays/2707627/",
+            "airdate": "2020-03-03T20:03:52-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "",
+            "thumbnail_uri": "",
+            "song": "Godanaw Sew",
+            "track_id": null,
+            "recording_id": null,
+            "artist": "Jah Lude",
+            "artist_ids": [
+                "044fcce4-0dfb-406d-9c4d-a8b3b52f6941"
+            ],
+            "album": "Yachin Neger",
+            "release_id": null,
+            "release_group_id": null,
+            "labels": [
+                "{no label]"
+            ],
+            "label_ids": [],
+            "release_date": "2012-02-14",
+            "rotation_status": null,
+            "is_local": false,
+            "is_request": false,
+            "is_live": false,
+            "comment": "Jah Lude Awol is an Ethiopian singer-songwriter and musician. The reggae singer was born and raised in Addis Ababa.",
+            "play_type": "trackplay"
+        },
+        {
+            "id": 2707626,
+            "uri": "https://api.kexp.org/v2/plays/2707626/",
+            "airdate": "2020-03-03T20:01:36-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "",
+            "thumbnail_uri": "",
+            "comment": null,
+            "play_type": "airbreak"
+        },
+        {
+            "id": 2707625,
+            "uri": "https://api.kexp.org/v2/plays/2707625/",
+            "airdate": "2020-03-03T19:59:16-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "https://coverartarchive.org/release/6e2c1692-0312-4618-a458-d6237ce9e5f1/25521076328.png",
+            "thumbnail_uri": "https://coverartarchive.org/release/6e2c1692-0312-4618-a458-d6237ce9e5f1/25521076328-250.jpg",
+            "song": "Soul Food y Adobo",
+            "track_id": null,
+            "recording_id": "9930f400-5bab-4555-9b68-d54cd1a83864",
+            "artist": "Princess Nokia",
+            "artist_ids": [
+                "4b93ee9e-e39d-4036-9527-551b2236f5af"
+            ],
+            "album": "Everything is Beautiful",
+            "release_id": null,
+            "release_group_id": "62d18e40-f59c-46a9-a210-22da2cc438cd",
+            "labels": [
+                "Platoon"
+            ],
+            "label_ids": [
+                "256fb514-721c-4f3e-a44b-1960529c9dad"
+            ],
+            "release_date": "2020-02-26",
+            "rotation_status": "R/N",
+            "is_local": false,
+            "is_request": false,
+            "is_live": false,
+            "comment": "Destiny Nicole Frasqueri, better known by their stage name Princess Nokia, is an American rapper and actor of Puerto Rican descent.",
+            "play_type": "trackplay"
+        },
+        {
+            "id": 2707624,
+            "uri": "https://api.kexp.org/v2/plays/2707624/",
+            "airdate": "2020-03-03T19:55:46-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "",
+            "thumbnail_uri": "",
+            "song": "Sweet Inspiration",
+            "track_id": null,
+            "recording_id": null,
+            "artist": "Lila Iké",
+            "artist_ids": [],
+            "album": "Rock & Groove Riddim",
+            "release_id": null,
+            "release_group_id": null,
+            "labels": [
+                "In.Digg.Nation Collective"
+            ],
+            "label_ids": [],
+            "release_date": "2019-12-05",
+            "rotation_status": null,
+            "is_local": false,
+            "is_request": false,
+            "is_live": false,
+            "comment": "Music became the primary way for the singer to bond with her mother as she matured. “I don’t know why I felt it was my duty to make sure she was happy,” she says. “If she asked me to sing a Celine Dion song, I was going to try to sound just like Celine Dion just to impress her. In practicing all of that over and over I started to get really good. I never got any professional training.”",
+            "play_type": "trackplay"
+        },
+        {
+            "id": 2707623,
+            "uri": "https://api.kexp.org/v2/plays/2707623/",
+            "airdate": "2020-03-03T19:51:49-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "",
+            "thumbnail_uri": "",
+            "song": "Write Your Name (feat. Prospect & Omar Zia)",
+            "track_id": null,
+            "recording_id": null,
+            "artist": "Essam & Petty Pro",
+            "artist_ids": [],
+            "album": "Chapter20six",
+            "release_id": null,
+            "release_group_id": null,
+            "labels": [
+                "[no label]"
+            ],
+            "label_ids": [],
+            "release_date": "2020-03-07",
+            "rotation_status": "R/N",
+            "is_local": true,
+            "is_request": false,
+            "is_live": false,
+            "comment": "Don't miss the release party for Essam & Petty Pro's album album coming up on March 7th at 6 pm at the Hillman City Collaboratory, and earlier that morning listen to Essam's interview with Emily Fox on KEXP's Sound & Vision!",
+            "play_type": "trackplay"
+        },
+        {
+            "id": 2707622,
+            "uri": "https://api.kexp.org/v2/plays/2707622/",
+            "airdate": "2020-03-03T19:47:33-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "",
+            "thumbnail_uri": "",
+            "comment": null,
+            "play_type": "airbreak"
+        },
+        {
+            "id": 2707621,
+            "uri": "https://api.kexp.org/v2/plays/2707621/",
+            "airdate": "2020-03-03T19:43:40-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "",
+            "thumbnail_uri": "",
+            "song": "Saba (Te'Amir Sweeney Tape Remix)",
+            "track_id": null,
+            "recording_id": null,
+            "artist": "Dexter Story",
+            "artist_ids": [
+                "df6c2788-e223-4c30-8e85-78cdf1370bd2"
+            ],
+            "album": "Wondem (Remixed)",
+            "release_id": null,
+            "release_group_id": null,
+            "labels": [
+                "Soundway Records Ltd"
+            ],
+            "label_ids": [
+                "ae5c367c-d8f4-41fb-b442-90850530d07e"
+            ],
+            "release_date": "2016-11-11",
+            "rotation_status": null,
+            "is_local": false,
+            "is_request": false,
+            "is_live": false,
+            "comment": "Wondem Remixed is a humble compilation of reworkings by some of my colleagues in Los Angeles and the UK. I asked musicians who were already interested or involved in my musical explorations or who lived in a parallel universe.",
+            "play_type": "trackplay"
+        },
+        {
+            "id": 2707620,
+            "uri": "https://api.kexp.org/v2/plays/2707620/",
+            "airdate": "2020-03-03T19:39:10-08:00",
+            "show": 46732,
+            "show_uri": "https://api.kexp.org/v2/shows/46732/",
+            "image_uri": "http://someImageUri.com",
+            "thumbnail_uri": "http://someThumbImageUri.com",
+            "song": "We'll Meet Again (Dub Style)",
+            "track_id": "666",
+            "recording_id": "666",
+            "artist": "Elias Negash",
+            "artist_ids": ["666"],
+            "album": "We'll Meet Again (Dub Style)",
+            "release_id": "release_id",
+            "release_group_id": "release_group_id",
+            "labels": [
+                "SophEl Recordings"
+            ],
+            "label_ids": ["666"],
+            "release_date": "2019-12-16",
+            "rotation_status": "rotation_status",
+            "is_local": false,
+            "is_request": false,
+            "is_live": false,
+            "comment": "Elias Negash is an accomplished musician who has combined his native Ethiopian music with his Jazz education and influences from the world music segment. He played through the seventies and became one of the pioneering figures to have brought Reggae and African music to the Bay Area",
+            "play_type": "trackplay"
+        }
+    ]
+}

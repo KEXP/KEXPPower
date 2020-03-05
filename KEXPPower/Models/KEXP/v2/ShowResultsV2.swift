@@ -26,14 +26,17 @@ public struct ShowV2: Decodable {
     let programURI: String
     let hosts: [Int]
     let hostURIs: [String]
-    let programName, programTags: String
+    let programName: String
+    let programTags: String
     let hostNames: [String]
     let tagline: String
     let imageURI: String
     let startTime: Date
 
     enum CodingKeys: String, CodingKey {
-        case id, uri, program
+        case id
+        case uri
+        case program
         case programURI = "program_uri"
         case hosts
         case hostURIs = "host_uris"

@@ -15,6 +15,9 @@
 		8B451233240F5C1300EAFEFC /* ShowResultsV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B451232240F5C1300EAFEFC /* ShowResultsV2.swift */; };
 		8B451236240F603D00EAFEFC /* ShowResultV2ParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B451235240F603D00EAFEFC /* ShowResultV2ParseTests.swift */; };
 		8B451239240F606E00EAFEFC /* ShowV2Sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B451238240F606E00EAFEFC /* ShowV2Sample.json */; };
+		8B45123B240F6C4C00EAFEFC /* PlayV2Sample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B45123A240F6C4C00EAFEFC /* PlayV2Sample.json */; };
+		8B45123D240F6C7000EAFEFC /* PlayResultV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45123C240F6C7000EAFEFC /* PlayResultV2.swift */; };
+		8B45123F2410A4D500EAFEFC /* PlayResultV2ParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45123E2410A4D500EAFEFC /* PlayResultV2ParseTests.swift */; };
 		8B46C4BA22DD9B03003E5277 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C4B922DD9B03003E5277 /* Configuration.swift */; };
 		8B46C4BC22DD9BBE003E5277 /* ConfigurationSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B46C4BB22DD9BBE003E5277 /* ConfigurationSample.json */; };
 		8B46C4BE22DD9C05003E5277 /* ConfigurationParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C4BD22DD9C05003E5277 /* ConfigurationParseTests.swift */; };
@@ -64,6 +67,9 @@
 		8B451232240F5C1300EAFEFC /* ShowResultsV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowResultsV2.swift; sourceTree = "<group>"; };
 		8B451235240F603D00EAFEFC /* ShowResultV2ParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowResultV2ParseTests.swift; sourceTree = "<group>"; };
 		8B451238240F606E00EAFEFC /* ShowV2Sample.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ShowV2Sample.json; sourceTree = "<group>"; };
+		8B45123A240F6C4C00EAFEFC /* PlayV2Sample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PlayV2Sample.json; sourceTree = "<group>"; };
+		8B45123C240F6C7000EAFEFC /* PlayResultV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayResultV2.swift; sourceTree = "<group>"; };
+		8B45123E2410A4D500EAFEFC /* PlayResultV2ParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayResultV2ParseTests.swift; sourceTree = "<group>"; };
 		8B46C4B922DD9B03003E5277 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		8B46C4BB22DD9BBE003E5277 /* ConfigurationSample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ConfigurationSample.json; sourceTree = "<group>"; };
 		8B46C4BD22DD9C05003E5277 /* ConfigurationParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationParseTests.swift; sourceTree = "<group>"; };
@@ -151,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				8B451232240F5C1300EAFEFC /* ShowResultsV2.swift */,
+				8B45123C240F6C7000EAFEFC /* PlayResultV2.swift */,
 			);
 			path = v2;
 			sourceTree = "<group>";
@@ -159,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				8B451235240F603D00EAFEFC /* ShowResultV2ParseTests.swift */,
+				8B45123E2410A4D500EAFEFC /* PlayResultV2ParseTests.swift */,
 			);
 			path = "KEXP v2";
 			sourceTree = "<group>";
@@ -167,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				8B451238240F606E00EAFEFC /* ShowV2Sample.json */,
+				8B45123A240F6C4C00EAFEFC /* PlayV2Sample.json */,
 			);
 			path = v2;
 			sourceTree = "<group>";
@@ -435,6 +444,7 @@
 				8B437FAF234EE3CE002EDB91 /* ArchiveStreamSample.json in Resources */,
 				8B46C4BC22DD9BBE003E5277 /* ConfigurationSample.json in Resources */,
 				8BFFECED22C968D000E3378C /* ShowSample.json in Resources */,
+				8B45123B240F6C4C00EAFEFC /* PlayV2Sample.json in Resources */,
 				8BFFECEF22C968DD00E3378C /* PlaySample.json in Resources */,
 				8B451239240F606E00EAFEFC /* ShowV2Sample.json in Resources */,
 				8B81465823617389008EDF50 /* AppleMusicSample.json in Resources */,
@@ -469,6 +479,7 @@
 				8B451233240F5C1300EAFEFC /* ShowResultsV2.swift in Sources */,
 				8BFFED0322D43EA100E3378C /* Router.swift in Sources */,
 				8B3C37AD234021E800413329 /* ArchiveShow.swift in Sources */,
+				8B45123D240F6C7000EAFEFC /* PlayResultV2.swift in Sources */,
 				8BFFECEB22C9658000E3378C /* ShowResult.swift in Sources */,
 				8B46C4BA22DD9B03003E5277 /* Configuration.swift in Sources */,
 				8B46C4C422DEE016003E5277 /* Reachability.swift in Sources */,
@@ -482,6 +493,7 @@
 			files = (
 				8B81465C23628BD0008EDF50 /* AppleMusicResultParseTests.swift in Sources */,
 				8B451236240F603D00EAFEFC /* ShowResultV2ParseTests.swift in Sources */,
+				8B45123F2410A4D500EAFEFC /* PlayResultV2ParseTests.swift in Sources */,
 				8BFFECF722C96F6000E3378C /* XCTestCase+Helpers.swift in Sources */,
 				8B46C4BE22DD9C05003E5277 /* ConfigurationParseTests.swift in Sources */,
 				8B437FB3234EE8F6002EDB91 /* ArchiveStreamParseTests.swift in Sources */,
