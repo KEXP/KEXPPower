@@ -13,6 +13,20 @@ private let imageCache = NSCache<NSString, UIImage>()
 extension UIImageView {
     public typealias ImageCompletion = (_ image: UIImage?) -> Void
     
+    public func fromURLSting(_ imageURLString: String?, placeHolder: UIImage? = nil, completion: ImageCompletion? = nil) {
+        guard
+            let imageURLString = imageURLString,
+            let imageURL = URL(string: imageURLString)
+        else {
+            image = placeHolder
+            completion?(placeHolder)
+            
+            return
+        }
+        
+        fromURL(imageURL, placeHolder: placeHolder, completion: completion)
+    }
+    
     public func fromURL(_ imageURL: URL?, placeHolder: UIImage? = nil, completion: ImageCompletion? = nil) {
         guard let imageURL = imageURL else {
             image = placeHolder
