@@ -9,8 +9,7 @@
 import Foundation
 
 public struct NetworkManager {
-    public typealias PlayCompletion = (_ result: Result<PlayResult?, Error>) -> Void
-    public typealias ShowCompletion = (_ result: Result<ShowResult?, Error>) -> Void
+    public typealias PlayV2Completion = (_ result: Result<PlayResultV2?, Error>) -> Void
     public typealias ShowV2Completion = (_ result: Result<ShowResultsV2?, Error>) -> Void
     public typealias ArchiveCompletion = (_ result: Result<ArchiveStreamResult?, Error>) -> Void
     public typealias AppleMusicCompletion = (_ result: Result<AppleMusicResult?, Error>) -> Void
@@ -25,38 +24,26 @@ public struct NetworkManager {
         return reachability.isReachable()
     }
 
-    public func getPlay(
-        playid: String? = nil,
-        beginTime: String? = nil,
-        endTime: String? = nil,
+    public func getPlayV2(
+        airdateBefore: String? = nil,
         limit: Int = 20,
         offset: Int = 0,
-        completion: @escaping PlayCompletion)
+        completion: @escaping PlayV2Completion)
     {
         var parameters = [URLQueryItem]()
 
-        if let playid = playid {
-            parameters.append(URLQueryItem(name: "playid", value: playid))
-        }
-
-        if let beginTime = beginTime {
-            parameters.append(URLQueryItem(name: "begin_time", value: beginTime))
-        }
-        
-        if let endTime = endTime {
-            parameters.append(URLQueryItem(name: "end_time", value: endTime))
+        if let airdateBefore = airdateBefore {
+            parameters.append(URLQueryItem(name: "airdate_before", value: airdateBefore))
         }
         
         parameters.append(URLQueryItem(name: "limit", value: "\(limit)"))
         parameters.append(URLQueryItem(name: "offset", value: "\(offset)"))
         
-        router.get(url: KEXPPower.playURL, parameters: parameters) { result in
+        router.get(url: URL(string: "https://api.kexp.org/v2/plays")!, parameters: parameters) { result in
             switch result {
             case .success(let data):
                 do {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = .formatted(DateFormatter.airDateFormatter)
-                    let playResult = try decoder.decode(PlayResult.self, from: data)
+                    let playResult = try JSONDecoder().decode(PlayResultV2.self, from: data)
 
                     completion(.success(playResult))
                 } catch let error {
@@ -115,9 +102,7 @@ public struct NetworkManager {
             switch result {
             case .success(let data):
                 do {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = .formatted(DateFormatter.airDateFormatter)
-                    let showResult = try decoder.decode(ShowResultsV2.self, from: data)
+                    let showResult = try JSONDecoder().decode(ShowResultsV2.self, from: data)
 
                     completion(.success(showResult))
                 } catch let error {
@@ -142,72 +127,6 @@ public struct NetworkManager {
         }
     }
 
-//    public func getShow(
-//        showId: String? = nil,
-//        airDateExact: String? = nil,
-//        airDateBefore: String? = nil,
-//        airDateAfter: String? = nil,
-//        limit: Int? = nil,
-//        offset: Int? = nil,
-//        completion: @escaping ShowCompletion)
-//    {
-//        var parameters = [URLQueryItem]()
-//        
-//        if let showId = showId {
-//            parameters.append(URLQueryItem(name: "showId", value: showId))
-//        }
-//        
-//        if let airDateExact = airDateExact {
-//            parameters.append(URLQueryItem(name: "airdate_exact", value: airDateExact))
-//        }
-//        
-//        if let airDateAfter = airDateAfter {
-//            parameters.append(URLQueryItem(name: "airdate_after", value: airDateAfter))
-//        }
-//        
-//        if let airDateBefore = airDateBefore {
-//            parameters.append(URLQueryItem(name: "airdate_before", value: airDateBefore))
-//        }
-//        
-//        if let limit = limit {
-//            parameters.append(URLQueryItem(name: "limit", value: "\(limit)"))
-//        }
-//        
-//        if let offset = offset {
-//            parameters.append(URLQueryItem(name: "offset", value: "\(offset)"))
-//        }
-//        
-//        router.get(url: KEXPPower.showURL, parameters: parameters) { result in
-//            switch result {
-//            case .success(let data):
-//                do {
-//                    let decoder = JSONDecoder()
-//                    decoder.dateDecodingStrategy = .formatted(DateFormatter.airDateFormatter)
-//                    let showResult = try decoder.decode(ShowResult.self, from: data)
-//
-//                    completion(.success(showResult))
-//                } catch let error {
-//                    let error = NSError(
-//                        domain: "com.kexppower.error",
-//                        code: 0,
-//                        userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
-//                    )
-//                    
-//                    completion(.failure(error))
-//                }
-//                
-//            case .failure(let error):
-//                let error = NSError(
-//                    domain: "com.kexppower.error",
-//                    code: 0,
-//                    userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
-//                )
-//                
-//                completion(.failure(error))
-//            }
-//        }
-//    }
-    
     public func getConfiguration(completion: ConfigurationCompletion) {
         guard
             let configurationURL = KEXPPower.configurationURL,
