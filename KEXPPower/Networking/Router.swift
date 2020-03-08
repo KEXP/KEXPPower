@@ -40,7 +40,7 @@ class Router {
         
         var request = URLRequest(url: requestURL)
         request.cachePolicy = .reloadIgnoringLocalCacheData
-        
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
         print(requestURL.absoluteString)
 
         URLSession.shared.dataTask(with: request) { data, response, error in
