@@ -34,9 +34,7 @@ extension XCTestCase {
 
     func parseResult<T : Decodable>(parseType: T.Type, data: Data) -> T? {
         do {
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .formatted(DateFormatter.airDateFormatter)
-            let decodedJSON = try decoder.decode(parseType.self, from: data)
+            let decodedJSON = try JSONDecoder().decode(parseType.self, from: data)
             
             return decodedJSON
 
