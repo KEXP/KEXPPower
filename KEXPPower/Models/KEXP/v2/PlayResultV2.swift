@@ -42,6 +42,40 @@ public struct PlayV2: Decodable {
     public let isRequest: Bool?
     public let isLive: Bool?
     
+    enum CodingKeys: String, CodingKey {
+        case id
+        case uri
+        case airdate
+        case show
+        case showURI = "show_uri"
+        case imageURI = "image_uri"
+        case thumbnailURI = "thumbnail_uri"
+        case comment
+        case playType = "play_type"
+        case song
+        case trackID = "track_id"
+        case recordingID = "recording_id"
+        case artist
+        case artistIDs = "artist_ids"
+        case album
+        case releaseID = "release_id"
+        case releaseGroupID = "release_group_id"
+        case labels
+        case labelIDs = "label_ids"
+        case releaseDate = "release_date"
+        case rotationStatus = "rotation_status"
+        case isLocal = "is_local"
+        case isRequest = "is_request"
+        case isLive = "is_live"
+    }
+}
+
+public enum PlayTypeV2: String, Decodable {
+    case airbreak = "airbreak"
+    case trackplay = "trackplay"
+}
+
+extension PlayV2 {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -79,36 +113,4 @@ public struct PlayV2: Decodable {
             airdate = nil
         }
     }
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case uri
-        case airdate
-        case show
-        case showURI = "show_uri"
-        case imageURI = "image_uri"
-        case thumbnailURI = "thumbnail_uri"
-        case comment
-        case playType = "play_type"
-        case song
-        case trackID = "track_id"
-        case recordingID = "recording_id"
-        case artist
-        case artistIDs = "artist_ids"
-        case album
-        case releaseID = "release_id"
-        case releaseGroupID = "release_group_id"
-        case labels
-        case labelIDs = "label_ids"
-        case releaseDate = "release_date"
-        case rotationStatus = "rotation_status"
-        case isLocal = "is_local"
-        case isRequest = "is_request"
-        case isLive = "is_live"
-    }
-}
-
-public enum PlayTypeV2: String, Decodable {
-    case airbreak = "airbreak"
-    case trackplay = "trackplay"
 }
