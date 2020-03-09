@@ -48,3 +48,29 @@ public struct ShowV2: Decodable {
         case startTime = "start_time"
     }
 }
+
+extension ShowV2 {
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        uri = try values.decodeIfPresent(String.self, forKey: .uri)
+        program = try values.decodeIfPresent(Int.self, forKey: .program)
+        programURI = try values.decodeIfPresent(String.self, forKey: .programURI)
+        hosts = try values.decodeIfPresent([Int].self, forKey: .hosts)
+        hostURIs = try values.decodeIfPresent([String].self, forKey: .hostURIs)
+        programName = try values.decodeIfPresent(String.self, forKey: .programName)
+        programTags = try values.decodeIfPresent(String.self, forKey: .programTags)
+        hostNames = try values.decodeIfPresent([String].self, forKey: .hostNames)
+        tagline = try values.decodeIfPresent(String.self, forKey: .tagline)
+        imageURI = try values.decodeIfPresent(String.self, forKey: .imageURI)
+
+        let dateString = try values.decode(String.self, forKey: .startTime)
+
+        if let parsedDate = DateFormatter.airdateFormatter.date(from: dateString) {
+            startTime = parsedDate
+        } else {
+            startTime = nil
+        }
+    }
+}
