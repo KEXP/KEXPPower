@@ -38,8 +38,8 @@ public class KEXPPower {
 
     public static let sharedInstance = KEXPPower()
     static var kexpBaseURL: String!
-    static var playURL = URL(string: kexpBaseURL + "/v2/play")!
-    static var showURL = URL(string: kexpBaseURL + "/v2/show")!
+    static var playURL = URL(string: kexpBaseURL + "/v2/plays")!
+    static var showURL = URL(string: kexpBaseURL + "/v2/shows")!
     static var streamingURL = URL(string: kexpBaseURL + "/get_streaming_url")!
     public var selectedArchiveBitRate: ArchiveBitRate!
     
