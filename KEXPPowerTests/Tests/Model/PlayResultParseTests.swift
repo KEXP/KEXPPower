@@ -1,5 +1,5 @@
 //
-//  PlayResultV2ParseTests.swift
+//  PlayResultParseTests.swift
 //  KEXPPowerTests
 //
 //  Created by Dustin Bergman on 3/4/20.
@@ -9,22 +9,22 @@
 import XCTest
 @testable import KEXPPower
 
-class PlayResultV2ParseTests: XCTestCase {
-    var trackplay: PlayV2?
-    var airbreak: PlayV2?
+class PlayResultParseTests: XCTestCase {
+    var trackplay: Play?
+    var airbreak: Play?
     
     override func setUp() {
         super.setUp()
         
         guard
-            let playResultData = retrieveJSONData(for: "PlayV2Sample"),
-            let playResult = parseResult(parseType: PlayResultV2.self, data: playResultData)
+            let playResultData = retrieveJSONData(for: "PlaySample"),
+            let playResult = parseResult(parseType: PlayResult.self, data: playResultData)
             else {
                 XCTFail("Failed"); return
         }
         
-        airbreak = playResult.results?.first
-        trackplay = playResult.results?.last
+        airbreak = playResult.plays?.first
+        trackplay = playResult.plays?.last
     }
     
     func testTrackplayParsing() {

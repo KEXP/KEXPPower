@@ -9,10 +9,10 @@
 import UIKit
 
 public struct ArchiveShow {
-    public let show: ShowV2
+    public let show: Show
     public var showEndTime: Date? 
     
-    public init(show: ShowV2) {
+    public init(show: Show) {
         self.show = show
     }
 }

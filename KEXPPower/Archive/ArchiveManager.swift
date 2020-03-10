@@ -37,12 +37,12 @@ public class ArchiveManager {
         for (index, _) in archieveShowDates.afterDates.enumerated() {
             dispatchGroup.enter()
 
-            networkManager.getShowV2(startTimeBefore: beforeDates[index], startTimeAfter: afterDates[index]) { result in
+            networkManager.getShow(startTimeBefore: beforeDates[index], startTimeAfter: afterDates[index]) { result in
                 defer { dispatchGroup.leave() }
 
                 if
-                    case let .success(showResults) = result,
-                    let shows = showResults?.results
+                    case let .success(showResult) = result,
+                    let shows = showResult?.shows
                 {
                     allShows += shows.map { ArchiveShow(show: $0) }
                 }

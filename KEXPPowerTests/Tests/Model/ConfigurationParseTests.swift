@@ -19,7 +19,7 @@ class ConfigurationParseTests: XCTestCase {
         let streamTwo = AvailableStream(streamName: "streamOne", streamURL: URL(string: "http://StreamTwoURL.com")!)
         
         KEXPPower.sharedInstance.setup(
-            legacyBaseURL: "legacyBaseURL",
+            kexpBaseURL: "kexpBaseURL",
             configurationURL: URL(string: "http://www.kexp.org/config.json")!,
             availableStreams: [streamOne, streamTwo],
             selectedArchiveBitRate: ArchiveBitRate.thirtyTwo,

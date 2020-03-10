@@ -1,5 +1,5 @@
 //
-//  PlayResultV2.swift
+//  PlayResult.swift
 //  KEXPPower
 //
 //  Created by Dustin Bergman on 3/3/20.
@@ -8,15 +8,21 @@
 
 import Foundation
 
-// MARK: - PlayResultV2
-public struct PlayResultV2: Decodable {
+// MARK: - PlayResult
+public struct PlayResult: Decodable {
     public let next: String?
     public let previous: String?
-    public let results: [PlayV2]?
+    public let plays: [Play]?
+    
+    enum CodingKeys: String, CodingKey {
+        case plays = "results"
+        case next
+        case previous
+    }
 }
 
 // MARK: - Result
-public struct PlayV2: Decodable {
+public struct Play: Decodable {
     public let id: Int?
     public let uri: String?
     public let airdate: Date?
@@ -25,7 +31,7 @@ public struct PlayV2: Decodable {
     public let imageURI: String?
     public let thumbnailURI: String?
     public let comment: String?
-    public let playType: PlayTypeV2?
+    public let playType: PlayType?
     public let song: String?
     public let trackID: String?
     public let recordingID: String?
@@ -70,12 +76,12 @@ public struct PlayV2: Decodable {
     }
 }
 
-public enum PlayTypeV2: String, Decodable {
+public enum PlayType: String, Decodable {
     case airbreak = "airbreak"
     case trackplay = "trackplay"
 }
 
-extension PlayV2 {
+extension Play {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -86,7 +92,7 @@ extension PlayV2 {
         imageURI = try values.decodeIfPresent(String.self, forKey: .imageURI)
         thumbnailURI = try values.decodeIfPresent(String.self, forKey: .thumbnailURI)
         comment = try values.decodeIfPresent(String.self, forKey: .comment)
-        playType = try values.decodeIfPresent(PlayTypeV2.self, forKey: .playType)
+        playType = try values.decodeIfPresent(PlayType.self, forKey: .playType)
         song = try values.decodeIfPresent(String.self, forKey: .song)
         trackID = try values.decodeIfPresent(String.self, forKey: .trackID)
         recordingID = try values.decodeIfPresent(String.self, forKey: .recordingID)

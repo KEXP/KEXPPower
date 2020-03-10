@@ -1,5 +1,5 @@
 //
-//  ShowResultV2ParseTests.swift
+//  ShowResultParseTests.swift
 //  KEXPPowerTests
 //
 //  Created by Dustin Bergman on 3/3/20.
@@ -9,20 +9,20 @@
 import XCTest
 @testable import KEXPPower
 
-class ShowResultV2ParseTests: XCTestCase {
-    var firstShow: ShowV2?
+class ShowResultParseTests: XCTestCase {
+    var firstShow: Show?
     
     override func setUp() {
         super.setUp()
         
         guard
-            let showResultData = retrieveJSONData(for: "ShowV2Sample"),
-            let showResult = parseResult(parseType: ShowResultsV2.self, data: showResultData)
+            let showResultData = retrieveJSONData(for: "ShowSample"),
+            let showResult = parseResult(parseType: ShowResult.self, data: showResultData)
             else {
                 XCTFail("Failed"); return
         }
         
-        firstShow = showResult.results?.first
+        firstShow = showResult.shows?.first
     }
     
     func testShowParsing() {

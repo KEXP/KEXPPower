@@ -1,5 +1,5 @@
 //
-//  ShowResultsV2.swift
+//  ShowResults.swift
 //  KEXPPower
 //
 //  Created by Dustin Bergman on 3/3/20.
@@ -9,17 +9,22 @@
 import Foundation
 
 // MARK: - ShowResult
-
-//Dustin Rename when V1 removed.
-public struct ShowResultsV2: Decodable {
+public struct ShowResult: Decodable {
     public let count: Int
     public let next: String?
     public let previous: String?
-    public let results: [ShowV2]?
+    public let shows: [Show]?
+
+    enum CodingKeys: String, CodingKey {
+        case shows = "results"
+        case next
+        case previous
+        case count
+    }
 }
 
 // MARK: - Show
-public struct ShowV2: Decodable {
+public struct Show: Decodable {
     public let id: Int?
     public let uri: String?
     public let program: Int?
@@ -49,7 +54,7 @@ public struct ShowV2: Decodable {
     }
 }
 
-extension ShowV2 {
+extension Show {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         

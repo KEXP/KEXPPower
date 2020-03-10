@@ -9,8 +9,8 @@
 import Foundation
 
 public struct NetworkManager {
-    public typealias PlayV2Completion = (_ result: Result<PlayResultV2?, Error>) -> Void
-    public typealias ShowV2Completion = (_ result: Result<ShowResultsV2?, Error>) -> Void
+    public typealias PlayCompletion = (_ result: Result<PlayResult?, Error>) -> Void
+    public typealias ShowCompletion = (_ result: Result<ShowResult?, Error>) -> Void
     public typealias ArchiveCompletion = (_ result: Result<ArchiveStreamResult?, Error>) -> Void
     public typealias AppleMusicCompletion = (_ result: Result<AppleMusicResult?, Error>) -> Void
     public typealias ConfigurationCompletion = (_ result: Result<Configuration?, Error>) -> Void
@@ -24,11 +24,11 @@ public struct NetworkManager {
         return reachability.isReachable()
     }
 
-    public func getPlayV2(
+    public func getPlay(
         airdateBefore: String? = nil,
         limit: Int = 20,
         offset: Int = 0,
-        completion: @escaping PlayV2Completion)
+        completion: @escaping PlayCompletion)
     {
         var parameters = [URLQueryItem]()
 
@@ -39,11 +39,11 @@ public struct NetworkManager {
         parameters.append(URLQueryItem(name: "limit", value: "\(limit)"))
         parameters.append(URLQueryItem(name: "offset", value: "\(offset)"))
         
-        router.get(url: URL(string: "https://api.kexp.org/v2/plays")!, parameters: parameters) { result in
+        router.get(url: KEXPPower.playURL, parameters: parameters) { result in
             switch result {
             case .success(let data):
                 do {
-                    let playResult = try JSONDecoder().decode(PlayResultV2.self, from: data)
+                    let playResult = try JSONDecoder().decode(PlayResult.self, from: data)
 
                     completion(.success(playResult))
                 } catch let error {
@@ -68,13 +68,13 @@ public struct NetworkManager {
         }
     }
     
-    public func getShowV2(
+    public func getShow(
         showId: String? = nil,
         startTimeBefore: String? = nil,
         startTimeAfter: String? = nil,
         limit: Int? = nil,
         offset: Int? = nil,
-        completion: @escaping ShowV2Completion)
+        completion: @escaping ShowCompletion)
     {
         var parameters = [URLQueryItem]()
         
@@ -98,11 +98,11 @@ public struct NetworkManager {
             parameters.append(URLQueryItem(name: "offset", value: "\(offset)"))
         }
         
-        router.get(url: URL(string: "https://api.kexp.org/v2/shows")!, parameters: parameters) { result in
+        router.get(url:KEXPPower.showURL, parameters: parameters) { result in
             switch result {
             case .success(let data):
                 do {
-                    let showResult = try JSONDecoder().decode(ShowResultsV2.self, from: data)
+                    let showResult = try JSONDecoder().decode(ShowResult.self, from: data)
 
                     completion(.success(showResult))
                 } catch let error {
