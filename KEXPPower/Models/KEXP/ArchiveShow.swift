@@ -9,11 +9,10 @@
 import UIKit
 
 public struct ArchiveShow {
-    public let show: Show
+    public let show: ShowV2
     public var showEndTime: Date? 
-    public var epochShowEndTime: Int?
     
-    public init(show: Show) {
+    public init(show: ShowV2) {
         self.show = show
     }
 }
