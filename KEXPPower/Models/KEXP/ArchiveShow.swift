@@ -11,7 +11,6 @@ import UIKit
 public struct ArchiveShow {
     public let show: Show
     public var showEndTime: Date? 
-    public var epochShowEndTime: Int?
     
     public init(show: Show) {
         self.show = show

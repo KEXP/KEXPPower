@@ -19,7 +19,7 @@ public enum ArchiveBitRate: String {
 
 public class KEXPPower {
     public func setup(
-        legacyBaseURL: String,
+        kexpBaseURL: String,
         configurationURL: URL? = nil,
         availableStreams: [AvailableStream],
         archiveStreams: [ArchiveStream]? = nil,
@@ -27,7 +27,7 @@ public class KEXPPower {
         defaultStreamIndex: Int = 0,
         backupStreamIndex: Int = 0)
     {
-        KEXPPower.legacyBaseURL = legacyBaseURL
+        KEXPPower.kexpBaseURL = kexpBaseURL
         KEXPPower.configurationURL = configurationURL
         KEXPPower.availableStreams = availableStreams
         KEXPPower.archiveStreams = archiveStreams
@@ -37,10 +37,10 @@ public class KEXPPower {
     }
 
     public static let sharedInstance = KEXPPower()
-    static var legacyBaseURL: String!
-    static var playURL = URL(string: legacyBaseURL + "/play")!
-    static var showURL = URL(string: legacyBaseURL + "/show")!
-    static var streamingURL = URL(string: legacyBaseURL + "/get_streaming_url")!
+    static var kexpBaseURL: String!
+    static var playURL = URL(string: kexpBaseURL + "/v2/plays")!
+    static var showURL = URL(string: kexpBaseURL + "/v2/shows")!
+    static var streamingURL = URL(string: kexpBaseURL + "/get_streaming_url")!
     public var selectedArchiveBitRate: ArchiveBitRate!
     
     public static var availableStreams: [AvailableStream]?

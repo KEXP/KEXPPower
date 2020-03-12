@@ -36,12 +36,13 @@ public class ArchiveManager {
         
         for (index, _) in archieveShowDates.afterDates.enumerated() {
             dispatchGroup.enter()
-            networkManager.getShow(airDateBefore: beforeDates[index], airDateAfter: afterDates[index]) { result in
+
+            networkManager.getShow(startTimeBefore: beforeDates[index], startTimeAfter: afterDates[index]) { result in
                 defer { dispatchGroup.leave() }
-                
+
                 if
-                    case let .success(showResults) = result,
-                    let shows = showResults?.showlist
+                    case let .success(showResult) = result,
+                    let shows = showResult?.shows
                 {
                     allShows += shows.map { ArchiveShow(show: $0) }
                 }
@@ -50,7 +51,14 @@ public class ArchiveManager {
         
         dispatchGroup.notify(queue: .main) {
             allShows = allShows.sorted {
-                return $0.show.airDate > $1.show.airDate
+                guard
+                    let startTime0 = $0.show.startTime,
+                    let startTime1 = $1.show.startTime
+                else {
+                    return false
+                }
+                
+                return startTime0 > startTime1
             }
 
             allShows = self.updateShowEndTimes(archiveShows: allShows)
@@ -66,10 +74,11 @@ public class ArchiveManager {
 
     public func archiveStreamStartTimes(with showDetails: ArchiveShow, completion: ArchiveShowTimesCompletion) {
         guard
-            let startAirDate = showDetails.show.epochAirDate,
+            let startAirDate = showDetails.show.startTime,
             let showEndTime = showDetails.showEndTime,
-            var archiveShowStartTime = Date(timeIntervalSince1970: Double(startAirDate/1000)).nearestHour()
+            var archiveShowStartTime = startAirDate.nearestHour()
         else {
+            completion([])
             return
         }
 
@@ -77,8 +86,7 @@ public class ArchiveManager {
 
         while archiveShowStartTime < showEndTime {
             let archiveShowStart = ArchiveShowStart(startTimeDisplay: DateFormatter.displayFormatter.string(from: archiveShowStartTime),
-                                                    startTimeDate: archiveShowStartTime,
-                                                    startTimeEpochValue: Int(archiveShowStartTime.timeIntervalSince1970 * 1000))
+                                                    startTimeDate: archiveShowStartTime)
             archiveShowStartTimes.append(archiveShowStart)
 
             archiveShowStartTime = Calendar.current.date(byAdding: .minute, value: 5, to: archiveShowStartTime) ?? Date()
@@ -89,40 +97,39 @@ public class ArchiveManager {
     
     public func getStreamURLs(for archiveShow: ArchiveShow, playbackStartDate: Date? = nil, completion: @escaping ArchivePlayBackCompletion) {
         guard let showEndTime = archiveShow.showEndTime else { return }
-        
-        let calculatedEndTime = showEndTime.addingTimeInterval(-30)
-        gatherShowMp3s(archiveShow: archiveShow, playbackStartDate: playbackStartDate, calcEndTime: calculatedEndTime, completion: completion)
+
+        gatherShowMp3s(archiveShow: archiveShow, playbackStartDate: playbackStartDate, calcEndTime: showEndTime, completion: completion)
         archieveShowMp3s.removeAll()
     }
     
     private func gatherShowMp3s(archiveShow: ArchiveShow, playbackStartDate: Date? = nil, calcEndTime: Date, completion: @escaping ArchivePlayBackCompletion) {
-        let calucatedEnd = calcEndTime.timeIntervalSince1970 * 1000.0
-        let calucatedEndTimeRequest = calculateEndEpochDate(epochDate: Int64(calucatedEnd))
+        let calucatedEndTimeRequest = calcEndTime.addingTimeInterval(-30)
+        let requestEndTme = DateFormatter.archiveEndShowFormatter.string(from: calucatedEndTimeRequest)
+        let startingPoint = playbackStartDate ?? archiveShow.show.startTime
         
-        let startingPoint = playbackStartDate ?? archiveShow.show.airDate
-        
-        networkManager.getArchiveStreamURL(
-            bitrate: KEXPPower.sharedInstance.selectedArchiveBitRate.rawValue,
-            timestamp: calucatedEndTimeRequest,
-            completion: { [weak self] result in
-                
+        networkManager.getArchiveStreamURL(bitrate: KEXPPower.sharedInstance.selectedArchiveBitRate.rawValue, timestamp: requestEndTme, completion: { [weak self] result in
             guard
                 case let .success(archiveStreamResult) = result,
+                let strongSelf = self,
                 let offset = archiveStreamResult?.offset,
                 let streamURL = archiveStreamResult?.streamURL
-            else { return }
+            else {
+                completion([], 0)
+                return
+            }
             
             let calculatedStart = calcEndTime.addingTimeInterval(-offset)
 
-            if calculatedStart <= startingPoint.addingTimeInterval(30) {
-                let elapsed = startingPoint.timeIntervalSince(calculatedStart)
-                self?.archieveShowMp3s.insert(streamURL, at: 0)
-                completion(self?.archieveShowMp3s ?? [], elapsed)
+            if calculatedStart <= startingPoint!.addingTimeInterval(30) {
+                let elapsed = startingPoint?.timeIntervalSince(calculatedStart) ?? 0
+                strongSelf.archieveShowMp3s.insert(streamURL, at: 0)
+
+                completion(strongSelf.archieveShowMp3s, elapsed)
             } else {
-                self?.archieveShowMp3s.insert(streamURL, at: 0)
+                strongSelf.archieveShowMp3s.insert(streamURL, at: 0)
                 let calculatedEndTime = calculatedStart.addingTimeInterval(-30)
                 
-                self?.gatherShowMp3s(
+                strongSelf.gatherShowMp3s(
                     archiveShow: archiveShow,
                     playbackStartDate: startingPoint,
                     calcEndTime: calculatedEndTime,
@@ -130,19 +137,6 @@ public class ArchiveManager {
                 )
             }
         })
-    }
-    
-    // Move this to better place.
-    private func calculateEndEpochDate(epochDate: Int64) -> String {
-        let eDate = (Double(epochDate) / 1000) - 30
-        var time = String()
-        let date = Date(timeIntervalSince1970: TimeInterval(eDate))
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        time = dateFormatter.string(from: date)
-
-        return time
     }
 
     private func showTimestamps() -> ArchieveShowTimestamps {
@@ -169,24 +163,19 @@ public class ArchiveManager {
     private func updateShowEndTimes(archiveShows: [ArchiveShow]) -> [ArchiveShow] {
         var updatedShows = [ArchiveShow]()
         var endTime: Date?
-        var endTimeEpoch: Int?
 
         for (index, archiveShow) in archiveShows.enumerated() {
-            let startTime = archiveShow.show.airDate
+            let startTime = archiveShow.show.startTime
             var showWithEndTime = archiveShow
 
             showWithEndTime.showEndTime = endTime
-            showWithEndTime.epochShowEndTime = endTimeEpoch
-
             endTime = startTime
-            endTimeEpoch = archiveShow.show.epochAirDate
 
             if index > 0 && !updatedShows.isEmpty  {
                 let lastShowAdded = updatedShows.last
 
                 if isDuplicateEntry(lastShowAdded, show: showWithEndTime) {
                     showWithEndTime.showEndTime = lastShowAdded?.showEndTime
-                    showWithEndTime.epochShowEndTime = lastShowAdded?.epochShowEndTime
                     updatedShows.remove(at: updatedShows.count - 1)
                 }
             }
@@ -207,8 +196,8 @@ public class ArchiveManager {
             return false
         }
 
-        return lastShow.show.program?.name == show.show.program?.name &&
-               lastShow.show.hosts?.first?.name == show.show.hosts?.first?.name
+        return lastShow.show.programName == show.show.programName &&
+            lastShow.show.hostNames?.first == show.show.hostNames?.first
     }
     
     private func getShowsByDate(allArchiveShows: [ArchiveShow]) -> [[Date: [ArchiveShow]]] {
@@ -224,7 +213,9 @@ public class ArchiveManager {
 
         twoWeekDates.forEach{ showDate in
             let showsOnDate = allArchiveShows.filter {
-                return Calendar.current.isDate(showDate, inSameDayAs: $0.show.airDate)
+                guard let startTime = $0.show.startTime else { return false }
+                
+                return Calendar.current.isDate(showDate, inSameDayAs: startTime)
             }
             
             if !showsOnDate.isEmpty {
@@ -242,7 +233,7 @@ public class ArchiveManager {
         var showsByName = [String: [ArchiveShow]]()
         
         for archiveShow in allArchiveShows {
-            guard let showName = archiveShow.show.program?.name else { continue }
+            guard let showName = archiveShow.show.programName else { continue }
             
             if showsByName.keys.contains(showName) {
                 showsByName[showName]?.append(archiveShow)
@@ -254,7 +245,16 @@ public class ArchiveManager {
         var showsByNameSorted = [String: [ArchiveShow]]()
 
         for (key, value) in showsByName {
-            let sortedShows = value.sorted { return $0.show.airDate < $1.show.airDate }
+            let sortedShows = value.sorted {
+                guard
+                    let startTime0 = $0.show.startTime,
+                    let startTime1 = $1.show.startTime
+                else {
+                    return false
+                }
+                
+                return startTime0 < startTime1
+            }
 
             showsByNameSorted[key] = sortedShows
         }
@@ -282,7 +282,7 @@ public class ArchiveManager {
         var showsByHostName = [String: [ArchiveShow]]()
         
         for archiveShow in allArchiveShows {
-            guard let hostName = archiveShow.show.hosts?.first?.name else { continue }
+            guard let hostName = archiveShow.show.hostNames?.first else { continue }
             
             if showsByHostName.keys.contains(hostName) {
                 showsByHostName[hostName]?.append(archiveShow)
@@ -294,7 +294,16 @@ public class ArchiveManager {
         var showsByHostNameSorted = [String: [ArchiveShow]]()
         
         for (key, value) in showsByHostName {
-            let sortedShows = value.sorted { return $0.show.airDate < $1.show.airDate }
+            let sortedShows = value.sorted {
+                guard
+                      let startTime0 = $0.show.startTime,
+                      let startTime1 = $1.show.startTime
+                  else {
+                      return false
+                  }
+                
+                return startTime0 < startTime1
+            }
             
             showsByHostNameSorted[key] = sortedShows
         }
@@ -322,7 +331,7 @@ public class ArchiveManager {
         var showsByGenre = [String: [ArchiveShow]]()
         
         for archiveShow in allArchiveShows {
-            guard let genre = archiveShow.show.program?.tags else { continue }
+            guard let genre = archiveShow.show.programTags else { continue }
             
             if showsByGenre.keys.contains(genre) {
                 showsByGenre[genre]?.append(archiveShow)
@@ -334,7 +343,16 @@ public class ArchiveManager {
         var showsByHostGenreSorted = [String: [ArchiveShow]]()
         
         for (key, value) in showsByGenre {
-            let sortedShows = value.sorted { return $0.show.airDate < $1.show.airDate }
+            let sortedShows = value.sorted {
+                guard
+                    let startTime0 = $0.show.startTime,
+                    let startTime1 = $1.show.startTime
+                else {
+                    return false
+                }
+            
+                return startTime0 < startTime1
+            }
             
             showsByHostGenreSorted[key] = sortedShows
         }

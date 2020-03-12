@@ -25,25 +25,15 @@ public struct NetworkManager {
     }
 
     public func getPlay(
-        playid: String? = nil,
-        beginTime: String? = nil,
-        endTime: String? = nil,
+        airdateBefore: String? = nil,
         limit: Int = 20,
         offset: Int = 0,
         completion: @escaping PlayCompletion)
     {
         var parameters = [URLQueryItem]()
 
-        if let playid = playid {
-            parameters.append(URLQueryItem(name: "playid", value: playid))
-        }
-
-        if let beginTime = beginTime {
-            parameters.append(URLQueryItem(name: "begin_time", value: beginTime))
-        }
-        
-        if let endTime = endTime {
-            parameters.append(URLQueryItem(name: "end_time", value: endTime))
+        if let airdateBefore = airdateBefore {
+            parameters.append(URLQueryItem(name: "airdate_before", value: airdateBefore))
         }
         
         parameters.append(URLQueryItem(name: "limit", value: "\(limit)"))
@@ -53,9 +43,7 @@ public struct NetworkManager {
             switch result {
             case .success(let data):
                 do {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = .formatted(DateFormatter.airDateFormatter)
-                    let playResult = try decoder.decode(PlayResult.self, from: data)
+                    let playResult = try JSONDecoder().decode(PlayResult.self, from: data)
 
                     completion(.success(playResult))
                 } catch let error {
@@ -79,12 +67,11 @@ public struct NetworkManager {
             }
         }
     }
-
+    
     public func getShow(
         showId: String? = nil,
-        airDateExact: String? = nil,
-        airDateBefore: String? = nil,
-        airDateAfter: String? = nil,
+        startTimeBefore: String? = nil,
+        startTimeAfter: String? = nil,
         limit: Int? = nil,
         offset: Int? = nil,
         completion: @escaping ShowCompletion)
@@ -92,19 +79,15 @@ public struct NetworkManager {
         var parameters = [URLQueryItem]()
         
         if let showId = showId {
-            parameters.append(URLQueryItem(name: "showId", value: showId))
+            parameters.append(URLQueryItem(name: "id", value: showId))
+        }
+
+        if let startTimeBefore = startTimeBefore {
+            parameters.append(URLQueryItem(name: "start_time_before", value: startTimeBefore))
         }
         
-        if let airDateExact = airDateExact {
-            parameters.append(URLQueryItem(name: "airdate_exact", value: airDateExact))
-        }
-        
-        if let airDateAfter = airDateAfter {
-            parameters.append(URLQueryItem(name: "airdate_after", value: airDateAfter))
-        }
-        
-        if let airDateBefore = airDateBefore {
-            parameters.append(URLQueryItem(name: "airdate_before", value: airDateBefore))
+        if let startTimeAfter = startTimeAfter {
+            parameters.append(URLQueryItem(name: "start_time_after", value: startTimeAfter))
         }
         
         if let limit = limit {
@@ -115,13 +98,11 @@ public struct NetworkManager {
             parameters.append(URLQueryItem(name: "offset", value: "\(offset)"))
         }
         
-        router.get(url: KEXPPower.showURL, parameters: parameters) { result in
+        router.get(url:KEXPPower.showURL, parameters: parameters) { result in
             switch result {
             case .success(let data):
                 do {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = .formatted(DateFormatter.airDateFormatter)
-                    let showResult = try decoder.decode(ShowResult.self, from: data)
+                    let showResult = try JSONDecoder().decode(ShowResult.self, from: data)
 
                     completion(.success(showResult))
                 } catch let error {
@@ -145,7 +126,7 @@ public struct NetworkManager {
             }
         }
     }
-    
+
     public func getConfiguration(completion: ConfigurationCompletion) {
         guard
             let configurationURL = KEXPPower.configurationURL,
