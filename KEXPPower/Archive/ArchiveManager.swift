@@ -18,55 +18,40 @@ public class ArchiveManager {
         _ archiveShowsByHostName: [[String: [ArchiveShow]]],
         _ archiveShowsGenre: [[String: [ArchiveShow]]]
     ) -> Void
-    
-    private typealias ArchieveShowTimestamps = (beforeDates: [String], afterDates: [String])
-    
+
     private let networkManager = NetworkManager()
     private var archieveShowMp3s = [URL]()
 
     public init() {}
+    
+    private let requestDate: String = {
+        let cal = Calendar.current
+        var date = cal.startOfDay(for: Date())
+        date = cal.date(byAdding: .day, value: -13, to: date)!
+        let requestDate = DateFormatter.showRequestFormatter.string(from: date)
+        
+        return requestDate
+    } ()
 
     public func retrieveArchieveShows(completion: @escaping ArchiveShowCompletion) {
-        let dispatchGroup = DispatchGroup()
-        let archieveShowDates = showTimestamps()
-        let beforeDates = archieveShowDates.beforeDates
-        let afterDates = archieveShowDates.afterDates
-        
-        var allShows = [ArchiveShow]()
-        
-        for (index, _) in archieveShowDates.afterDates.enumerated() {
-            dispatchGroup.enter()
-
-            networkManager.getShow(startTimeBefore: beforeDates[index], startTimeAfter: afterDates[index]) { result in
-                defer { dispatchGroup.leave() }
-
-                if
-                    case let .success(showResult) = result,
-                    let shows = showResult?.shows
-                {
-                    allShows += shows.map { ArchiveShow(show: $0) }
-                }
+        networkManager.getShow(startTimeAfter: requestDate, limit: 200) { [weak self] result in
+            guard
+                case let .success(showResult) = result,
+                let strongSelf = self,
+                let shows = showResult?.shows
+            else {
+                completion([[:]], [[:]], [[:]], [[:]])
+                return
             }
-        }
-        
-        dispatchGroup.notify(queue: .main) {
-            allShows = allShows.sorted {
-                guard
-                    let startTime0 = $0.show.startTime,
-                    let startTime1 = $1.show.startTime
-                else {
-                    return false
-                }
-                
-                return startTime0 > startTime1
-            }
-
-            allShows = self.updateShowEndTimes(archiveShows: allShows)
             
-            let showsByDate = self.getShowsByDate(allArchiveShows: allShows)
-            let showsByShowName = self.getShowsByShowName(allArchiveShows: allShows)
-            let showsByHostName = self.getShowsByHostName(allArchiveShows: allShows)
-            let showsByGenre = self.getShowsByGenre(allArchiveShows: allShows)
+            var archiveShows = shows.map { ArchiveShow(show: $0) }
+            
+            archiveShows = strongSelf.updateShowEndTimes(archiveShows: archiveShows)
+            
+            let showsByDate = strongSelf.getShowsByDate(allArchiveShows: archiveShows)
+            let showsByShowName = strongSelf.getShowsByShowName(allArchiveShows: archiveShows)
+            let showsByHostName = strongSelf.getShowsByHostName(allArchiveShows: archiveShows)
+            let showsByGenre = strongSelf.getShowsByGenre(allArchiveShows: archiveShows)
 
             completion(showsByDate, showsByShowName, showsByHostName, showsByGenre)
         }
@@ -137,27 +122,6 @@ public class ArchiveManager {
                 )
             }
         })
-    }
-
-    private func showTimestamps() -> ArchieveShowTimestamps {
-        var datesForArchieve = [String]()
-        var beforeAirDates = [String]()
-        var afterAirDates = [String]()
-        
-        let cal = Calendar.current
-        var date = cal.startOfDay(for: Date())
-        date = cal.date(byAdding: .day, value: 1, to: date)!
-        datesForArchieve.append(DateFormatter.showRequestFormatter.string(from: date))
-        
-        for _ in 1...14 {
-            date = cal.date(byAdding: .day, value: -1, to: date)!
-            datesForArchieve.append(DateFormatter.showRequestFormatter.string(from: date))
-        }
-        
-        beforeAirDates = Array(datesForArchieve.prefix(14))
-        afterAirDates = Array(datesForArchieve.dropFirst())
-        
-        return ArchieveShowTimestamps(beforeDates: beforeAirDates, afterDates: afterAirDates)
     }
     
     private func updateShowEndTimes(archiveShows: [ArchiveShow]) -> [ArchiveShow] {
