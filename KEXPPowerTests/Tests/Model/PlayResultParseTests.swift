@@ -2,15 +2,16 @@
 //  PlayResultParseTests.swift
 //  KEXPPowerTests
 //
-//  Created by Dustin Bergman on 6/30/19.
-//  Copyright © 2019 KEXP. All rights reserved.
+//  Created by Dustin Bergman on 3/4/20.
+//  Copyright © 2020 KEXP. All rights reserved.
 //
 
 import XCTest
 @testable import KEXPPower
 
 class PlayResultParseTests: XCTestCase {
-    var firstPlay: Play?
+    var trackplay: Play?
+    var airbreak: Play?
     
     override func setUp() {
         super.setUp()
@@ -22,54 +23,46 @@ class PlayResultParseTests: XCTestCase {
                 XCTFail("Failed"); return
         }
         
-        firstPlay = playResult.playlist?.first
+        airbreak = playResult.plays?.first
+        trackplay = playResult.plays?.last
     }
     
-    func testPlayParsing() {
-        XCTAssertNotNil(firstPlay)
+    func testTrackplayParsing() {
+        XCTAssertNotNil(trackplay)
         
-        XCTAssert(firstPlay?.showId == 104048) 
-        XCTAssert(firstPlay?.playType.name == "Media play")
-        XCTAssert(firstPlay?.playType.playTypeId == 1)
-        
-        XCTAssertNotNil(firstPlay?.airDate)
-        XCTAssert(firstPlay?.epochAirDate == 1561348828000)
-        XCTAssert(firstPlay?.epochAirDateV2 == "/Date(1561348828000)/")
-        
-        let bit32URL = "http://50.234.71.239:8090/stream-32.mp3?date=2019-06-24T04:00:28Z"
-        let bit64URL = "http://50.234.71.239:8090/stream-64.mp3?date=2019-06-24T04:00:28Z"
-        let bit128URL = "http://50.234.71.239:8090/stream-128.mp3?date=2019-06-24T04:00:28Z"
-        let bit256URL = "http://50.234.71.239:8090/stream-256.mp3?date=2019-06-24T04:00:28Z"
-
-        XCTAssert(firstPlay?.archiveURLs?.archive32BitURL?.absoluteString == bit32URL)
-        XCTAssert(firstPlay?.archiveURLs?.archive64BitURL?.absoluteString == bit64URL)
-        XCTAssert(firstPlay?.archiveURLs?.archive128BitURL?.absoluteString == bit128URL)
-        XCTAssert(firstPlay?.archiveURLs?.archive256BitURL?.absoluteString == bit256URL)
+        XCTAssertTrue(trackplay?.id == 2707620)
+        XCTAssertTrue(trackplay?.uri == "https://api.kexp.org/v2/plays/2707620/")
+        XCTAssertNotNil(trackplay?.airdate)
+        XCTAssertTrue(trackplay?.show == 46732)
+        XCTAssertTrue(trackplay?.showURI == "https://api.kexp.org/v2/shows/46732/")
+        XCTAssertTrue(trackplay?.imageURI == "http://someImageUri.com")
+        XCTAssertTrue(trackplay?.thumbnailURI == "http://someThumbImageUri.com")
+        XCTAssertTrue(trackplay?.song == "We'll Meet Again (Dub Style)")
+        XCTAssertTrue(trackplay?.trackID == "666")
+        XCTAssertTrue(trackplay?.recordingID == "666")
+        XCTAssertTrue(trackplay?.artist == "Elias Negash")
+        XCTAssertTrue(trackplay?.artistIDs?.first == "666")
+        XCTAssertTrue(trackplay?.album == "We'll Meet Again (Dub Style)")
+        XCTAssertTrue(trackplay?.releaseID == "release_id")
+        XCTAssertTrue(trackplay?.releaseGroupID == "release_group_id")
+        XCTAssertTrue(trackplay?.labels?.first == "SophEl Recordings")
+        XCTAssertTrue(trackplay?.releaseDate == "2019-12-16")
+        XCTAssertTrue(trackplay?.rotationStatus == "rotation_status")
+        XCTAssertTrue(trackplay?.isLocal == false)
+        XCTAssertTrue(trackplay?.isRequest == false)
+        XCTAssertTrue(trackplay?.isLive == false)
+        XCTAssertTrue(trackplay?.comment?.isEmpty == false)
+        XCTAssertTrue(trackplay?.playType == .trackplay)
+    }
     
-        XCTAssert(firstPlay?.artist?.artistId == 215762)
-        XCTAssert(firstPlay?.artist?.name == "Mala, Joe Armon-Jones & Nubya Garcia")
-        XCTAssert(firstPlay?.artist?.isLocal == false)
-
-        XCTAssert(firstPlay?.release?.name == "Untitled (18 Artists)")
-        XCTAssert(firstPlay?.release?.releaseId == 353490)
+    func testAirbreakParsing() {
+        XCTAssertNotNil(airbreak)
         
-        let largeImageURL = "https://www.SomeLargeImageURI.edu"
-        let smallImageURL = "https://www.SomeSmallImageURI.edu"
-        
-        XCTAssert(firstPlay?.release?.largeImageURL?.absoluteString == largeImageURL)
-        XCTAssert(firstPlay?.release?.smallImageURL?.absoluteString == smallImageURL)
-        
-        XCTAssert(firstPlay?.releaseEvent?.releaseEventId == 713920)
-        XCTAssert(firstPlay?.releaseEvent?.year == 2019)
-        
-        XCTAssert(firstPlay?.track?.trackId == 1383598)
-        XCTAssert(firstPlay?.track?.name == "Scratch & Erase")
-        
-        XCTAssert(firstPlay?.label?.labelId == 59244)
-        XCTAssert(firstPlay?.label?.name == "The Vinyl Factory")
-
-        XCTAssert(firstPlay?.comments?.first?.commentId == 1238727)
-        XCTAssertNotNil(firstPlay?.comments?.first?.text)
+        XCTAssertTrue(airbreak?.id == 2707639)
+        XCTAssertTrue(airbreak?.uri == "https://api.kexp.org/v2/plays/2707639/")
+        XCTAssertNotNil(airbreak?.airdate)
+        XCTAssertTrue(airbreak?.show == 46732)
+        XCTAssertTrue(airbreak?.showURI == "https://api.kexp.org/v2/shows/46732/")
+        XCTAssertTrue(airbreak?.playType == .airbreak)
     }
 }
-
