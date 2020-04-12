@@ -71,8 +71,11 @@ public class KEXPPower {
         return backupStreamURL
     }
     
-    private init(){}
-    
+    static func getShowURL(with showId: String) -> URL {
+        return URL(string: kexpBaseURL + "/v2/shows/\(showId)")!
+    }
+
     private static var defaultStreamIndex: Int = 0
     private static var backupStreamIndex: Int = 0
+    private init(){}
 }

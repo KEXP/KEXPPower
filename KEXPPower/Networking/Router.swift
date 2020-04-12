@@ -20,7 +20,7 @@ class Router {
         case serverError(String)
     }
     
-    func get(url :URL, parameters: [URLQueryItem]?, completion: @escaping Completion) {
+    func get(url :URL, parameters: [URLQueryItem]? = nil, completion: @escaping Completion) {
         var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
         urlComponents?.queryItems = parameters
         

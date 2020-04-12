@@ -11,6 +11,7 @@ import Foundation
 public struct NetworkManager {
     public typealias PlayCompletion = (_ result: Result<PlayResult?, Error>) -> Void
     public typealias ShowCompletion = (_ result: Result<ShowResult?, Error>) -> Void
+    public typealias ShowDetailsCompletion = (_ result: Result<Show?, Error>) -> Void
     public typealias ArchiveCompletion = (_ result: Result<ArchiveStreamResult?, Error>) -> Void
     public typealias AppleMusicCompletion = (_ result: Result<AppleMusicResult?, Error>) -> Void
     public typealias ConfigurationCompletion = (_ result: Result<Configuration?, Error>) -> Void
@@ -69,7 +70,6 @@ public struct NetworkManager {
     }
     
     public func getShow(
-        showId: String? = nil,
         startTimeBefore: String? = nil,
         startTimeAfter: String? = nil,
         limit: Int? = nil,
@@ -78,10 +78,6 @@ public struct NetworkManager {
     {
         var parameters = [URLQueryItem]()
         
-        if let showId = showId {
-            parameters.append(URLQueryItem(name: "id", value: showId))
-        }
-
         if let startTimeBefore = startTimeBefore {
             parameters.append(URLQueryItem(name: "start_time_before", value: startTimeBefore))
         }
@@ -97,14 +93,47 @@ public struct NetworkManager {
         if let offset = offset {
             parameters.append(URLQueryItem(name: "offset", value: "\(offset)"))
         }
-        
-        router.get(url:KEXPPower.showURL, parameters: parameters) { result in
+
+        router.get(url: KEXPPower.showURL, parameters: parameters) { result in
             switch result {
             case .success(let data):
                 do {
                     let showResult = try JSONDecoder().decode(ShowResult.self, from: data)
 
                     completion(.success(showResult))
+                } catch let error {
+                    let error = NSError(
+                        domain: "com.kexppower.error",
+                        code: 0,
+                        userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
+                    )
+                    
+                    completion(.failure(error))
+                }
+                
+            case .failure(let error):
+                let error = NSError(
+                    domain: "com.kexppower.error",
+                    code: 0,
+                    userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
+                )
+                
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    public func getShowDetails(
+        with showId: String,
+        completion: @escaping ShowDetailsCompletion)
+    {
+        router.get(url: KEXPPower.getShowURL(with: showId)) { result in
+            switch result {
+            case .success(let data):
+                do {
+                    let showDetails = try JSONDecoder().decode(Show.self, from: data)
+
+                    completion(.success(showDetails))
                 } catch let error {
                     let error = NSError(
                         domain: "com.kexppower.error",
