@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - ShowResult
 public struct ShowResult: Decodable {
-    public let count: Int
+    public let count: Int?
     public let next: String?
     public let previous: String?
     public let shows: [Show]?
