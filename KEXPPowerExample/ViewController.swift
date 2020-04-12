@@ -18,8 +18,16 @@ class ViewController: UIViewController {
 
         view.backgroundColor = .white
         
-        networkManager.getPlay { _, _ in
-            print("response")
+        networkManager.getPlay { result in
+            print("playResult: \(result)")
+        }
+        
+        networkManager.getShow { result in
+            print("showResult: \(result)")
+        }
+        
+        networkManager.getShowDetails(with: "47008") { result in
+            print("showDetailsResult: \(result)")
         }
     }
 }
