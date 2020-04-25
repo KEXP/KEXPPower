@@ -10,8 +10,8 @@ import KEXPPower
 import UIKit
 
 class ViewController: UIViewController {
-
     let networkManager = NetworkManager()
+    let archiveManager = ArchiveManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +28,10 @@ class ViewController: UIViewController {
         
         networkManager.getShowDetails(with: "47008") { result in
             print("showDetailsResult: \(result)")
+        }
+        
+        archiveManager.retrieveArchieveShows { dateShows, hostShows, shows, genreShows in
+            print("retrieveArchieveShows: \(dateShows)")
         }
     }
 }

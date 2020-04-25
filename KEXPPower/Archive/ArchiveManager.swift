@@ -13,7 +13,7 @@ public class ArchiveManager {
     public typealias ArchivePlayBackCompletion = (_ showURLS: [URL], _ offset: Double) -> Void
     public typealias ArchiveShowTimesCompletion = (_ archiveShowTimes: [ArchiveShowStart]) -> (Void)
     public typealias ArchiveShowCompletion = (
-        _ archiveShowsByDate: [[Date: [ArchiveShow]]],
+        _ archiveShowsByDate: [DateShows],
         _ archiveShowsByShowName: [[String: [ArchiveShow]]],
         _ archiveShowsByHostName: [[String: [ArchiveShow]]],
         _ archiveShowsGenre: [[String: [ArchiveShow]]]
@@ -40,7 +40,7 @@ public class ArchiveManager {
                 let strongSelf = self,
                 let shows = showResult?.shows
             else {
-                completion([[:]], [[:]], [[:]], [[:]])
+                completion([], [[:]], [[:]], [[:]])
                 return
             }
             
@@ -164,8 +164,8 @@ public class ArchiveManager {
             lastShow.show.hostNames?.first == show.show.hostNames?.first
     }
     
-    private func getShowsByDate(allArchiveShows: [ArchiveShow]) -> [[Date: [ArchiveShow]]] {
-        var archiveCalendar = [[Date: [ArchiveShow]]]()
+    private func getShowsByDate(allArchiveShows: [ArchiveShow]) -> [DateShows] {
+        var showsByDate = [DateShows]()
         var twoWeekDates = [Date]()
         var date = Calendar.current.startOfDay(for: Date())
         date = Calendar.current.date(byAdding: .day, value: -13, to: date)!
@@ -183,13 +183,11 @@ public class ArchiveManager {
             }
             
             if !showsOnDate.isEmpty {
-                var dateWithShows = [Date: [ArchiveShow]]()
-                dateWithShows[showDate] = showsOnDate
-                archiveCalendar.append(dateWithShows)
+                showsByDate.append(DateShows(date: showDate, shows: showsOnDate))
             }
         }
         
-        return archiveCalendar.reversed()
+        return showsByDate
     }
     
     private func getShowsByShowName(allArchiveShows: [ArchiveShow]) -> [[String: [ArchiveShow]]] {

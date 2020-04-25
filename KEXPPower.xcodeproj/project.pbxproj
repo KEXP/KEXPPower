@@ -27,6 +27,7 @@
 		8B81465823617389008EDF50 /* AppleMusicSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B81465723617389008EDF50 /* AppleMusicSample.json */; };
 		8B81465A23628A1B008EDF50 /* AppleMusicResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81465923628A1B008EDF50 /* AppleMusicResult.swift */; };
 		8B81465C23628BD0008EDF50 /* AppleMusicResultParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81465B23628BD0008EDF50 /* AppleMusicResultParseTests.swift */; };
+		8BB9AF622454C71C004DCD20 /* DateShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB9AF612454C71C004DCD20 /* DateShows.swift */; };
 		8BEA9AD123555C0900C5F010 /* ArchiveShowStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEA9AD023555C0900C5F010 /* ArchiveShowStart.swift */; };
 		8BFFECBF22C95E6100E3378C /* KEXPPower.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFFECB522C95E6100E3378C /* KEXPPower.framework */; };
 		8BFFECC622C95E6200E3378C /* KEXPPower.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFFECB822C95E6100E3378C /* KEXPPower.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -72,6 +73,7 @@
 		8B81465723617389008EDF50 /* AppleMusicSample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AppleMusicSample.json; sourceTree = "<group>"; };
 		8B81465923628A1B008EDF50 /* AppleMusicResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicResult.swift; sourceTree = "<group>"; };
 		8B81465B23628BD0008EDF50 /* AppleMusicResultParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicResultParseTests.swift; sourceTree = "<group>"; };
+		8BB9AF612454C71C004DCD20 /* DateShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateShows.swift; sourceTree = "<group>"; };
 		8BEA9AD023555C0900C5F010 /* ArchiveShowStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveShowStart.swift; sourceTree = "<group>"; };
 		8BFFECB522C95E6100E3378C /* KEXPPower.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KEXPPower.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BFFECB822C95E6100E3378C /* KEXPPower.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KEXPPower.h; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 		8B159DBF233C665200BCB7AB /* Archive */ = {
 			isa = PBXGroup;
 			children = (
+				8BB9AF602454C6C8004DCD20 /* Models */,
 				8B159DC0233C66E500BCB7AB /* ArchiveManager.swift */,
 			);
 			path = Archive;
@@ -157,6 +160,14 @@
 				8B81465923628A1B008EDF50 /* AppleMusicResult.swift */,
 			);
 			path = AppleMusic;
+			sourceTree = "<group>";
+		};
+		8BB9AF602454C6C8004DCD20 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8BB9AF612454C71C004DCD20 /* DateShows.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		8BFFECAB22C95E6100E3378C = {
@@ -426,6 +437,7 @@
 				8BFFED0822D43F3800E3378C /* KEXPPower.swift in Sources */,
 				8BEA9AD123555C0900C5F010 /* ArchiveShowStart.swift in Sources */,
 				8B437FB1234EE45B002EDB91 /* ArchiveStreamResult.swift in Sources */,
+				8BB9AF622454C71C004DCD20 /* DateShows.swift in Sources */,
 				8B81465A23628A1B008EDF50 /* AppleMusicResult.swift in Sources */,
 				8B451233240F5C1300EAFEFC /* ShowResult.swift in Sources */,
 				8BFFED0322D43EA100E3378C /* Router.swift in Sources */,
