@@ -189,7 +189,7 @@ public class ArchiveManager {
             }
         }
         
-        return archiveCalendar
+        return archiveCalendar.reversed()
     }
     
     private func getShowsByShowName(allArchiveShows: [ArchiveShow]) -> [[String: [ArchiveShow]]] {
