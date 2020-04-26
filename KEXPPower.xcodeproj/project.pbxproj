@@ -30,6 +30,7 @@
 		8BB9AF622454C71C004DCD20 /* DateShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB9AF612454C71C004DCD20 /* DateShows.swift */; };
 		8BB9AF642454E85E004DCD20 /* ShowNameShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB9AF632454E85E004DCD20 /* ShowNameShows.swift */; };
 		8BB9AF6624551133004DCD20 /* HostNameShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB9AF6524551133004DCD20 /* HostNameShows.swift */; };
+		8BD1638224551394006BF61F /* GenreShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD1638124551394006BF61F /* GenreShows.swift */; };
 		8BEA9AD123555C0900C5F010 /* ArchiveShowStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEA9AD023555C0900C5F010 /* ArchiveShowStart.swift */; };
 		8BFFECBF22C95E6100E3378C /* KEXPPower.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFFECB522C95E6100E3378C /* KEXPPower.framework */; };
 		8BFFECC622C95E6200E3378C /* KEXPPower.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFFECB822C95E6100E3378C /* KEXPPower.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -78,6 +79,7 @@
 		8BB9AF612454C71C004DCD20 /* DateShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateShows.swift; sourceTree = "<group>"; };
 		8BB9AF632454E85E004DCD20 /* ShowNameShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowNameShows.swift; sourceTree = "<group>"; };
 		8BB9AF6524551133004DCD20 /* HostNameShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostNameShows.swift; sourceTree = "<group>"; };
+		8BD1638124551394006BF61F /* GenreShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreShows.swift; sourceTree = "<group>"; };
 		8BEA9AD023555C0900C5F010 /* ArchiveShowStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveShowStart.swift; sourceTree = "<group>"; };
 		8BFFECB522C95E6100E3378C /* KEXPPower.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KEXPPower.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BFFECB822C95E6100E3378C /* KEXPPower.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KEXPPower.h; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				8BB9AF612454C71C004DCD20 /* DateShows.swift */,
 				8BB9AF632454E85E004DCD20 /* ShowNameShows.swift */,
 				8BB9AF6524551133004DCD20 /* HostNameShows.swift */,
+				8BD1638124551394006BF61F /* GenreShows.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 			files = (
 				8B159DC1233C66E500BCB7AB /* ArchiveManager.swift in Sources */,
 				8BFFED0522D43EE700E3378C /* NetworkManager.swift in Sources */,
+				8BD1638224551394006BF61F /* GenreShows.swift in Sources */,
 				8B46C4C022DEC811003E5277 /* UIImageView+Loading.swift in Sources */,
 				8BFFED0822D43F3800E3378C /* KEXPPower.swift in Sources */,
 				8BB9AF642454E85E004DCD20 /* ShowNameShows.swift in Sources */,

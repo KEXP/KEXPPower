@@ -16,7 +16,7 @@ public class ArchiveManager {
         _ archiveShowsByDate: [DateShows],
         _ archiveShowsByShowName: [ShowNameShows],
         _ archiveShowsByHostName: [HostNameShows],
-        _ archiveShowsGenre: [[String: [ArchiveShow]]]
+        _ archiveShowsGenre: [GenreShows]
     ) -> Void
 
     private let networkManager = NetworkManager()
@@ -40,7 +40,7 @@ public class ArchiveManager {
                 let strongSelf = self,
                 let shows = showResult?.shows
             else {
-                completion([], [], [], [[:]])
+                completion([], [], [], [])
                 return
             }
             
@@ -228,53 +228,71 @@ public class ArchiveManager {
         return hostNameShows
     }
     
-    private func getShowsByGenre(allArchiveShows: [ArchiveShow]) -> [[String: [ArchiveShow]]] {
-        var archiveShowsByGenre = [[String: [ArchiveShow]]]()
-        var showsByGenre = [String: [ArchiveShow]]()
+    private func getShowsByGenre(allArchiveShows: [ArchiveShow]) -> [GenreShows] {
+        var genreShows = [GenreShows]()
         
-        for archiveShow in allArchiveShows {
-            guard let genre = archiveShow.show.programTags else { continue }
-            
-            if showsByGenre.keys.contains(genre) {
-                showsByGenre[genre]?.append(archiveShow)
-            } else {
-                showsByGenre.updateValue([archiveShow], forKey: genre)
-            }
+        let allGenres = allArchiveShows
+            .unique { $0.show.programTags }
+            .map { $0.show.programTags }
+            .compactMap { $0 }
+        
+        allGenres.forEach { genre in
+            let shows = allArchiveShows.filter { $0.show.programTags == genre }
+        
+            genreShows.append(GenreShows(genre: genre, shows: shows))
         }
         
-        var showsByHostGenreSorted = [String: [ArchiveShow]]()
-        
-        for (key, value) in showsByGenre {
-            let sortedShows = value.sorted {
-                guard
-                    let startTime0 = $0.show.startTime,
-                    let startTime1 = $1.show.startTime
-                else {
-                    return false
-                }
-            
-                return startTime0 < startTime1
-            }
-            
-            showsByHostGenreSorted[key] = sortedShows
-        }
-        
-        archiveShowsByGenre = showsByHostGenreSorted.map {
-            return ["\($0.key)": $0.value]
-        }
-        
-        archiveShowsByGenre = archiveShowsByGenre.sorted {
-            guard
-                let name0 = $0.keys.first,
-                let name1 = $1.keys.first
-                else {
-                    return false
-            }
-            
-            return name0 < name1
-        }
-        
-        return archiveShowsByGenre
+        genreShows = genreShows.sorted { $0.genre < $1.genre }
+
+        return genreShows
+//
+//
+//        var archiveShowsByGenre = [[String: [ArchiveShow]]]()
+//        var showsByGenre = [String: [ArchiveShow]]()
+//
+//        for archiveShow in allArchiveShows {
+//            guard let genre = archiveShow.show.programTags else { continue }
+//
+//            if showsByGenre.keys.contains(genre) {
+//                showsByGenre[genre]?.append(archiveShow)
+//            } else {
+//                showsByGenre.updateValue([archiveShow], forKey: genre)
+//            }
+//        }
+//
+//        var showsByHostGenreSorted = [String: [ArchiveShow]]()
+//
+//        for (key, value) in showsByGenre {
+//            let sortedShows = value.sorted {
+//                guard
+//                    let startTime0 = $0.show.startTime,
+//                    let startTime1 = $1.show.startTime
+//                else {
+//                    return false
+//                }
+//
+//                return startTime0 < startTime1
+//            }
+//
+//            showsByHostGenreSorted[key] = sortedShows
+//        }
+//
+//        archiveShowsByGenre = showsByHostGenreSorted.map {
+//            return ["\($0.key)": $0.value]
+//        }
+//
+//        archiveShowsByGenre = archiveShowsByGenre.sorted {
+//            guard
+//                let name0 = $0.keys.first,
+//                let name1 = $1.keys.first
+//                else {
+//                    return false
+//            }
+//
+//            return name0 < name1
+//        }
+//
+//        return archiveShowsByGenre
     }
 }
 
