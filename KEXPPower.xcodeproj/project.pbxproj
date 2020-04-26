@@ -28,6 +28,7 @@
 		8B81465A23628A1B008EDF50 /* AppleMusicResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81465923628A1B008EDF50 /* AppleMusicResult.swift */; };
 		8B81465C23628BD0008EDF50 /* AppleMusicResultParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81465B23628BD0008EDF50 /* AppleMusicResultParseTests.swift */; };
 		8BB9AF622454C71C004DCD20 /* DateShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB9AF612454C71C004DCD20 /* DateShows.swift */; };
+		8BB9AF642454E85E004DCD20 /* ShowNameShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB9AF632454E85E004DCD20 /* ShowNameShows.swift */; };
 		8BEA9AD123555C0900C5F010 /* ArchiveShowStart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEA9AD023555C0900C5F010 /* ArchiveShowStart.swift */; };
 		8BFFECBF22C95E6100E3378C /* KEXPPower.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFFECB522C95E6100E3378C /* KEXPPower.framework */; };
 		8BFFECC622C95E6200E3378C /* KEXPPower.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BFFECB822C95E6100E3378C /* KEXPPower.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -74,6 +75,7 @@
 		8B81465923628A1B008EDF50 /* AppleMusicResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicResult.swift; sourceTree = "<group>"; };
 		8B81465B23628BD0008EDF50 /* AppleMusicResultParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicResultParseTests.swift; sourceTree = "<group>"; };
 		8BB9AF612454C71C004DCD20 /* DateShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateShows.swift; sourceTree = "<group>"; };
+		8BB9AF632454E85E004DCD20 /* ShowNameShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowNameShows.swift; sourceTree = "<group>"; };
 		8BEA9AD023555C0900C5F010 /* ArchiveShowStart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveShowStart.swift; sourceTree = "<group>"; };
 		8BFFECB522C95E6100E3378C /* KEXPPower.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KEXPPower.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BFFECB822C95E6100E3378C /* KEXPPower.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KEXPPower.h; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				8BB9AF612454C71C004DCD20 /* DateShows.swift */,
+				8BB9AF632454E85E004DCD20 /* ShowNameShows.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				8BFFED0522D43EE700E3378C /* NetworkManager.swift in Sources */,
 				8B46C4C022DEC811003E5277 /* UIImageView+Loading.swift in Sources */,
 				8BFFED0822D43F3800E3378C /* KEXPPower.swift in Sources */,
+				8BB9AF642454E85E004DCD20 /* ShowNameShows.swift in Sources */,
 				8BEA9AD123555C0900C5F010 /* ArchiveShowStart.swift in Sources */,
 				8B437FB1234EE45B002EDB91 /* ArchiveStreamResult.swift in Sources */,
 				8BB9AF622454C71C004DCD20 /* DateShows.swift in Sources */,

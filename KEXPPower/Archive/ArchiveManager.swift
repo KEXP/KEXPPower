@@ -14,7 +14,7 @@ public class ArchiveManager {
     public typealias ArchiveShowTimesCompletion = (_ archiveShowTimes: [ArchiveShowStart]) -> (Void)
     public typealias ArchiveShowCompletion = (
         _ archiveShowsByDate: [DateShows],
-        _ archiveShowsByShowName: [[String: [ArchiveShow]]],
+        _ archiveShowsByShowName: [ShowNameShows],
         _ archiveShowsByHostName: [[String: [ArchiveShow]]],
         _ archiveShowsGenre: [[String: [ArchiveShow]]]
     ) -> Void
@@ -40,7 +40,7 @@ public class ArchiveManager {
                 let strongSelf = self,
                 let shows = showResult?.shows
             else {
-                completion([], [[:]], [[:]], [[:]])
+                completion([], [], [[:]], [[:]])
                 return
             }
             
@@ -190,53 +190,23 @@ public class ArchiveManager {
         return showsByDate
     }
     
-    private func getShowsByShowName(allArchiveShows: [ArchiveShow]) -> [[String: [ArchiveShow]]] {
-        var archiveShowsByName = [[String: [ArchiveShow]]]()
-        var showsByName = [String: [ArchiveShow]]()
+    private func getShowsByShowName(allArchiveShows: [ArchiveShow]) -> [ShowNameShows] {
+        var showsByName = [ShowNameShows]()
         
-        for archiveShow in allArchiveShows {
-            guard let showName = archiveShow.show.programName else { continue }
-            
-            if showsByName.keys.contains(showName) {
-                showsByName[showName]?.append(archiveShow)
-            } else {
-                showsByName.updateValue([archiveShow], forKey: showName)
-            }
+        let allShowNames = allArchiveShows
+            .unique { $0.show.programName }
+            .map { $0.show.programName }
+            .compactMap { $0 }
+        
+        allShowNames.forEach { showName in
+            let shows = allArchiveShows.filter { $0.show.programName == showName }
+        
+            showsByName.append(ShowNameShows.init(showName: showName, shows: shows))
         }
         
-        var showsByNameSorted = [String: [ArchiveShow]]()
+        showsByName = showsByName.sorted { $0.showName < $1.showName }
 
-        for (key, value) in showsByName {
-            let sortedShows = value.sorted {
-                guard
-                    let startTime0 = $0.show.startTime,
-                    let startTime1 = $1.show.startTime
-                else {
-                    return false
-                }
-                
-                return startTime0 < startTime1
-            }
-
-            showsByNameSorted[key] = sortedShows
-        }
-        
-        archiveShowsByName = showsByNameSorted.map {
-            return ["\($0.key)": $0.value]
-        }
-        
-        archiveShowsByName = archiveShowsByName.sorted {
-            guard
-                let name0 = $0.keys.first,
-                let name1 = $1.keys.first
-            else {
-                return false
-            }
-            
-            return name0 < name1
-        }
-
-        return archiveShowsByName
+        return showsByName
     }
     
     private func getShowsByHostName(allArchiveShows: [ArchiveShow]) -> [[String: [ArchiveShow]]] {
@@ -345,5 +315,20 @@ extension Date {
         let minute = components.minute ?? 0
         components.minute = minute >= 30 ? 60 - minute : -minute
         return Calendar.current.date(byAdding: components, to: self)
+    }
+}
+
+extension Array {
+    func unique<T:Hashable>(by: ((Element) -> (T)))  -> [Element] {
+        var set = Set<T>()
+        var arrayOrdered = [Element]()
+        for value in self {
+            if !set.contains(by(value)) {
+                set.insert(by(value))
+                arrayOrdered.append(value)
+            }
+        }
+
+        return arrayOrdered
     }
 }
