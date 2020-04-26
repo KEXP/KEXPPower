@@ -245,54 +245,6 @@ public class ArchiveManager {
         genreShows = genreShows.sorted { $0.genre < $1.genre }
 
         return genreShows
-//
-//
-//        var archiveShowsByGenre = [[String: [ArchiveShow]]]()
-//        var showsByGenre = [String: [ArchiveShow]]()
-//
-//        for archiveShow in allArchiveShows {
-//            guard let genre = archiveShow.show.programTags else { continue }
-//
-//            if showsByGenre.keys.contains(genre) {
-//                showsByGenre[genre]?.append(archiveShow)
-//            } else {
-//                showsByGenre.updateValue([archiveShow], forKey: genre)
-//            }
-//        }
-//
-//        var showsByHostGenreSorted = [String: [ArchiveShow]]()
-//
-//        for (key, value) in showsByGenre {
-//            let sortedShows = value.sorted {
-//                guard
-//                    let startTime0 = $0.show.startTime,
-//                    let startTime1 = $1.show.startTime
-//                else {
-//                    return false
-//                }
-//
-//                return startTime0 < startTime1
-//            }
-//
-//            showsByHostGenreSorted[key] = sortedShows
-//        }
-//
-//        archiveShowsByGenre = showsByHostGenreSorted.map {
-//            return ["\($0.key)": $0.value]
-//        }
-//
-//        archiveShowsByGenre = archiveShowsByGenre.sorted {
-//            guard
-//                let name0 = $0.keys.first,
-//                let name1 = $1.keys.first
-//                else {
-//                    return false
-//            }
-//
-//            return name0 < name1
-//        }
-//
-//        return archiveShowsByGenre
     }
 }
 
