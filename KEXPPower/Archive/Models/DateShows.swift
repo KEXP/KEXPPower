@@ -9,6 +9,6 @@
 import Foundation
 
 public struct DateShows {
-    let date: Date
-    let shows: [ArchiveShow]
+    public let date: Date
+    public let shows: [ArchiveShow]
 }

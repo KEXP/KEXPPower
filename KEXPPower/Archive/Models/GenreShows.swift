@@ -9,6 +9,6 @@
 import Foundation
 
 public struct GenreShows {
-    let genre: String
-    let shows: [ArchiveShow]
+    public let genre: String
+    public let shows: [ArchiveShow]
 }

@@ -9,6 +9,6 @@
 import Foundation
 
 public struct HostNameShows {
-    let hostName: String
-    let shows: [ArchiveShow]
+    public let hostName: String
+    public let shows: [ArchiveShow]
 }
