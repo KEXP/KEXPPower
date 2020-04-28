@@ -11,4 +11,9 @@ import Foundation
 public struct DateShows {
     public let date: Date
     public let shows: [ArchiveShow]
+    
+    public init(date: Date, shows: [ArchiveShow]) {
+        self.date = date
+        self.shows = shows
+    }
 }
