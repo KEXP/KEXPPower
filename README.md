@@ -4,7 +4,7 @@ A lightweight swift library that is used to communicate with the KEXP serivces t
 
 ## Requirements
 - iOS 11.0+ / tvOS 11.0+
-- Xcode 11.3+
+- Xcode 11.4+
 - Swift 5+
 
 ## Installation
