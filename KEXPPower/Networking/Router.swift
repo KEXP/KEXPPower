@@ -55,7 +55,6 @@ class Router {
                 
                 completion(.success(data))
             } catch {
-                
                 let error = NSError(
                     domain: "com.kexppower.error",
                     code: 0,

@@ -29,6 +29,7 @@ public struct NetworkManager {
         airdateBefore: String? = nil,
         limit: Int = 20,
         offset: Int = 0,
+        queue: DispatchQueue = .main,
         completion: @escaping PlayCompletion)
     {
         var parameters = [URLQueryItem]()
@@ -46,7 +47,7 @@ public struct NetworkManager {
                 do {
                     let playResult = try JSONDecoder().decode(PlayResult.self, from: data)
 
-                    completion(.success(playResult))
+                    queue.async { completion(.success(playResult)) }
                 } catch let error {
                     let error = NSError(
                         domain: "com.kexppower.error",
@@ -54,7 +55,7 @@ public struct NetworkManager {
                         userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
                     )
                     
-                    completion(.failure(error))
+                    queue.async { completion(.failure(error)) }
                 }
                 
             case .failure(let error):
@@ -64,7 +65,7 @@ public struct NetworkManager {
                     userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
                 )
                 
-                completion(.failure(error))
+                queue.async { completion(.failure(error)) }
             }
         }
     }
@@ -74,6 +75,7 @@ public struct NetworkManager {
         startTimeAfter: String? = nil,
         limit: Int? = nil,
         offset: Int? = nil,
+        queue: DispatchQueue = .main,
         completion: @escaping ShowCompletion)
     {
         var parameters = [URLQueryItem]()
@@ -100,7 +102,7 @@ public struct NetworkManager {
                 do {
                     let showResult = try JSONDecoder().decode(ShowResult.self, from: data)
 
-                    completion(.success(showResult))
+                    queue.async { completion(.success(showResult)) }
                 } catch let error {
                     let error = NSError(
                         domain: "com.kexppower.error",
@@ -108,7 +110,7 @@ public struct NetworkManager {
                         userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
                     )
                     
-                    completion(.failure(error))
+                    queue.async { completion(.failure(error)) }
                 }
                 
             case .failure(let error):
@@ -118,13 +120,14 @@ public struct NetworkManager {
                     userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
                 )
                 
-                completion(.failure(error))
+                queue.async { completion(.failure(error)) }
             }
         }
     }
     
     public func getShowDetails(
         with showId: String,
+        queue: DispatchQueue = .main,
         completion: @escaping ShowDetailsCompletion)
     {
         router.get(url: KEXPPower.getShowURL(with: showId)) { result in
@@ -133,7 +136,7 @@ public struct NetworkManager {
                 do {
                     let showDetails = try JSONDecoder().decode(Show.self, from: data)
 
-                    completion(.success(showDetails))
+                    queue.async { completion(.success(showDetails)) }
                 } catch let error {
                     let error = NSError(
                         domain: "com.kexppower.error",
@@ -141,7 +144,7 @@ public struct NetworkManager {
                         userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
                     )
                     
-                    completion(.failure(error))
+                    queue.async { completion(.failure(error)) }
                 }
                 
             case .failure(let error):
@@ -151,12 +154,12 @@ public struct NetworkManager {
                     userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
                 )
                 
-                completion(.failure(error))
+                queue.async { completion(.failure(error)) }
             }
         }
     }
 
-    public func getConfiguration(completion: ConfigurationCompletion) {
+    public func getConfiguration(queue: DispatchQueue = .main, completion: @escaping ConfigurationCompletion) {
         guard
             let configurationURL = KEXPPower.configurationURL,
             let data = try? Data(contentsOf: configurationURL)
@@ -167,13 +170,13 @@ public struct NetworkManager {
                 userInfo: [NSLocalizedDescriptionKey: "Failure retrieving config"]
             )
             
-            completion(.failure(error))
+            queue.async { completion(.failure(error)) }
             return
         }
         
         do {
             let configuration = try JSONDecoder().decode(Configuration.self, from: data)
-            completion(.success(configuration))
+            queue.async {  completion(.success(configuration)) }
         } catch let error {
             let error = NSError(
                 domain: "com.kexppower.error",
@@ -181,11 +184,11 @@ public struct NetworkManager {
                 userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
             )
             
-            completion(.failure(error))
+            queue.async { completion(.failure(error)) }
         }
     }
     
-    public func getArchiveStreamURL(bitrate: String, timestamp: String?, completion: @escaping ArchiveCompletion) {
+    public func getArchiveStreamURL(bitrate: String, timestamp: String?, queue: DispatchQueue = .main, completion: @escaping ArchiveCompletion) {
         var parameters = [URLQueryItem]()
         parameters.append(URLQueryItem(name: "bitrate", value: bitrate))
         parameters.append(URLQueryItem(name: "timestamp", value: timestamp))
@@ -195,7 +198,7 @@ public struct NetworkManager {
             case .success(let data):
                 do {
                     let archiveStreamResult = try JSONDecoder().decode(ArchiveStreamResult.self, from: data)
-                    completion(.success(archiveStreamResult))
+                    queue.async { completion(.success(archiveStreamResult)) }
                 } catch let error {
                     let error = NSError(
                         domain: "com.kexppower.error",
@@ -203,7 +206,7 @@ public struct NetworkManager {
                         userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
                     )
                     
-                    completion(.failure(error))
+                    queue.async { completion(.failure(error)) }
                 }
                 
             case .failure(let error):
@@ -213,12 +216,12 @@ public struct NetworkManager {
                     userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
                 )
                 
-                completion(.failure(error))
+                queue.async { completion(.failure(error)) }
             }
         }
     }
     
-    public func getAppleMusicLink(artist: String?, track: String?, completion: @escaping AppleMusicCompletion) {
+    public func getAppleMusicLink(artist: String?, track: String?, queue: DispatchQueue = .main, completion: @escaping AppleMusicCompletion) {
         let itunesURL = "https://itunes.apple.com/search"
         let searchTerm = "\(artist ?? "") \(track ?? "")"
         var parameters = [URLQueryItem]()
@@ -230,11 +233,7 @@ public struct NetworkManager {
             case .success(let data):
                 do {
                     let appleMusicResult = try JSONDecoder().decode(AppleMusicResult.self, from: data)
-                    
-                    DispatchQueue.main.async {
-                        completion(.success(appleMusicResult))
-                    }
-                    
+                    queue.async { completion(.success(appleMusicResult)) }
                 } catch let error {
                     let error = NSError(
                         domain: "com.kexppower.error",
@@ -242,7 +241,7 @@ public struct NetworkManager {
                         userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
                     )
                     
-                    completion(.failure(error))
+                    queue.async { completion(.failure(error)) }
                 }
                 
             case .failure(let error):
@@ -252,7 +251,7 @@ public struct NetworkManager {
                     userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
                 )
                 
-                completion(.failure(error))
+                queue.async { completion(.failure(error)) }
             }
         }
     }
