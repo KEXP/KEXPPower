@@ -187,7 +187,7 @@ public class ArchiveManager {
             }
         }
         
-        return showsByDate
+        return showsByDate.reversed()
     }
     
     private func getShowsByShowName(allArchiveShows: [ArchiveShow]) -> [ShowNameShows] {
