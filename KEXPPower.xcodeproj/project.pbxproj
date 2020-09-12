@@ -27,6 +27,8 @@
 		8B81465823617389008EDF50 /* AppleMusicSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B81465723617389008EDF50 /* AppleMusicSample.json */; };
 		8B81465A23628A1B008EDF50 /* AppleMusicResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81465923628A1B008EDF50 /* AppleMusicResult.swift */; };
 		8B81465C23628BD0008EDF50 /* AppleMusicResultParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81465B23628BD0008EDF50 /* AppleMusicResultParseTests.swift */; };
+		8BA96519250D4BF300A9244B /* ShowStartSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BA96518250D4BF300A9244B /* ShowStartSample.json */; };
+		8BA9651B250D4C6D00A9244B /* ShowStartResultParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA9651A250D4C6D00A9244B /* ShowStartResultParseTests.swift */; };
 		8BB9AF622454C71C004DCD20 /* DateShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB9AF612454C71C004DCD20 /* DateShows.swift */; };
 		8BB9AF642454E85E004DCD20 /* ShowNameShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB9AF632454E85E004DCD20 /* ShowNameShows.swift */; };
 		8BB9AF6624551133004DCD20 /* HostNameShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB9AF6524551133004DCD20 /* HostNameShows.swift */; };
@@ -76,6 +78,8 @@
 		8B81465723617389008EDF50 /* AppleMusicSample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AppleMusicSample.json; sourceTree = "<group>"; };
 		8B81465923628A1B008EDF50 /* AppleMusicResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicResult.swift; sourceTree = "<group>"; };
 		8B81465B23628BD0008EDF50 /* AppleMusicResultParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicResultParseTests.swift; sourceTree = "<group>"; };
+		8BA96518250D4BF300A9244B /* ShowStartSample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ShowStartSample.json; sourceTree = "<group>"; };
+		8BA9651A250D4C6D00A9244B /* ShowStartResultParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowStartResultParseTests.swift; sourceTree = "<group>"; };
 		8BB9AF612454C71C004DCD20 /* DateShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateShows.swift; sourceTree = "<group>"; };
 		8BB9AF632454E85E004DCD20 /* ShowNameShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowNameShows.swift; sourceTree = "<group>"; };
 		8BB9AF6524551133004DCD20 /* HostNameShows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostNameShows.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 			children = (
 				8B451235240F603D00EAFEFC /* ShowResultParseTests.swift */,
 				8B45123E2410A4D500EAFEFC /* PlayResultParseTests.swift */,
+				8BA9651A250D4C6D00A9244B /* ShowStartResultParseTests.swift */,
 				8B46C4BD22DD9C05003E5277 /* ConfigurationParseTests.swift */,
 				8B437FB2234EE8F6002EDB91 /* ArchiveStreamParseTests.swift */,
 				8B81465B23628BD0008EDF50 /* AppleMusicResultParseTests.swift */,
@@ -252,6 +257,7 @@
 			children = (
 				8B451238240F606E00EAFEFC /* ShowSample.json */,
 				8B45123A240F6C4C00EAFEFC /* PlaySample.json */,
+				8BA96518250D4BF300A9244B /* ShowStartSample.json */,
 				8B46C4BB22DD9BBE003E5277 /* ConfigurationSample.json */,
 				8B437FAE234EE3CE002EDB91 /* ArchiveStreamSample.json */,
 				8B81465723617389008EDF50 /* AppleMusicSample.json */,
@@ -420,6 +426,7 @@
 				8B46C4BC22DD9BBE003E5277 /* ConfigurationSample.json in Resources */,
 				8B45123B240F6C4C00EAFEFC /* PlaySample.json in Resources */,
 				8B451239240F606E00EAFEFC /* ShowSample.json in Resources */,
+				8BA96519250D4BF300A9244B /* ShowStartSample.json in Resources */,
 				8B81465823617389008EDF50 /* AppleMusicSample.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,6 +473,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B81465C23628BD0008EDF50 /* AppleMusicResultParseTests.swift in Sources */,
+				8BA9651B250D4C6D00A9244B /* ShowStartResultParseTests.swift in Sources */,
 				8B451236240F603D00EAFEFC /* ShowResultParseTests.swift in Sources */,
 				8B45123F2410A4D500EAFEFC /* PlayResultParseTests.swift in Sources */,
 				8BFFECF722C96F6000E3378C /* XCTestCase+Helpers.swift in Sources */,

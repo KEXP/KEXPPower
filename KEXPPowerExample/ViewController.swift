@@ -21,13 +21,20 @@ class ViewController: UIViewController {
         networkManager.getPlay { result in
             print("playResult: \(result)")
         }
-        
+
         networkManager.getShow { result in
             print("showResult: \(result)")
         }
-        
+
         networkManager.getShowDetails(with: "47008") { result in
             print("showDetailsResult: \(result)")
+        }
+   
+        let now = Int(Date().timeIntervalSince1970)
+        let oneWeekAgo = now - 604800
+
+        networkManager.getShowStart(with: "\(oneWeekAgo)") { result in
+            print("showStartResult: \(result)")
         }
         
         archiveManager.retrieveArchieveShows { dateShows, hostShows, shows, genreShows in

@@ -158,6 +158,43 @@ public struct NetworkManager {
             }
         }
     }
+    
+    public func getShowStart(
+        with streamTime: String,
+        queue: DispatchQueue = .main,
+        completion: @escaping ShowDetailsCompletion)
+    {
+        var parameters = [URLQueryItem]()
+        parameters.append(URLQueryItem(name: "stream_time", value: streamTime))
+
+        router.get(url: KEXPPower.showStartURL, parameters: parameters) { result in
+            switch result {
+            case .success(let data):
+                do {
+                    let showDetails = try JSONDecoder().decode(Show.self, from: data)
+
+                    queue.async { completion(.success(showDetails)) }
+                } catch let error {
+                    let error = NSError(
+                        domain: "com.kexppower.error",
+                        code: 0,
+                        userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
+                    )
+                    
+                    queue.async { completion(.failure(error)) }
+                }
+                
+            case .failure(let error):
+                let error = NSError(
+                    domain: "com.kexppower.error",
+                    code: 0,
+                    userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
+                )
+                
+                queue.async { completion(.failure(error)) }
+            }
+        }
+    }
 
     public func getConfiguration(queue: DispatchQueue = .main, completion: @escaping ConfigurationCompletion) {
         guard

@@ -1,0 +1,20 @@
+{
+  "id": 48045,
+  "uri": "https://api.kexp.org/v2/shows/48045/",
+  "program": 14,
+  "program_uri": "https://api.kexp.org/v2/programs/14/",
+  "hosts": [
+    55
+  ],
+  "host_uris": [
+    "https://api.kexp.org/v2/hosts/55/"
+  ],
+  "program_name": "The Afternoon Show",
+  "program_tags": "Rock,Eclectic,Variety Mix",
+  "host_names": [
+    "Larry Mizell, Jr."
+  ],
+  "tagline": "Muisc Is Our Sanctuary! Happy Wednesday and all that.",
+  "image_uri": "https://www.kexp.org/media/filer_public/5e/ed/5eed57ed-2169-45b8-8605-266712b6eee3/larry_mizell_jr_thumbnail.png",
+  "start_time": "2020-08-26T13:01:17-07:00"
+}

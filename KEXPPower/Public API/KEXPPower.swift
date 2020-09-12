@@ -40,6 +40,7 @@ public class KEXPPower {
     static var kexpBaseURL: String!
     static var playURL = URL(string: kexpBaseURL + "/v2/plays")!
     static var showURL = URL(string: kexpBaseURL + "/v2/shows")!
+    static var showStartURL = URL(string: kexpBaseURL + "/get_show_start/")!
     static var streamingURL = URL(string: kexpBaseURL + "/get_streaming_url")!
     public var selectedArchiveBitRate: ArchiveBitRate!
     
