@@ -18,10 +18,13 @@ public class ArchiveManager {
         _ archiveShowsByHostName: [HostNameShows],
         _ archiveShowsGenre: [GenreShows]
     ) -> Void
+    
+    
+    public var allArchiveShows = [ArchiveShow]()
 
     private let networkManager = NetworkManager()
     private var archieveShowMp3s = [URL]()
-
+    
     public init() {}
     
     private let requestDate: String = {
@@ -44,14 +47,13 @@ public class ArchiveManager {
                 return
             }
             
-            var archiveShows = shows.map { ArchiveShow(show: $0) }
+            let archiveShows = shows.map { ArchiveShow(show: $0) }
+            strongSelf.allArchiveShows = strongSelf.updateShowEndTimes(archiveShows: archiveShows)
             
-            archiveShows = strongSelf.updateShowEndTimes(archiveShows: archiveShows)
-            
-            let showsByDate = strongSelf.getShowsByDate(allArchiveShows: archiveShows)
-            let showsByShowName = strongSelf.getShowsByShowName(allArchiveShows: archiveShows)
-            let showsByHostName = strongSelf.getShowsByHostName(allArchiveShows: archiveShows)
-            let showsByGenre = strongSelf.getShowsByGenre(allArchiveShows: archiveShows)
+            let showsByDate = strongSelf.getShowsByDate()
+            let showsByShowName = strongSelf.getShowsByShowName()
+            let showsByHostName = strongSelf.getShowsByHostName()
+            let showsByGenre = strongSelf.getShowsByGenre()
 
             completion(showsByDate, showsByShowName, showsByHostName, showsByGenre)
         }
@@ -164,7 +166,7 @@ public class ArchiveManager {
             lastShow.show.hostNames?.first == show.show.hostNames?.first
     }
     
-    private func getShowsByDate(allArchiveShows: [ArchiveShow]) -> [DateShows] {
+    private func getShowsByDate() -> [DateShows] {
         var showsByDate = [DateShows]()
         var twoWeekDates = [Date]()
         var date = Calendar.current.startOfDay(for: Date())
@@ -190,7 +192,7 @@ public class ArchiveManager {
         return showsByDate.reversed()
     }
     
-    private func getShowsByShowName(allArchiveShows: [ArchiveShow]) -> [ShowNameShows] {
+    private func getShowsByShowName() -> [ShowNameShows] {
         var showsByName = [ShowNameShows]()
         
         let allShowNames = allArchiveShows
@@ -209,7 +211,7 @@ public class ArchiveManager {
         return showsByName
     }
     
-    private func getShowsByHostName(allArchiveShows: [ArchiveShow]) -> [HostNameShows] {
+    private func getShowsByHostName() -> [HostNameShows] {
         var hostNameShows = [HostNameShows]()
         
         let allHostNames = allArchiveShows
@@ -228,7 +230,7 @@ public class ArchiveManager {
         return hostNameShows
     }
     
-    private func getShowsByGenre(allArchiveShows: [ArchiveShow]) -> [GenreShows] {
+    private func getShowsByGenre() -> [GenreShows] {
         var genreShows = [GenreShows]()
         
         let allGenres = allArchiveShows
