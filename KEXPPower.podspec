@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/KEXP'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Dustin Bergman' => 'dustin.bergman@gmail.com' }
-  s.source           = { :git => 'git@github.com:KEXP/KEXPPower.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/KEXP/KEXPPower.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/kexp'
 
   s.ios.deployment_target = '12.0'
