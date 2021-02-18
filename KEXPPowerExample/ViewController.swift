@@ -37,8 +37,8 @@ class ViewController: UIViewController {
             print("showStartResult: \(result)")
         }
         
-        archiveManager.retrieveArchieveShows { dateShows, hostShows, shows, genreShows in
-            print("retrieveArchieveShows: \(dateShows)")
+        archiveManager.retrieveArchiveShows { dateShows, hostShows, shows, genreShows in
+            print("retrieveArchiveShows: \(dateShows)")
         }
     }
 }
