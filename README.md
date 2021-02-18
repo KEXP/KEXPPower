@@ -1,9 +1,9 @@
 # KEXPPower
 
-A lightweight swift library that is used to communicate with the KEXP serivces to retrieve play and show information.
+A lightweight swift library that is used to communicate with the KEXP services to retrieve play and show information.
 
 ## Requirements
-- iOS 11.0+ / tvOS 11.0+
+- iOS 12.0+ / tvOS 12.0+
 - Xcode 11.4+
 - Swift 5+
 
@@ -37,9 +37,7 @@ KEXPPower.sharedInstance.setup(
     kexpBaseURL: kexpBaseURL,
     configurationURL: configurationURL,
     availableStreams: [AvailableStream(streamName: "Default Stream", streamURL: thirtyTwoBitURL)],
-    selectedArchiveBitRate: ArchiveBitRate.thirtyTwo,
-    defaultStreamIndex: 0,
-    backupStreamIndex: 1
+    selectedArchiveBitRate: ArchiveBitRate.thirtyTwo
 )
 ```
 

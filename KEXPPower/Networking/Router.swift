@@ -26,22 +26,22 @@ class Router {
         
         guard
             let requestURL = urlComponents?.url
-            else {
-                let error = NSError(
-                    domain: "com.kexppower.error",
-                    code: 0,
-                    userInfo: [NSLocalizedDescriptionKey: "Error building URL"]
-                )
-                
-                completion(.failure(error))
-                
-                return
+        else {
+            let error = NSError(
+                domain: "com.kexppower.error",
+                code: 0,
+                userInfo: [NSLocalizedDescriptionKey: "Error building URL"]
+            )
+            
+            completion(.failure(error))
+            
+            return
         }
         
         var request = URLRequest(url: requestURL)
         request.cachePolicy = .reloadIgnoringLocalCacheData
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
-        
+ 
         URLSession.shared.dataTask(with: request) { data, response, error in
             do {
                 guard

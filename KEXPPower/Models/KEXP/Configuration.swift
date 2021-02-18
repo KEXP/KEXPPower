@@ -10,7 +10,6 @@ import Foundation
 
 public struct Configuration: Decodable {
     public var kexpStreamUrl = KEXPPower.streamURL
-    public var kexpBackupStreamUrl = KEXPPower.backupStreamURL
     public var kexpNowPlayingLogo: URL
     public var updated: Int? = 0
 }

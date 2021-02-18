@@ -16,9 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         KEXPPower.sharedInstance.setup(
             kexpBaseURL: "https://api.kexp.org",
             availableStreams: retrieveAvailableStreams(),
-            selectedArchiveBitRate: .oneTwentyEight,
-            defaultStreamIndex: 0,
-            backupStreamIndex: 1
+            selectedArchiveBitRate: .oneTwentyEight
         )
 
         window = UIWindow(frame: UIScreen.main.bounds)

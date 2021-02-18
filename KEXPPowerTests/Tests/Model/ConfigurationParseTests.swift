@@ -22,9 +22,7 @@ class ConfigurationParseTests: XCTestCase {
             kexpBaseURL: "kexpBaseURL",
             configurationURL: URL(string: "http://www.kexp.org/config.json")!,
             availableStreams: [streamOne, streamTwo],
-            selectedArchiveBitRate: ArchiveBitRate.thirtyTwo,
-            defaultStreamIndex: 0,
-            backupStreamIndex: 1)
+            selectedArchiveBitRate: ArchiveBitRate.thirtyTwo)
         
         guard
             let configurationData = retrieveJSONData(for: "ConfigurationSample"),
@@ -40,11 +38,9 @@ class ConfigurationParseTests: XCTestCase {
         XCTAssertNotNil(configuration)
         
         let kexpStreamURL = "https://live-aacplus-64.streamguys1.com/kexp64.aac"
-        let kexpBackupStreamURL = "https://kexp-mp3-128.streamguys1.com/kexp128.mp3"
         let kexpNowPlayingLogo = "http://www.kexp.org/content/applications/AppleTV/img/kexp-logo-white.jpg"
         
         XCTAssertTrue(configuration?.kexpStreamUrl.absoluteString == kexpStreamURL)
-        XCTAssertTrue(configuration?.kexpBackupStreamUrl.absoluteString == kexpBackupStreamURL)
         XCTAssertTrue(configuration?.kexpNowPlayingLogo.absoluteString == kexpNowPlayingLogo)
         XCTAssertTrue(configuration?.updated == 1453041394)
     }
