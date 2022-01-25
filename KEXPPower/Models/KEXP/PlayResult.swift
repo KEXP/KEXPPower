@@ -82,6 +82,34 @@ public enum PlayType: String, Decodable {
 }
 
 extension Play {
+    
+    public init(id: Int, song: String?, artist: String?, album: String?, label: String?, airDate: Date?, comment: String?) {
+        self.id = id
+        self.uri = nil
+        self.show = nil
+        self.showURI = nil
+        self.imageURI = nil
+        self.thumbnailURI = nil
+        self.comment = comment
+        self.playType = nil
+        self.song = song
+        self.trackID = nil
+        self.recordingID = nil
+        self.artist = artist
+        self.artistIDs = []
+        self.album = album
+        self.releaseID = nil
+        self.releaseGroupID = nil
+        self.labels = label != nil ? [label!] : []
+        self.labelIDs = []
+        self.releaseDate = nil
+        self.rotationStatus = nil
+        self.isLocal = true
+        self.isRequest = false
+        self.isLive = false
+        self.airdate = airDate
+    }
+    
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
