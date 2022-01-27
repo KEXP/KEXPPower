@@ -82,7 +82,6 @@ public enum PlayType: String, Decodable {
 }
 
 extension Play {
-    
     public init(id: Int, song: String?, artist: String?, album: String?, label: String?, airDate: Date?, comment: String?) {
         self.id = id
         self.uri = nil
