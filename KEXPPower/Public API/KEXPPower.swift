@@ -43,7 +43,7 @@ public class KEXPPower {
     static var showURL = URL(string: kexpBaseURL + "/v2/shows")!
     static var showStartURL = URL(string: kexpBaseURL + "/get_show_start/")!
     static var streamingURL = URL(string: kexpBaseURL + "/get_streaming_url")!
-    
+
     /// Configure KEXPPower
     /// - Parameters:
     ///   - kexpBaseURL: Base URL for making network requests
@@ -60,8 +60,14 @@ public class KEXPPower {
     {
         KEXPPower.kexpBaseURL = kexpBaseURL
         KEXPPower.configurationURL = configurationURL
-        KEXPPower.availableStreams = availableStreams
-        KEXPPower.archiveStreams = archiveStreams
+        KEXPPower.availableStreams = availableStreams.map({ (stream) -> AvailableStream in
+            return AvailableStream(streamName: stream.streamName,
+                                   streamURL: ListenerId.sharedInstance.append(toURL: stream.streamURL))
+        })
+        KEXPPower.archiveStreams = archiveStreams?.map({ (stream) -> ArchiveStream in
+            return ArchiveStream(archiveBitRate: stream.archiveBitRate,
+                                 streamURL: ListenerId.sharedInstance.append(toURL: stream.streamURL))
+        })
         KEXPPower.selectedArchiveBitRate = selectedArchiveBitRate
     }
 
