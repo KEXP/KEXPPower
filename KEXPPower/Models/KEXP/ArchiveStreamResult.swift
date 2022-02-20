@@ -10,6 +10,7 @@ import UIKit
 
 public struct ArchiveStreamResult: Decodable {
     public var streamURL: URL?
+    public var nextStreamURL: URL?
     public var offset: Double?
 
     // Not in use at the moment
@@ -17,7 +18,7 @@ public struct ArchiveStreamResult: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case streamURL = "sg-url"
+        case nextStreamURL = "sg-url-next"
         case offset = "sg-offset"
-        case sgURLNext = "sg-url-next"
     }
 }
