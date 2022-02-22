@@ -121,7 +121,7 @@ public class ArchiveManager {
             let calculatedStart = calcEndTime.addingTimeInterval(-offset)
 
             // Append ListenerId to archive stream URL before passing off to completion block
-            streamURL = ListenerId.sharedInstance.append(toURL: streamURL)
+            streamURL = KEXPPower.appendListenerId(toURL: stream.streamURL)
 
             if calculatedStart <= startingPoint.addingTimeInterval(30) {
                 let elapsed = startingPoint.timeIntervalSince(calculatedStart)

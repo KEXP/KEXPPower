@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06D686C4279CBD36006BE6FB /* ListenerId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D686C3279CBD36006BE6FB /* ListenerId.swift */; };
 		8B159DC1233C66E500BCB7AB /* ArchiveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B159DC0233C66E500BCB7AB /* ArchiveManager.swift */; };
 		8B3C37AD234021E800413329 /* ArchiveShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3C37AC234021E800413329 /* ArchiveShow.swift */; };
 		8B437FAF234EE3CE002EDB91 /* ArchiveStreamSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B437FAE234EE3CE002EDB91 /* ArchiveStreamSample.json */; };
@@ -59,7 +58,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		06D686C3279CBD36006BE6FB /* ListenerId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenerId.swift; sourceTree = "<group>"; };
 		8B159DC0233C66E500BCB7AB /* ArchiveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveManager.swift; sourceTree = "<group>"; };
 		8B3C37AC234021E800413329 /* ArchiveShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveShow.swift; sourceTree = "<group>"; };
 		8B437FAE234EE3CE002EDB91 /* ArchiveStreamSample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ArchiveStreamSample.json; sourceTree = "<group>"; };
@@ -280,7 +278,6 @@
 			children = (
 				8BFFECFB22CB073100E3378C /* DateFormatter+StandardFormatters.swift */,
 				8B46C4BF22DEC811003E5277 /* UIImageView+Loading.swift */,
-				06D686C3279CBD36006BE6FB /* ListenerId.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -452,7 +449,6 @@
 			files = (
 				8B159DC1233C66E500BCB7AB /* ArchiveManager.swift in Sources */,
 				8BFFED0522D43EE700E3378C /* NetworkManager.swift in Sources */,
-				06D686C4279CBD36006BE6FB /* ListenerId.swift in Sources */,
 				8BD1638224551394006BF61F /* GenreShows.swift in Sources */,
 				8B46C4C022DEC811003E5277 /* UIImageView+Loading.swift in Sources */,
 				8BFFED0822D43F3800E3378C /* KEXPPower.swift in Sources */,

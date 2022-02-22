@@ -38,6 +38,10 @@ public class KEXPPower {
     /// URL for retrieving app configuration file
     public static var configurationURL: URL?
 
+    // Generate a random UUID that will be passed to StreamGuys in order to identify this particular
+    // streaming "session"
+    static let listenerId: UUID = .init()
+
     static var kexpBaseURL: String!
     static var playURL = URL(string: kexpBaseURL + "/v2/plays")!
     static var showURL = URL(string: kexpBaseURL + "/v2/shows")!
@@ -62,13 +66,24 @@ public class KEXPPower {
         KEXPPower.configurationURL = configurationURL
         KEXPPower.availableStreams = availableStreams.map({ (stream) -> AvailableStream in
             return AvailableStream(streamName: stream.streamName,
-                                   streamURL: ListenerId.sharedInstance.append(toURL: stream.streamURL))
+                                   streamURL: KEXPPower.appendListenerId(toURL: stream.streamURL))
         })
         KEXPPower.archiveStreams = archiveStreams?.map({ (stream) -> ArchiveStream in
             return ArchiveStream(archiveBitRate: stream.archiveBitRate,
-                                 streamURL: ListenerId.sharedInstance.append(toURL: stream.streamURL))
+                                 streamURL: KEXPPower.appendListenerId(toURL: stream.streamURL))
         })
         KEXPPower.selectedArchiveBitRate = selectedArchiveBitRate
+    }
+
+    static func appendListenerId(toURL url: URL) -> URL {
+        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        urlComponents?.queryItems = [
+            URLQueryItem(name: "listenerId", value: listenerId.uuidString)
+        ]
+        if let urlWithListenerId = urlComponents?.url {
+            return urlWithListenerId
+        }
+        return url
     }
 
     static var streamURL: URL {
