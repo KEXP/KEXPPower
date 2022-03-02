@@ -35,8 +35,6 @@ To configure `KEXPPower`, call the KEXPPower `setup` method in your application'
 ```swift
 KEXPPower.sharedInstance.setup(
     kexpBaseURL: kexpBaseURL,
-    configurationURL: configurationURL,
-    availableStreams: [AvailableStream(streamName: "Default Stream", streamURL: thirtyTwoBitURL)],
     selectedArchiveBitRate: ArchiveBitRate.thirtyTwo
 )
 ```
