@@ -26,10 +26,21 @@ public class KEXPPower {
     // Generate a random UUID that will be passed to StreamGuys in order to identify this particular
     // streaming "session"
     let listenerId: UUID = .init()
-    var playURL = URL(string: KEXPPower.sharedInstance.kexpBaseURL + "/v2/plays")!
-    var showURL = URL(string: KEXPPower.sharedInstance.kexpBaseURL + "/v2/shows")!
-    var showStartURL = URL(string: KEXPPower.sharedInstance.kexpBaseURL + "/get_show_start/")!
-    var streamingURL = URL(string: KEXPPower.sharedInstance.kexpBaseURL + "/get_streaming_url")!
+
+    var playURL: URL {
+        URL(string: KEXPPower.sharedInstance.kexpBaseURL + "/v2/plays")!
+    }
+    var showURL: URL {
+        URL(string: KEXPPower.sharedInstance.kexpBaseURL + "/v2/shows")!
+    }
+    
+    var showStartURL: URL {
+        URL(string: KEXPPower.sharedInstance.kexpBaseURL + "/get_show_start/")!
+    }
+            
+    var streamingURL: URL {
+        URL(string: KEXPPower.sharedInstance.kexpBaseURL + "/get_streaming_url")!
+    }
 
     private var kexpBaseURL: String!
 
