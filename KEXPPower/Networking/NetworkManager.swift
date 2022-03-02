@@ -225,9 +225,8 @@ public struct NetworkManager {
         }
     }
     
-    public func getArchiveStreamURL(bitrate: String, timestamp: String?, queue: DispatchQueue = .main, completion: @escaping ArchiveCompletion) {
+    public func getArchiveStreamURL(timestamp: String?, queue: DispatchQueue = .main, completion: @escaping ArchiveCompletion) {
         var parameters = [URLQueryItem]()
-        parameters.append(URLQueryItem(name: "bitrate", value: bitrate))
         parameters.append(URLQueryItem(name: "timestamp", value: timestamp))
         
         router.get(url: KEXPPower.streamingURL, parameters: parameters) { result in

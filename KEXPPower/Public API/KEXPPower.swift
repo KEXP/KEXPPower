@@ -8,33 +8,21 @@
 
 import Foundation
 
-/// Available Stream Entry
-public typealias AvailableStream = (streamName: String, streamURL: URL)
-
-/// Archive Stream Entry
-public typealias ArchiveStream = (archiveBitRate: ArchiveBitRate, streamURL: URL)
-
-/// Available archive bit rates
-public enum ArchiveBitRate: String {
-    case thirtyTwo = "32"
-    case sixtyFour = "64"
-    case oneTwentyEight = "128"
-}
-
 /// Class used to configure KEXP networking
 public class KEXPPower {
+    /// Available archive bit rates
+    public enum ArchiveBitRate: Int {
+        case thirtyTwo
+        case sixtyFour
+        case oneTwentyEight
+    }
+    
     /// Singleton access to KEXPower
     public static let sharedInstance = KEXPPower()
     
     /// User's selected archive bitrate
     public static var selectedArchiveBitRate: ArchiveBitRate!
-    
-    /// Available live streams the user can choose from
-    public static var availableStreams: [AvailableStream]?
-    
-    /// Available archive streams the user can choose from
-    public static var archiveStreams: [ArchiveStream]?
-    
+
     /// URL for retrieving app configuration file
     public static var configurationURL: URL?
 
@@ -51,27 +39,9 @@ public class KEXPPower {
     /// Configure KEXPPower
     /// - Parameters:
     ///   - kexpBaseURL: Base URL for making network requests
-    ///   - configurationURL: URL for retrieving app configuration file
-    ///   - availableStreams: Available live streams the user can choose from
-    ///   - archiveStreams: Available archive streams the user can choose from
     ///   - selectedArchiveBitRate: User's selected archive bitrate
-    public func setup(
-        kexpBaseURL: String,
-        configurationURL: URL? = nil,
-        availableStreams: [AvailableStream],
-        archiveStreams: [ArchiveStream]? = nil,
-        selectedArchiveBitRate: ArchiveBitRate)
-    {
+    public func setup(kexpBaseURL: String, selectedArchiveBitRate: ArchiveBitRate) {
         KEXPPower.kexpBaseURL = kexpBaseURL
-        KEXPPower.configurationURL = configurationURL
-        KEXPPower.availableStreams = availableStreams.map({ (stream) -> AvailableStream in
-            return AvailableStream(streamName: stream.streamName,
-                                   streamURL: KEXPPower.appendListenerId(toURL: stream.streamURL))
-        })
-        KEXPPower.archiveStreams = archiveStreams?.map({ (stream) -> ArchiveStream in
-            return ArchiveStream(archiveBitRate: stream.archiveBitRate,
-                                 streamURL: KEXPPower.appendListenerId(toURL: stream.streamURL))
-        })
         KEXPPower.selectedArchiveBitRate = selectedArchiveBitRate
     }
 
@@ -87,15 +57,18 @@ public class KEXPPower {
     }
 
     static var streamURL: URL {
-        guard
-            let defaultStreamURL = availableStreams?.first?.streamURL
-        else {
-            assertionFailure("Gotta have a streamURL dude.")
-            
-            return URL(string: "")!
-        }
+        let availableStreams = AvailableStreams(with: UUID())
         
-        return defaultStreamURL
+        switch selectedArchiveBitRate {
+        case .thirtyTwo:
+            return availableStreams.livePlayback[ArchiveBitRate.thirtyTwo.hashValue]
+        case .sixtyFour:
+            return availableStreams.livePlayback[ArchiveBitRate.sixtyFour.hashValue]
+        case .oneTwentyEight:
+            return availableStreams.livePlayback[ArchiveBitRate.oneTwentyEight.hashValue]
+        default:
+            return availableStreams.livePlayback[ArchiveBitRate.oneTwentyEight.hashValue]
+        }
     }
     
     static func getShowURL(with showId: String) -> URL {

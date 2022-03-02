@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8B159DC1233C66E500BCB7AB /* ArchiveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B159DC0233C66E500BCB7AB /* ArchiveManager.swift */; };
+		8B1AE2EC27CC29EA000BFE1F /* AvailableStreams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1AE2EB27CC29EA000BFE1F /* AvailableStreams.swift */; };
 		8B3C37AD234021E800413329 /* ArchiveShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3C37AC234021E800413329 /* ArchiveShow.swift */; };
 		8B437FAF234EE3CE002EDB91 /* ArchiveStreamSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B437FAE234EE3CE002EDB91 /* ArchiveStreamSample.json */; };
 		8B437FB1234EE45B002EDB91 /* ArchiveStreamResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B437FB0234EE45B002EDB91 /* ArchiveStreamResult.swift */; };
@@ -59,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		8B159DC0233C66E500BCB7AB /* ArchiveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveManager.swift; sourceTree = "<group>"; };
+		8B1AE2EB27CC29EA000BFE1F /* AvailableStreams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableStreams.swift; sourceTree = "<group>"; };
 		8B3C37AC234021E800413329 /* ArchiveShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveShow.swift; sourceTree = "<group>"; };
 		8B437FAE234EE3CE002EDB91 /* ArchiveStreamSample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ArchiveStreamSample.json; sourceTree = "<group>"; };
 		8B437FB0234EE45B002EDB91 /* ArchiveStreamResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveStreamResult.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				8BFFED0722D43F3800E3378C /* KEXPPower.swift */,
+				8B1AE2EB27CC29EA000BFE1F /* AvailableStreams.swift */,
 			);
 			path = "Public API";
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				8B451233240F5C1300EAFEFC /* ShowResult.swift in Sources */,
 				8BFFED0322D43EA100E3378C /* Router.swift in Sources */,
 				8B3C37AD234021E800413329 /* ArchiveShow.swift in Sources */,
+				8B1AE2EC27CC29EA000BFE1F /* AvailableStreams.swift in Sources */,
 				8B45123D240F6C7000EAFEFC /* PlayResult.swift in Sources */,
 				8BB9AF6624551133004DCD20 /* HostNameShows.swift in Sources */,
 				8B46C4BA22DD9B03003E5277 /* Configuration.swift in Sources */,

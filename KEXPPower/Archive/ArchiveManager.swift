@@ -20,6 +20,8 @@ public class ArchiveManager {
         _ archiveShowsGenre: [GenreShows]
     ) -> Void
     
+    public init() {}
+    
     /// All currently available archive shows
     public var allArchiveShows = [ArchiveShow]()
 
@@ -93,7 +95,6 @@ public class ArchiveManager {
     ///   - completion: Playback mp3s and offset
     public func getStreamURLs(for playbackTimeStamp: Date, completion: @escaping ArchivePlayBackCompletion) {
         networkManager.getArchiveStreamURL(
-            bitrate: KEXPPower.selectedArchiveBitRate.rawValue,
             timestamp: DateFormatter.archiveEndShowFormatter.string(from: playbackTimeStamp)) { result in
                 guard
                     case let .success(archiveStreamResult) = result,
