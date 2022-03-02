@@ -14,7 +14,6 @@ public struct NetworkManager {
     public typealias ShowDetailsCompletion = (_ result: Result<Show?, Error>) -> Void
     public typealias ArchiveCompletion = (_ result: Result<ArchiveStreamResult?, Error>) -> Void
     public typealias AppleMusicCompletion = (_ result: Result<AppleMusicResult?, Error>) -> Void
-    public typealias ConfigurationCompletion = (_ result: Result<Configuration?, Error>) -> Void
     
     private let router = Router()
     private let reachability = Reachability()
@@ -193,35 +192,6 @@ public struct NetworkManager {
                 
                 queue.async { completion(.failure(error)) }
             }
-        }
-    }
-
-    public func getConfiguration(queue: DispatchQueue = .main, completion: @escaping ConfigurationCompletion) {
-        guard
-            let configurationURL = KEXPPower.configurationURL,
-            let data = try? Data(contentsOf: configurationURL)
-        else {
-                let error = NSError(
-                domain: "com.kexppower.error",
-                code: 0,
-                userInfo: [NSLocalizedDescriptionKey: "Failure retrieving config"]
-            )
-            
-            queue.async { completion(.failure(error)) }
-            return
-        }
-        
-        do {
-            let configuration = try JSONDecoder().decode(Configuration.self, from: data)
-            queue.async {  completion(.success(configuration)) }
-        } catch let error {
-            let error = NSError(
-                domain: "com.kexppower.error",
-                code: 0,
-                userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
-            )
-            
-            queue.async { completion(.failure(error)) }
         }
     }
     

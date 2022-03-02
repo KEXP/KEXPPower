@@ -23,9 +23,6 @@ public class KEXPPower {
     /// User's selected archive bitrate
     public static var selectedArchiveBitRate: ArchiveBitRate!
 
-    /// URL for retrieving app configuration file
-    public static var configurationURL: URL?
-
     // Generate a random UUID that will be passed to StreamGuys in order to identify this particular
     // streaming "session"
     static let listenerId: UUID = .init()
