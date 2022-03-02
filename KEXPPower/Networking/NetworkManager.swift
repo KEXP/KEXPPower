@@ -40,7 +40,7 @@ public struct NetworkManager {
         parameters.append(URLQueryItem(name: "limit", value: "\(limit)"))
         parameters.append(URLQueryItem(name: "offset", value: "\(offset)"))
         
-        router.get(url: KEXPPower.playURL, parameters: parameters) { result in
+        router.get(url: KEXPPower.sharedInstance.playURL, parameters: parameters) { result in
             switch result {
             case .success(let data):
                 do {
@@ -95,7 +95,7 @@ public struct NetworkManager {
             parameters.append(URLQueryItem(name: "offset", value: "\(offset)"))
         }
 
-        router.get(url: KEXPPower.showURL, parameters: parameters) { result in
+        router.get(url: KEXPPower.sharedInstance.showURL, parameters: parameters) { result in
             switch result {
             case .success(let data):
                 do {
@@ -166,7 +166,7 @@ public struct NetworkManager {
         var parameters = [URLQueryItem]()
         parameters.append(URLQueryItem(name: "stream_time", value: streamTime))
 
-        router.get(url: KEXPPower.showStartURL, parameters: parameters) { result in
+        router.get(url: KEXPPower.sharedInstance.showStartURL, parameters: parameters) { result in
             switch result {
             case .success(let data):
                 do {
@@ -199,7 +199,7 @@ public struct NetworkManager {
         var parameters = [URLQueryItem]()
         parameters.append(URLQueryItem(name: "timestamp", value: timestamp))
         
-        router.get(url: KEXPPower.streamingURL, parameters: parameters) { result in
+        router.get(url: KEXPPower.sharedInstance.streamingURL, parameters: parameters) { result in
             switch result {
             case .success(let data):
                 do {

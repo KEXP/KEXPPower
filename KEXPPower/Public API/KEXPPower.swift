@@ -21,55 +21,44 @@ public class KEXPPower {
     public static let sharedInstance = KEXPPower()
     
     /// User's selected archive bitrate
-    public static var selectedArchiveBitRate: ArchiveBitRate!
+    public var selectedArchiveBitRate: ArchiveBitRate!
 
     // Generate a random UUID that will be passed to StreamGuys in order to identify this particular
     // streaming "session"
-    static let listenerId: UUID = .init()
+    let listenerId: UUID = .init()
+    var playURL = URL(string: KEXPPower.sharedInstance.kexpBaseURL + "/v2/plays")!
+    var showURL = URL(string: KEXPPower.sharedInstance.kexpBaseURL + "/v2/shows")!
+    var showStartURL = URL(string: KEXPPower.sharedInstance.kexpBaseURL + "/get_show_start/")!
+    var streamingURL = URL(string: KEXPPower.sharedInstance.kexpBaseURL + "/get_streaming_url")!
 
-    static var kexpBaseURL: String!
-    static var playURL = URL(string: kexpBaseURL + "/v2/plays")!
-    static var showURL = URL(string: kexpBaseURL + "/v2/shows")!
-    static var showStartURL = URL(string: kexpBaseURL + "/get_show_start/")!
-    static var streamingURL = URL(string: kexpBaseURL + "/get_streaming_url")!
+    private var kexpBaseURL: String!
 
     /// Configure KEXPPower
     /// - Parameters:
     ///   - kexpBaseURL: Base URL for making network requests
     ///   - selectedArchiveBitRate: User's selected archive bitrate
     public func setup(kexpBaseURL: String, selectedArchiveBitRate: ArchiveBitRate) {
-        KEXPPower.kexpBaseURL = kexpBaseURL
-        KEXPPower.selectedArchiveBitRate = selectedArchiveBitRate
+        self.kexpBaseURL = kexpBaseURL
+        self.selectedArchiveBitRate = selectedArchiveBitRate
     }
-
-    static func appendListenerId(toURL url: URL) -> URL {
-        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
-        urlComponents?.queryItems = [
-            URLQueryItem(name: "listenerId", value: listenerId.uuidString)
-        ]
-        if let urlWithListenerId = urlComponents?.url {
-            return urlWithListenerId
-        }
-        return url
-    }
-
-    static var streamURL: URL {
-        let availableStreams = AvailableStreams(with: UUID())
+    
+    public var streamURL: URL {
+        let availableStreams = AvailableStreams(with: KEXPPower.sharedInstance.listenerId)
         
-        switch selectedArchiveBitRate {
+        switch KEXPPower.sharedInstance.selectedArchiveBitRate {
         case .thirtyTwo:
-            return availableStreams.livePlayback[ArchiveBitRate.thirtyTwo.hashValue]
+            return availableStreams.livePlayback[ArchiveBitRate.thirtyTwo.rawValue]
         case .sixtyFour:
-            return availableStreams.livePlayback[ArchiveBitRate.sixtyFour.hashValue]
+            return availableStreams.livePlayback[ArchiveBitRate.sixtyFour.rawValue]
         case .oneTwentyEight:
-            return availableStreams.livePlayback[ArchiveBitRate.oneTwentyEight.hashValue]
+            return availableStreams.livePlayback[ArchiveBitRate.oneTwentyEight.rawValue]
         default:
-            return availableStreams.livePlayback[ArchiveBitRate.oneTwentyEight.hashValue]
+            return availableStreams.livePlayback[ArchiveBitRate.oneTwentyEight.rawValue]
         }
     }
     
     static func getShowURL(with showId: String) -> URL {
-        return URL(string: kexpBaseURL + "/v2/shows/\(showId)")!
+        return URL(string: KEXPPower.sharedInstance.kexpBaseURL + "/v2/shows/\(showId)")!
     }
 
     private init(){}

@@ -95,25 +95,39 @@ public class ArchiveManager {
     ///   - completion: Playback mp3s and offset
     public func getStreamURLs(for playbackTimeStamp: Date, completion: @escaping ArchivePlayBackCompletion) {
         networkManager.getArchiveStreamURL(
-            timestamp: DateFormatter.archiveEndShowFormatter.string(from: playbackTimeStamp)) { result in
+            timestamp: DateFormatter.archiveEndShowFormatter.string(from: playbackTimeStamp)) { [weak self] result in
                 guard
+                    let strongSelf = self,
                     case let .success(archiveStreamResult) = result,
                     let offset = archiveStreamResult?.offset,
-                    let streamURL = archiveStreamResult?.streamURL
+                    var streamURL = archiveStreamResult?.streamURL
                 else {
                     completion([], 0)
                     return
                 }
                 
                 var showPlaybackFiles = [URL]()
+                streamURL = strongSelf.appendListenerId(toURL: streamURL)
                 showPlaybackFiles.append(streamURL)
             
-                if let nextStreamURL = archiveStreamResult?.nextStreamURL {
+                if var nextStreamURL = archiveStreamResult?.nextStreamURL {
+                    nextStreamURL = strongSelf.appendListenerId(toURL: nextStreamURL)
                     showPlaybackFiles.append(nextStreamURL)
                 }
                 
                 completion(showPlaybackFiles, offset)
             }
+    }
+    
+    private func appendListenerId(toURL url: URL) -> URL {
+        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        urlComponents?.queryItems = [
+            URLQueryItem(name: "listenerId", value: KEXPPower.sharedInstance.listenerId.uuidString)
+        ]
+        if let urlWithListenerId = urlComponents?.url {
+            return urlWithListenerId
+        }
+        return url
     }
 
     private func updateShowEndTimes(archiveShows: [ArchiveShow]) -> [ArchiveShow] {
