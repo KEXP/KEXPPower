@@ -38,12 +38,16 @@ public class KEXPPower {
     /// URL for retrieving app configuration file
     public static var configurationURL: URL?
 
+    // Generate a random UUID that will be passed to StreamGuys in order to identify this particular
+    // streaming "session"
+    static let listenerId: UUID = .init()
+
     static var kexpBaseURL: String!
     static var playURL = URL(string: kexpBaseURL + "/v2/plays")!
     static var showURL = URL(string: kexpBaseURL + "/v2/shows")!
     static var showStartURL = URL(string: kexpBaseURL + "/get_show_start/")!
     static var streamingURL = URL(string: kexpBaseURL + "/get_streaming_url")!
-    
+
     /// Configure KEXPPower
     /// - Parameters:
     ///   - kexpBaseURL: Base URL for making network requests
@@ -60,9 +64,26 @@ public class KEXPPower {
     {
         KEXPPower.kexpBaseURL = kexpBaseURL
         KEXPPower.configurationURL = configurationURL
-        KEXPPower.availableStreams = availableStreams
-        KEXPPower.archiveStreams = archiveStreams
+        KEXPPower.availableStreams = availableStreams.map({ (stream) -> AvailableStream in
+            return AvailableStream(streamName: stream.streamName,
+                                   streamURL: KEXPPower.appendListenerId(toURL: stream.streamURL))
+        })
+        KEXPPower.archiveStreams = archiveStreams?.map({ (stream) -> ArchiveStream in
+            return ArchiveStream(archiveBitRate: stream.archiveBitRate,
+                                 streamURL: KEXPPower.appendListenerId(toURL: stream.streamURL))
+        })
         KEXPPower.selectedArchiveBitRate = selectedArchiveBitRate
+    }
+
+    static func appendListenerId(toURL url: URL) -> URL {
+        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        urlComponents?.queryItems = [
+            URLQueryItem(name: "listenerId", value: listenerId.uuidString)
+        ]
+        if let urlWithListenerId = urlComponents?.url {
+            return urlWithListenerId
+        }
+        return url
     }
 
     static var streamURL: URL {

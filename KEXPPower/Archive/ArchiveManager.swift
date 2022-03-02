@@ -112,13 +112,16 @@ public class ArchiveManager {
                 let startingPoint = playbackStartDate ?? archiveShow.show.startTime,
                 let strongSelf = self,
                 let offset = archiveStreamResult?.offset,
-                let streamURL = archiveStreamResult?.streamURL
+                var streamURL = archiveStreamResult?.streamURL
             else {
                 completion([], 0)
                 return
             }
             
             let calculatedStart = calcEndTime.addingTimeInterval(-offset)
+
+            // Append ListenerId to archive stream URL before passing off to completion block
+            streamURL = KEXPPower.appendListenerId(toURL: streamURL)
 
             if calculatedStart <= startingPoint.addingTimeInterval(30) {
                 let elapsed = startingPoint.timeIntervalSince(calculatedStart)
