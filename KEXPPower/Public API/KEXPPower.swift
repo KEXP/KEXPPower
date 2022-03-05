@@ -11,7 +11,7 @@ import Foundation
 /// Class used to configure KEXP networking
 public class KEXPPower {
     /// Available archive bit rates
-    public enum ArchiveBitRate: Int {
+    public enum StreamingBitRate: Int {
         case thirtyTwo
         case sixtyFour
         case oneTwentyEight
@@ -21,7 +21,7 @@ public class KEXPPower {
     public static let sharedInstance = KEXPPower()
     
     /// User's selected archive bitrate
-    public var selectedArchiveBitRate: ArchiveBitRate!
+    public var selectedBitRate: StreamingBitRate!
 
     // Generate a random UUID that will be passed to StreamGuys in order to identify this particular
     // streaming "session"
@@ -47,25 +47,17 @@ public class KEXPPower {
     /// Configure KEXPPower
     /// - Parameters:
     ///   - kexpBaseURL: Base URL for making network requests
-    ///   - selectedArchiveBitRate: User's selected archive bitrate
-    public func setup(kexpBaseURL: String, selectedArchiveBitRate: ArchiveBitRate) {
+    ///   - selectedBitRate: User's selected bitrate
+    public func setup(kexpBaseURL: String, selectedBitRate: StreamingBitRate) {
         self.kexpBaseURL = kexpBaseURL
-        self.selectedArchiveBitRate = selectedArchiveBitRate
+        self.selectedBitRate = selectedBitRate
     }
     
     public var streamURL: URL {
         let availableStreams = AvailableStreams(with: KEXPPower.sharedInstance.listenerId)
         
-        switch KEXPPower.sharedInstance.selectedArchiveBitRate {
-        case .thirtyTwo:
-            return availableStreams.livePlayback[ArchiveBitRate.thirtyTwo.rawValue]
-        case .sixtyFour:
-            return availableStreams.livePlayback[ArchiveBitRate.sixtyFour.rawValue]
-        case .oneTwentyEight:
-            return availableStreams.livePlayback[ArchiveBitRate.oneTwentyEight.rawValue]
-        default:
-            return availableStreams.livePlayback[ArchiveBitRate.oneTwentyEight.rawValue]
-        }
+        return availableStreams.livePlayback[KEXPPower.sharedInstance.selectedBitRate] ??
+            URL(string: "https://kexp-mp3-128.streamguys1.com/kexp128.mp3?listenerId\(listenerId.uuidString)")!
     }
     
     static func getShowURL(with showId: String) -> URL {

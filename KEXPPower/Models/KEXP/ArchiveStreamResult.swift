@@ -12,9 +12,6 @@ public struct ArchiveStreamResult: Decodable {
     public var streamURL: URL?
     public var nextStreamURL: URL?
     public var offset: Double?
-
-    // Not in use at the moment
-    private var sgURLNext: URL?
     
     enum CodingKeys: String, CodingKey {
         case streamURL = "sg-url"
