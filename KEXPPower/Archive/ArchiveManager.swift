@@ -20,13 +20,12 @@ public class ArchiveManager {
         _ archiveShowsGenre: [GenreShows]
     ) -> Void
     
+    public init() {}
+    
     /// All currently available archive shows
     public var allArchiveShows = [ArchiveShow]()
 
     private let networkManager = NetworkManager()
-    private var archiveShowMp3s = [URL]()
-
-    public init() {}
     
     private let requestDate: String = {
         let cal = Calendar.current
@@ -37,7 +36,6 @@ public class ArchiveManager {
         return requestDate
     } ()
 
-    
     /// Retrieves currently available archive shows from `KEXP`
     /// - Parameter completion: Returns the all archived shows sorted by Date/Show Name/Host Name/Genre
     public func retrieveArchiveShows(completion: @escaping ArchiveShowCompletion) {
@@ -64,7 +62,9 @@ public class ArchiveManager {
     }
 
     /// Generates the available starting times for a particular archived show.
-    /// - Parameter completion: Returns an archive show's showtimes for display
+    /// - Parameter
+    ///  - showDetails: Archive show to gather starting times for
+    ///  - completion: Returns an archive show's showtimes for display
     public func archiveStreamStartTimes(with showDetails: ArchiveShow, completion: ArchiveShowTimesCompletion) {
         guard
             let startAirDate = showDetails.show.startTime,
@@ -91,57 +91,45 @@ public class ArchiveManager {
     
     /// Retrieves the URLs needed to play an archive show
     /// - Parameters:
-    ///   - archiveShow: The show to retrieve playback mp3s for
-    ///   - playbackStartDate: The show playback start date
+    ///   - playbackTimeStamp: The show playback start timestamp
     ///   - completion: Playback mp3s and offset
-    public func getStreamURLs(for archiveShow: ArchiveShow, playbackStartDate: Date? = nil, completion: @escaping ArchivePlayBackCompletion) {
-        guard let showEndTime = archiveShow.showEndTime else { return }
-
-        gatherShowMp3s(archiveShow: archiveShow, playbackStartDate: playbackStartDate, calcEndTime: showEndTime, completion: completion)
-        archiveShowMp3s.removeAll()
-    }
-    
-    private func gatherShowMp3s(archiveShow: ArchiveShow, playbackStartDate: Date? = nil, calcEndTime: Date, completion: @escaping ArchivePlayBackCompletion) {
-        let calculatedEndTimeRequest = calcEndTime.addingTimeInterval(-30)
-        let requestEndTime = DateFormatter.archiveEndShowFormatter.string(from: calculatedEndTimeRequest)
-        
-        
-        networkManager.getArchiveStreamURL(bitrate: KEXPPower.selectedArchiveBitRate.rawValue, timestamp: requestEndTime, completion: { [weak self] result in
-            guard
-                case let .success(archiveStreamResult) = result,
-                let startingPoint = playbackStartDate ?? archiveShow.show.startTime,
-                let strongSelf = self,
-                let offset = archiveStreamResult?.offset,
-                var streamURL = archiveStreamResult?.streamURL
-            else {
-                completion([], 0)
-                return
-            }
-            
-            let calculatedStart = calcEndTime.addingTimeInterval(-offset)
-
-            // Append ListenerId to archive stream URL before passing off to completion block
-            streamURL = KEXPPower.appendListenerId(toURL: streamURL)
-
-            if calculatedStart <= startingPoint.addingTimeInterval(30) {
-                let elapsed = startingPoint.timeIntervalSince(calculatedStart)
-                strongSelf.archiveShowMp3s.insert(streamURL, at: 0)
-
-                completion(strongSelf.archiveShowMp3s, elapsed)
-            } else {
-                strongSelf.archiveShowMp3s.insert(streamURL, at: 0)
-                let calculatedEndTime = calculatedStart.addingTimeInterval(-30)
+    public func getStreamURLs(for playbackTimeStamp: Date, completion: @escaping ArchivePlayBackCompletion) {
+        networkManager.getArchiveStreamURL(
+            timestamp: DateFormatter.archiveEndShowFormatter.string(from: playbackTimeStamp)) { [weak self] result in
+                guard
+                    let strongSelf = self,
+                    case let .success(archiveStreamResult) = result,
+                    let offset = archiveStreamResult?.offset,
+                    var streamURL = archiveStreamResult?.streamURL
+                else {
+                    completion([], 0)
+                    return
+                }
                 
-                strongSelf.gatherShowMp3s(
-                    archiveShow: archiveShow,
-                    playbackStartDate: startingPoint,
-                    calcEndTime: calculatedEndTime,
-                    completion: completion
-                )
+                var showPlaybackFiles = [URL]()
+                streamURL = strongSelf.appendListenerId(toURL: streamURL)
+                showPlaybackFiles.append(streamURL)
+            
+                if var nextStreamURL = archiveStreamResult?.nextStreamURL {
+                    nextStreamURL = strongSelf.appendListenerId(toURL: nextStreamURL)
+                    showPlaybackFiles.append(nextStreamURL)
+                }
+                
+                completion(showPlaybackFiles, offset)
             }
-        })
     }
     
+    private func appendListenerId(toURL url: URL) -> URL {
+        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        urlComponents?.queryItems = [
+            URLQueryItem(name: "listenerId", value: KEXPPower.sharedInstance.listenerId.uuidString)
+        ]
+        if let urlWithListenerId = urlComponents?.url {
+            return urlWithListenerId
+        }
+        return url
+    }
+
     private func updateShowEndTimes(archiveShows: [ArchiveShow]) -> [ArchiveShow] {
         var updatedShows = [ArchiveShow]()
         var endTime: Date?
