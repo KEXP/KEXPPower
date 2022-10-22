@@ -4,7 +4,7 @@ A lightweight swift library that is used to communicate with the KEXP services t
 
 ## Requirements
 - iOS 12.0+ / tvOS 12.0+
-- Xcode 11.4+
+- Xcode 14
 - Swift 5+
 
 ## Installation
@@ -51,7 +51,12 @@ networkManager.getShow() {result, showResult in
 }
 ```
 
-###Contribute/Usage
+### Development Usage
+```ruby
+pod 'KEXPPower', :git => 'git@github.com:KEXP/KEXPPower.git', :branch => 'develop'
+```
+
+### Contribute/Usage
 If you want to use and/or contribute to this library, please reach out and I can provide setup parameters for `KEXPPowerExample` 
 
 ## Author
