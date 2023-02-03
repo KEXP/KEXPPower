@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         KEXPPower.sharedInstance.setup(
             kexpBaseURL: "https://api.kexp.org",
-            selectedBitRate: KEXPPower.StreamingBitRate.oneTwentyEight
+            selectedBitRate: KEXPPower.StreamingBitRate.sixtyFour
         )
 
         window = UIWindow(frame: UIScreen.main.bounds)
