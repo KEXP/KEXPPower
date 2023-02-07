@@ -12,9 +12,8 @@ import Foundation
 public class KEXPPower {
     /// Available archive bit rates
     public enum StreamingBitRate: Int {
-        case thirtyTwo
         case sixtyFour
-        case oneTwentyEight
+        case oneSixty
     }
     
     /// Singleton access to KEXPower
@@ -57,7 +56,7 @@ public class KEXPPower {
         let availableStreams = AvailableStreams(with: KEXPPower.sharedInstance.listenerId)
         
         return availableStreams.livePlayback[KEXPPower.sharedInstance.selectedBitRate] ??
-            URL(string: "https://kexp-mp3-128.streamguys1.com/kexp128.mp3?listenerId=\(listenerId.uuidString)")!
+            URL(string: "https://kexp.streamguys1.com/kexp64-hls/playlist.m3u8?listenerId=\(listenerId.uuidString)")!
     }
     
     static func getShowURL(with showId: String) -> URL {

@@ -14,9 +14,8 @@ class AvailableStreams {
     init(with listenerId: UUID) {
         var livePlaybackDict = [KEXPPower.StreamingBitRate: URL]()
         
-        livePlaybackDict[KEXPPower.StreamingBitRate.thirtyTwo] = URL(string: "https://kexp-mp3-32.streamguys1.com/kexp32.mp3?listenerId=\(listenerId.uuidString)")!
-        livePlaybackDict[KEXPPower.StreamingBitRate.sixtyFour] = URL(string: "https://kexp-aacPlus-64.streamguys1.com/kexp64.aac?listenerId=\(listenerId.uuidString)")!
-        livePlaybackDict[KEXPPower.StreamingBitRate.oneTwentyEight] = URL(string: "https://kexp-mp3-128.streamguys1.com/kexp128.mp3?listenerId=\(listenerId.uuidString)")!
+        livePlaybackDict[KEXPPower.StreamingBitRate.sixtyFour] = URL(string: "https://kexp.streamguys1.com/kexp64-hls/playlist.m3u8?listenerId=\(listenerId.uuidString)")!
+        livePlaybackDict[KEXPPower.StreamingBitRate.oneSixty] = URL(string: "https://kexp.streamguys1.com/kexp160-hls/playlist.m3u8?listenerId=\(listenerId.uuidString)")!
         
         livePlayback = livePlaybackDict
     }
