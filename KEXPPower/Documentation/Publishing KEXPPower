@@ -1,0 +1,35 @@
+Publishing KEXPPower Cocoapod
+
+1) Checkout the main branch of KEXPower
+    - git checkout main
+
+2) Make sure you have the latest changes
+    - git pull
+    
+3) Update version in appropriate areas following Semantic Versioning: Major.Minor.Patch
+    - Target: Martketing Version
+    - Podspec: s.version
+    
+4) Tag KEXPPower
+    - git tag X.X.X -m "KEXPPower X.X.X"
+
+5) Push newly created tag
+    - git push origin X.X.X
+
+6) Publish updated KEXPPower to public Cocoapods
+    - pod pod trunk push KEXPPower.podspec
+    
+7) That's it! You'll need to wait about 10-20 minutes before you are able to pull down the latest version when using:
+    - pod update KEXPPower
+
+
+
+
+
+Semantic Versioning Notes
+Major.Minor.Patch
+Major = Breaking changes
+Minor = Minor changes, enhancements, features NON Breaking changes
+Patch = Bug Fixes
+
+

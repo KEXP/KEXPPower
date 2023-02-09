@@ -21,6 +21,7 @@
 		8B45123F2410A4D500EAFEFC /* PlayResultParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45123E2410A4D500EAFEFC /* PlayResultParseTests.swift */; };
 		8B46C4C022DEC811003E5277 /* UIImageView+Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C4BF22DEC811003E5277 /* UIImageView+Loading.swift */; };
 		8B46C4C422DEE016003E5277 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B46C4C322DEE016003E5277 /* Reachability.swift */; };
+		8B5EB7112992184700AD9588 /* Publishing KEXPPower in Resources */ = {isa = PBXBuildFile; fileRef = 8B5EB7102992184700AD9588 /* Publishing KEXPPower */; };
 		8B7D0C9F22F27452007875A3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 8B7D0C9E22F27452007875A3 /* README.md */; };
 		8B81465823617389008EDF50 /* AppleMusicSample.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B81465723617389008EDF50 /* AppleMusicSample.json */; };
 		8B81465A23628A1B008EDF50 /* AppleMusicResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81465923628A1B008EDF50 /* AppleMusicResult.swift */; };
@@ -70,7 +71,8 @@
 		8B45123E2410A4D500EAFEFC /* PlayResultParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayResultParseTests.swift; sourceTree = "<group>"; };
 		8B46C4BF22DEC811003E5277 /* UIImageView+Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Loading.swift"; sourceTree = "<group>"; };
 		8B46C4C322DEE016003E5277 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		8B7D0C9E22F27452007875A3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		8B5EB7102992184700AD9588 /* Publishing KEXPPower */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Publishing KEXPPower"; sourceTree = "<group>"; };
+		8B7D0C9E22F27452007875A3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = KEXPPower/Documentation/README.md; sourceTree = SOURCE_ROOT; };
 		8B81465723617389008EDF50 /* AppleMusicSample.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AppleMusicSample.json; sourceTree = "<group>"; };
 		8B81465923628A1B008EDF50 /* AppleMusicResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicResult.swift; sourceTree = "<group>"; };
 		8B81465B23628BD0008EDF50 /* AppleMusicResultParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicResultParseTests.swift; sourceTree = "<group>"; };
@@ -147,6 +149,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8B5EB70F299217E700AD9588 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				8B7D0C9E22F27452007875A3 /* README.md */,
+				8B5EB7102992184700AD9588 /* Publishing KEXPPower */,
+			);
+			path = Documentation;
+			sourceTree = "<group>";
+		};
 		8B961EE0236162BD00085D05 /* KEXP */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,7 +212,7 @@
 		8BFFECB722C95E6100E3378C /* KEXPPower */ = {
 			isa = PBXGroup;
 			children = (
-				8B7D0C9E22F27452007875A3 /* README.md */,
+				8B5EB70F299217E700AD9588 /* Documentation */,
 				8BFFED0922DBD2DE00E3378C /* KEXPPower.podspec */,
 				8B159DBF233C665200BCB7AB /* Archive */,
 				8BFFED0622D43F0B00E3378C /* Public API */,
@@ -408,6 +419,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B5EB7112992184700AD9588 /* Publishing KEXPPower in Resources */,
 				8B7D0C9F22F27452007875A3 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
