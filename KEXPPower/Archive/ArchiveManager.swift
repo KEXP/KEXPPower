@@ -78,7 +78,7 @@ public class ArchiveManager {
         var archiveShowStartTimes = [ArchiveShowStart]()
 
         while archiveShowStartTime < showEndTime {
-            let archiveShowStart = ArchiveShowStart(startTimeDisplay: DateFormatter.displayFormatter.string(from: archiveShowStartTime),
+            let archiveShowStart = ArchiveShowStart(startTimeDisplay: DateFormatter.archiveShowStartTimeFormatter.string(from: archiveShowStartTime),
                                                     startTimeDate: archiveShowStartTime)
             archiveShowStartTimes.append(archiveShowStart)
 
