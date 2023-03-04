@@ -1,4 +1,4 @@
-Publishing KEXPPower Cocoapod
+## Publishing KEXPPower Cocoapod
 
 1) Checkout the main branch of KEXPower
     - git checkout main
@@ -23,6 +23,14 @@ Publishing KEXPPower Cocoapod
     - pod update KEXPPower
 
 
+## Updating the iOS Applications
+
+1) Open the root directory of the project in a Terminal window
+
+2) Verify that the Podfile exists at this location. 
+
+3) Run the following in Terminal
+    - pod update KEXPPower
 
 Semantic Versioning Notes
 Major.Minor.Patch
