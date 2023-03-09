@@ -35,7 +35,6 @@
             "label_ids": [
                 "841ad59d-8bbd-4955-a70c-9db586492184"
             ],
-            "release_date": "2018-01-01",
             "rotation_status": null,
             "is_local": false,
             "is_request": false,
@@ -59,9 +58,6 @@
             "album": "Tribal Gathering: Songs from the Sweat Shed",
             "release_id": null,
             "release_group_id": null,
-            "labels": [
-                "[no label]"
-            ],
             "label_ids": [],
             "release_date": "2020-02-21",
             "rotation_status": "R/N",
