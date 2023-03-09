@@ -102,7 +102,15 @@ extension DateFormatter {
         formatter.timeZone = TimeZone.current
         return formatter
     }()
-    
+
+    public static let displayFormatterWithDate: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        formatter.timeZone = NSTimeZone.local
+        return formatter
+    }()
+
     // MARK: - Standard formatters
     
     public static let timeFormatter: DateFormatter = {
