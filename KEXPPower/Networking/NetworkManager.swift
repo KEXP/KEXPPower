@@ -9,6 +9,7 @@
 import Foundation
 
 public struct NetworkManager {
+    public typealias PlayIdCompletion = (_ result: Result<Play?, Error>) -> Void
     public typealias PlayCompletion = (_ result: Result<PlayResult?, Error>) -> Void
     public typealias ShowCompletion = (_ result: Result<ShowResult?, Error>) -> Void
     public typealias ShowDetailsCompletion = (_ result: Result<Show?, Error>) -> Void
@@ -68,6 +69,40 @@ public struct NetworkManager {
             }
         }
     }
+    
+    public func getPlayWith(
+        playID: String?,
+        queue: DispatchQueue = .main,
+        completion: @escaping PlayIdCompletion)
+      {
+        router.get(url: URL(string: playID!)!) { result in
+          switch result {
+              case .success(let data):
+                do {
+                  let play = try JSONDecoder().decode(Play.self, from: data)
+                  queue.async { completion(.success(play)) }
+                   
+                } catch let error {
+                  let error = NSError(
+                    domain: "com.kexppower.error",
+                    code: 0,
+                    userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
+                  )
+                   
+                  queue.async { completion(.failure(error)) }
+                }
+                 
+              case .failure(let error):
+                let error = NSError(
+                  domain: "com.kexppower.error",
+                  code: 0,
+                  userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
+                )
+             
+            queue.async { completion(.failure(error)) }
+          }
+        }
+      }
     
     public func getShow(
         startTimeBefore: String? = nil,
