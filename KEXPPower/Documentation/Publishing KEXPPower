@@ -7,7 +7,7 @@
     - git pull
     
 3) Update version in appropriate areas following Semantic Versioning: Major.Minor.Patch
-    - Target: Martketing Version (KEXPower => Build Settings => Marketing Version)
+    - Target: Martketing Version (KEXPower project => Build Settings => Marketing Version)
     - Podspec: s.version (KEXPPower => KEXPPower.podspec => s.version)
     
 4) Tag KEXPPower
