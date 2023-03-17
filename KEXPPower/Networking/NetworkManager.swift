@@ -71,38 +71,41 @@ public struct NetworkManager {
     }
     
     public func getPlayWith(
-        playID: String?,
+        playID: Int,
         queue: DispatchQueue = .main,
         completion: @escaping PlayIdCompletion)
-      {
-        router.get(url: URL(string: playID!)!) { result in
-          switch result {
-              case .success(let data):
+    {
+        var url = KEXPPower.sharedInstance.playURL
+        url.appendPathComponent(_: String(playID))
+      
+        router.get(url: url) { result in
+            switch result {
+            case .success(let data):
                 do {
-                  let play = try JSONDecoder().decode(Play.self, from: data)
-                  queue.async { completion(.success(play)) }
-                   
+                    let play = try JSONDecoder().decode(Play.self, from: data)
+                    queue.async { completion(.success(play)) }
+                    
                 } catch let error {
-                  let error = NSError(
+                    let error = NSError(
+                        domain: "com.kexppower.error",
+                        code: 0,
+                        userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
+                    )
+                    
+                    queue.async { completion(.failure(error)) }
+                }
+                
+            case .failure(let error):
+                let error = NSError(
                     domain: "com.kexppower.error",
                     code: 0,
                     userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
-                  )
-                   
-                  queue.async { completion(.failure(error)) }
-                }
-                 
-              case .failure(let error):
-                let error = NSError(
-                  domain: "com.kexppower.error",
-                  code: 0,
-                  userInfo: [NSLocalizedDescriptionKey: error.localizedDescription]
                 )
-             
-            queue.async { completion(.failure(error)) }
-          }
+                
+                queue.async { completion(.failure(error)) }
+            }
         }
-      }
+    }
     
     public func getShow(
         startTimeBefore: String? = nil,
