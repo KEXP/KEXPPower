@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class AvailableStreams {
     let livePlayback: [KEXPPower.StreamingBitRate: URL]
 
@@ -17,7 +16,7 @@ class AvailableStreams {
         
         livePlaybackDict[KEXPPower.StreamingBitRate.sixtyFour] = URL(string: "https://kexp.streamguys1.com/kexp64-hls/playlist.m3u8?listenerId=\(listenerId.uuidString)")!
         livePlaybackDict[KEXPPower.StreamingBitRate.oneSixty] = URL(string: "https://kexp.streamguys1.com/kexp160-hls/playlist.m3u8?listenerId=\(listenerId.uuidString)")!
-        
+
         livePlayback = livePlaybackDict
     }
 }
