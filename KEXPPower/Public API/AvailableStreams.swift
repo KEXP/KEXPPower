@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class AvailableStreams {
     let livePlayback: [KEXPPower.StreamingBitRate: URL]
 
