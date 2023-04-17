@@ -56,7 +56,7 @@ public class KEXPPower {
         let availableStreams = AvailableStreams(with: KEXPPower.sharedInstance.listenerId)
         
         return availableStreams.livePlayback[KEXPPower.sharedInstance.selectedBitRate] ??
-            URL(string: "https://kexp.streamguys1.com/kexp64-hls/playlist.m3u8?listenerId=\(listenerId.uuidString)")!
+            URL(string: "https://kexp.streamguys1.com/kexp64.aac?listenerId=\(listenerId.uuidString)")!
     }
     
     static func getShowURL(with showId: String) -> URL {
