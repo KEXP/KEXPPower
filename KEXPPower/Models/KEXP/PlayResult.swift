@@ -79,6 +79,7 @@ public struct Play: Decodable {
 public enum PlayType: String, Decodable {
     case airbreak = "airbreak"
     case trackplay = "trackplay"
+    case nontrackplay = "nontrackplay"
 }
 
 extension Play {
