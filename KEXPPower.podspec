@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'KEXPPower'
-  s.version          = '3.0.0'
+  s.version          = '3.1.0'
   s.summary          = 'A lightweight swift library that is used to communicate with the KEXP services to retrieve play and show information.'
   s.homepage         = 'https://github.com/KEXP'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
