@@ -11,7 +11,7 @@ extension Play {
     /// Returns the release year followed by first album label (if any)
     /// Example: "2022 - Matador"
     /// If releaseDate is nil, returns nil
-    var formattedReleaseYear: String? {
+    public var formattedReleaseYear: String? {
         guard
             let releaseDateString = releaseDate,
             let releaseDate = DateFormatter.releaseFormatter.date(from: releaseDateString)
