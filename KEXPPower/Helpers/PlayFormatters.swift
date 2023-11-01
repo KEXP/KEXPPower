@@ -6,7 +6,7 @@
 //  Copyright © 2023 KEXP. All rights reserved.
 //
 
-extension Play {
+public extension Play {
     
     /// Returns the release year followed by first album label (if any)
     /// Example: "2022 - Matador"
