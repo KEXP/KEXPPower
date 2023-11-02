@@ -7,7 +7,7 @@ Modifying the KEXPPower requires the following
 2. CocoaPod Permissions
 3. Build permissions and access to KEXP Radio project
 
-## BUILD STEPS
+## MODIFY/BUILD STEPS
 All build steps are captured in the document titled "Updating KEXPPower into KEXP Radio", available internally. The following are the high level steps covered in that document. 
 
 1. Make changes in KEXP Radio Pod files and test changes.
