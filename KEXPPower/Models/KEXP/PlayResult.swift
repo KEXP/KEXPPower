@@ -79,10 +79,11 @@ public struct Play: Decodable {
 public enum PlayType: String, Decodable {
     case airbreak = "airbreak"
     case trackplay = "trackplay"
+    case nontrackplay = "nontrackplay"
 }
 
 extension Play {
-    public init(id: Int, song: String?, artist: String?, album: String?, label: String?, airDate: Date?, comment: String?) {
+    public init(id: Int, song: String?, artist: String?, album: String?, label: String?, airDate: Date?, comment: String?, releaseDate: String? = nil) {
         self.id = id
         self.uri = nil
         self.show = nil
@@ -101,7 +102,7 @@ extension Play {
         self.releaseGroupID = nil
         self.labels = label != nil ? [label!] : []
         self.labelIDs = []
-        self.releaseDate = nil
+        self.releaseDate = releaseDate
         self.rotationStatus = nil
         self.isLocal = true
         self.isRequest = false
