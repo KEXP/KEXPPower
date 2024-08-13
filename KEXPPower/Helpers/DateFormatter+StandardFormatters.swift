@@ -36,6 +36,7 @@ extension DateFormatter {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.locale = Locale(identifier: "en_US_POSIX") // Added 8/1/2024 - jbk
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:'00Z'"
         return formatter
     }()
@@ -44,6 +45,7 @@ extension DateFormatter {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone(identifier: "UTC")
         formatter.dateFormat = "yyyy-MM-dd'T'07:00:00'Z'"
+        formatter.locale = Locale(identifier: "en_US_POSIX") // Added 8/1/2024 - jbk
         return formatter
     }()
     
@@ -52,6 +54,7 @@ extension DateFormatter {
     public static let archiveEndShowFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat =  "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        formatter.locale = Locale(identifier: "en_US_POSIX") // Added 8/5/2024 - jbk
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         return formatter
     }()
@@ -61,6 +64,7 @@ extension DateFormatter {
         formatter.dateStyle = .none
         formatter.timeStyle = .short
         formatter.timeZone = NSTimeZone.local
+        formatter.locale = Locale(identifier: "en_US_POSIX") // Added 8/5/2024 - jbk
         return formatter
     }()
     
@@ -68,13 +72,14 @@ extension DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE, MMM d"
         formatter.timeZone = TimeZone.current
+        formatter.locale = Locale(identifier: "en_US_POSIX") // Added 8/5/2024 - jbk
         return formatter
     }()
     
     public static let archiveShowNowPlayingFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US")
         formatter.setLocalizedDateFormatFromTemplate("MMMdeeee")
+        formatter.locale = Locale(identifier: "en_US_POSIX") // Added 8/5/2024 - jbk
         return formatter
     }()
 
