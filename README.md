@@ -19,3 +19,6 @@ All build steps are captured in the document titled "Updating KEXPPower into KEX
 7. Push all new changes to CocoaPods
 8. Push changes to Github
 9. Create new Version and set tag
+
+## Updating KEXPPower into KEXP Radio 
+The detailed process to update KEXPPower into the KEXP Radio app has been documented extensively and is available for those with permissions [HERE](https://docs.google.com/document/d/1JVerSVBi6CZ-MlxpZozj11OU8nt6izvk9_PEYzblwmE/edit). Please request access if needed. 
