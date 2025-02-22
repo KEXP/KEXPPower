@@ -10,26 +10,18 @@ import XCTest
 
 extension XCTestCase {
     func retrieveJSONData(for name: String) -> Data? {
-        guard
-            let path = Bundle(for: type(of: self)).path(forResource: name, ofType: "json")
-        else {
-            XCTFail("Invalid filename/path.")
-            
+        guard let url = Bundle.module.url(forResource: name, withExtension: "json") else {
+            XCTFail("Invalid filename/path: \(name).json not found in module")
             return nil
         }
         
         do {
-            let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-            
+            let data = try Data(contentsOf: url, options: .alwaysMapped)
             return data
-
-        } catch let error {
-            XCTFail(error.localizedDescription)
+        } catch {
+            XCTFail("Error loading JSON file: \(error.localizedDescription)")
+            return nil
         }
-        
-        XCTFail("Failed to find data)")
-        
-        return nil
     }
 
     func parseResult<T : Decodable>(parseType: T.Type, data: Data) -> T? {

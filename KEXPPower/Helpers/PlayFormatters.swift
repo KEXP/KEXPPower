@@ -6,6 +6,8 @@
 //  Copyright © 2023 KEXP. All rights reserved.
 //
 
+import Foundation
+
 public extension Play {
     
     /// Returns the release year followed by first album label (if any)
