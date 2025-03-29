@@ -101,7 +101,7 @@
 		8BFFED0222D43EA100E3378C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		8BFFED0422D43EE700E3378C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8BFFED0722D43F3800E3378C /* KEXPPower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KEXPPower.swift; sourceTree = "<group>"; };
-		8BFFED0922DBD2DE00E3378C /* KEXPPower.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KEXPPower.podspec; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8BFFED0922DBD2DE00E3378C /* KEXPPower.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KEXPPower.podspec; sourceTree = SOURCE_ROOT; };
 		CFA34E5729BA309E00CF45B0 /* PlayFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayFormatters.swift; sourceTree = "<group>"; };
 		CFA34E5D29BA314C00CF45B0 /* PlayFormattersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayFormattersTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
