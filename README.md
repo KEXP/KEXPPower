@@ -1,17 +1,41 @@
 # KEXPPower
-A networking library to communicate with streamguys and legacyAPI calls for tvOS. 
 
-## UPDATING REQUIREMENTS
-Modifying the KEXPPower requires the following
-1. SSH Key from GitHub
-2. Build permissions and access to KEXP Radio project
+**KEXPPower** is a Swift networking library designed for tvOS, enabling seamless communication with StreamGuys and legacy API services.
 
-## MODIFY/BUILD STEPS
-All build steps are captured in the document titled "Updating KEXPPower into KEXP Radio", available internally. The following are the high level steps covered in that document. 
+## Features
 
-1. Make changes in KEXPPOWER Repo files and test changes.
-	a) You can point to local version and changes of KEXPPOWER using Swift Package Manager in consuming app (KexpTVStream)
-2. Create Pull Request with changes
-3. Once Approved, merge changes in Main branch
-4. Create a new tag in KEXPPower repo
-5. Update KEXPPower project to reflect new tag
+- Network communication with StreamGuys
+- Legacy API integration support
+- Built specifically for use in tvOS environments
+
+## Updating Requirements
+
+To modify or update `KEXPPower`, ensure the following prerequisites are met:
+
+1. An SSH key registered with GitHub  
+2. Proper build permissions and access to the `KEXPPower` repository
+
+## Modify / Build Steps
+
+Follow these steps to make and integrate changes to `KEXPPower`:
+
+1. **Open the Swift package in Xcode using the terminal:**
+   ```bash
+   xed .
+
+2. **Make changes in the `KEXPPower` repo files and test locally**  
+   a) You can point to your local version of `KEXPPower` using Swift Package Manager in the consuming app (`KexpTVStream`)
+   
+3. **Create a Pull Request** with your changes
+
+4. Once approved, **merge the changes** into the `main` branch
+
+5. **Create a new Git tag** in the `KEXPPower` repository to version your changes  
+   Example:  
+   ```bash
+   git tag 1.2.3  
+   git push origin 1.2.3
+
+6. Update **KexpTVStream** to use the new version of KEXPPower
+
+    a) In Xcode, navigate to File > Packages > Update to Latest Package Versions to fetch the new tag.
