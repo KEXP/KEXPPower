@@ -38,6 +38,23 @@ class ShowResultParseTests: XCTestCase {
         XCTAssertTrue(firstShow?.hostNames?.first == "Gabriel Teodros")
         XCTAssertTrue(firstShow?.tagline == "666")
         XCTAssertTrue(firstShow?.imageURI == "https://www.kexp.org/filer/canonical/1529968564/10621/")
+        XCTAssertEqual(
+            firstShow?.showImageURL,
+            URL(string: "https://www.kexp.org/filer/canonical/1529968564/10621/")
+        )
+        XCTAssertTrue(firstShow?.programImageURI == "https://www.kexp.org/media/filer_public/a6/1d/a61d8d3e-6bab-49df-a2d4-5a55c97fd5f4/variety-800x800.jpg")
+        XCTAssertEqual(
+            firstShow?.programImageURL,
+            URL(string: "https://www.kexp.org/media/filer_public/a6/1d/a61d8d3e-6bab-49df-a2d4-5a55c97fd5f4/variety-800x800.jpg")
+        )
+        XCTAssertEqual(
+            firstShow.flatMap { ArchiveShow(show: $0).showImageURL },
+            URL(string: "https://www.kexp.org/filer/canonical/1529968564/10621/")
+        )
+        XCTAssertEqual(
+            firstShow.flatMap { ArchiveShow(show: $0).programImageURL },
+            URL(string: "https://www.kexp.org/media/filer_public/a6/1d/a61d8d3e-6bab-49df-a2d4-5a55c97fd5f4/variety-800x800.jpg")
+        )
         XCTAssertNotNil(firstShow?.startTime)
     }
 }

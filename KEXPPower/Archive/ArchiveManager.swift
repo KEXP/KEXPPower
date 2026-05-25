@@ -26,11 +26,12 @@ public class ArchiveManager {
     public var allArchiveShows = [ArchiveShow]()
 
     private let networkManager = NetworkManager()
+    private static let archiveLookbackDayOffset = 14
     
     private let requestDate: String = {
         let cal = Calendar.current
         var date = cal.startOfDay(for: Date())
-        date = cal.date(byAdding: .day, value: -13, to: date)!
+        date = cal.date(byAdding: .day, value: -ArchiveManager.archiveLookbackDayOffset, to: date)!
         let requestDate = DateFormatter.showRequestFormatter.string(from: date)
         
         return requestDate
@@ -174,9 +175,9 @@ public class ArchiveManager {
         var showsByDate = [DateShows]()
         var twoWeekDates = [Date]()
         var date = Calendar.current.startOfDay(for: Date())
-        date = Calendar.current.date(byAdding: .day, value: -13, to: date)!
+        date = Calendar.current.date(byAdding: .day, value: -Self.archiveLookbackDayOffset, to: date)!
 
-        for _ in 0...13 {
+        for _ in 0...Self.archiveLookbackDayOffset {
             twoWeekDates.append(date)
             date = Calendar.current.date(byAdding: .day, value: 1, to: date)!
         }

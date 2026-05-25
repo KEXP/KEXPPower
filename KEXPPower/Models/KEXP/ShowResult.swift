@@ -36,6 +36,7 @@ public struct Show: Decodable {
     public let hostNames: [String]?
     public let tagline: String?
     public let imageURI: String?
+    public let programImageURI: String?
     public let startTime: Date?
 
     enum CodingKeys: String, CodingKey {
@@ -50,6 +51,7 @@ public struct Show: Decodable {
         case hostNames = "host_names"
         case tagline
         case imageURI = "image_uri"
+        case programImageURI = "program_image_uri"
         case startTime = "start_time"
     }
 }
@@ -69,6 +71,7 @@ extension Show {
         hostNames = try values.decodeIfPresent([String].self, forKey: .hostNames)
         tagline = try values.decodeIfPresent(String.self, forKey: .tagline)
         imageURI = try values.decodeIfPresent(String.self, forKey: .imageURI)
+        programImageURI = try values.decodeIfPresent(String.self, forKey: .programImageURI)
 
         let dateString = try values.decode(String.self, forKey: .startTime)
 
@@ -77,5 +80,13 @@ extension Show {
         } else {
             startTime = nil
         }
+    }
+
+    public var showImageURL: URL? {
+        imageURI.flatMap(URL.init(string:))
+    }
+
+    public var programImageURL: URL? {
+        programImageURI.flatMap(URL.init(string:))
     }
 }

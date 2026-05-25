@@ -15,4 +15,12 @@ public struct ArchiveShow {
     public init(show: Show) {
         self.show = show
     }
+
+    public var showImageURL: URL? {
+        show.showImageURL
+    }
+
+    public var programImageURL: URL? {
+        show.programImageURL
+    }
 }

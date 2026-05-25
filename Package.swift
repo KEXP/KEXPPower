@@ -7,7 +7,7 @@ let package = Package(
     name: "KEXPPower",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v16),
+        .iOS("26.0"),
     ],
     products: [
         .library(
